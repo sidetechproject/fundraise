@@ -1078,3 +1078,7 @@
     padding: 3px 15px;
     border-radius: 50px;
 }
+
+.site-header.home-header .right-header > div .account-sub a {
+    color: #000000;
+}

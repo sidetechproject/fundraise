@@ -48,7 +48,7 @@
                             <a title="Logo" href="{{route('home')}}" class="site__brand__logo"><img src="{{asset(setting('logo') ? 'uploads/' . setting('logo') : 'assets/images/assets/logo.png')}}" alt="logo"></a>
                         </div>
                         <div class="site__brand light">
-                            <a title="Logo" href="{{route('home')}}" class="site__brand__logo"><img src="{{asset(setting('logo') ? 'uploads/fundraisevc-light.png' : 'assets/images/assets/logo.png')}}" alt="logo"></a>
+                            <a title="Logo" href="{{route('home')}}" class="site__brand__logo"><img src="{{asset(setting('logo') ? 'assets/images/fundraisevc-light.png' : 'assets/images/assets/logo.png')}}" alt="logo"></a>
                         </div>
 
                     </div><!-- .site -->
