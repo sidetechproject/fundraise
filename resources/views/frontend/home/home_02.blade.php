@@ -114,26 +114,32 @@
 
 
                                     <div class="entry-detail">
-                                        {{-- <div class="entry-head">
+                                        <div class="entry-head">
                                             <div class="place-type list-item">
                                                 @foreach($place['place_types'] as $type)
                                                     <span>{{$type->name}}</span>
                                                 @endforeach
                                             </div>
+                                            {{-- <div class="place-price">
+                                                <span>{{PRICE_RANGE[$place['price_range']]}}</span>
+                                            </div> --}}
                                             <div class="place-city">
-                                                <a href="{{route('page_search_listing', ['city[]' => $place['city']['id']])}}">{{$place['city']['name']}}</a>
+                                                <span>{{PRICE_RANGE[$place['price_range']]}}</span>
                                             </div>
-                                        </div> --}}
+                                        </div>
 
                                         <h3 class="place-title">
-                                            <a href="{{route('place_detail', $place->slug)}}">
+                                            <a href="{{route('place_detail', $place->slug)}}" style="color: #000000">
                                                 {{$place->name}}
                                             </a>
                                         </h3>
 
-                                        @php
-                                            echo $place->description;
-                                        @endphp
+                                        <div class="desc">
+                                            @php
+                                                $out = strlen($place->description) > 140 ? substr($place->description, 0, 140)."..." : $place->description;
+                                                echo $out;
+                                            @endphp
+                                        </div>
 
                                         <div class="entry-bottom">
                                             <div class="place-preview">
@@ -144,9 +150,6 @@
                                                     @endif
                                                 </div>
                                                 <span class="count-reviews">({{$place->reviews_count}} {{__('reviews')}})</span> --}}
-                                            </div>
-                                            <div class="place-price">
-                                                {{-- <span>{{PRICE_RANGE[$place['price_range']]}}</span> --}}
                                             </div>
                                         </div>
                                     </div>

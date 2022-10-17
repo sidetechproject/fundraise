@@ -1082,3 +1082,28 @@
 .site-header.home-header .right-header > div .account-sub a {
     color: #000000;
 }
+
+.place-04 .place__meta > div:after {
+    background-color: #66e4c5;
+}
+
+.place-item.layout-02 .place-type, .place-item.layout-02 .place-city {
+    padding: 8px;
+    border-radius: 10px;
+    background: #e8f7f3;
+    color: #2ee0b4;
+    border: 2px solid #66e4c5;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.place-item.layout-02 .place-title {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
