@@ -59,15 +59,15 @@
                                 {{--                                    <label for="name">Feature title:</label>--}}
                                 {{--                                    <input type="text" class="form-control" id="category_feature_title" name="feature_title">--}}
                                 {{--                                </div>--}}
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-md-12">
                                         <p><strong>Icon Map Marker:</strong></p>
                                         <img id="preview_icon" src="https://via.placeholder.com/100x100?text=icon" style="width:60px;height:60px;object-fit:cover;margin-bottom:10px">
                                         <input type="file" class="form-control" id="icon_map_marker" name="icon_map_marker">
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="row mt-2">
+                                {{-- <div class="row mt-2">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <p><strong>Color:</strong></p>
@@ -77,7 +77,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             @endif
 
                             <div class="row mt-2">

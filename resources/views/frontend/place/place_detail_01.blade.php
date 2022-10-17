@@ -180,7 +180,7 @@
                                 <div class="menu-tab">
                                     <div class="menu-wrap active" id="diner">
                                         <div class="flex">
-                                            
+
                                             @foreach($place->menu as $menu)
 
                                                 <div class="menu-item">
@@ -192,7 +192,7 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                            
+
                                         </div>
                                         <a href="#" class="menu-more">Show more</a>
                                     </div>
@@ -213,7 +213,6 @@
                                 <div class="address">
                                     <i class="la la-map-marker"></i>
                                     {{$place->address}}
-                                    <a href="https://maps.google.com/?q={{$place->address}}" title="Direction" target="_blank" rel="nofollow">({{__('Direction')}})</a>
                                 </div>
                             </div><!-- .place__box -->
                             <div class="place__box">

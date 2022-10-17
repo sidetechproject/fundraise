@@ -3,7 +3,7 @@
 @section('main')
     <div class="page-title">
         <div class="title_left">
-            <h3>Place create</h3>
+            <h3>Startup create</h3>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -13,7 +13,7 @@
             <div class="x_panel">
 
                 <div class="x_content">
-                    <div class="col-lg-3">
+                    {{-- <div class="col-lg-3">
                         <ul class="nav nav-tabs tabs-left place_create_menu">
                             <li class=""><a href="#genaral">Genaral</a></li>
                             <li class=""><a href="#hightlight">Hightlight</a></li>
@@ -26,7 +26,7 @@
                             <li class=""><a href="#link_affiliate">Booking link</a></li>
                             <li class=""><a href="#golo_seo">Golo SEO</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
 
                     <div class="col-lg-8 col-xs-12 place_create">
                         @if($place)
@@ -53,7 +53,7 @@
         <!-- Load the `mapbox-gl-geocoder` plugin. -->
         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
-         
+
         <!-- Promise polyfill script is required -->
         <!-- to use Mapbox GL Geocoder in IE 11. -->
         <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>

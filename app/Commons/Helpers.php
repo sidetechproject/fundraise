@@ -9,11 +9,80 @@ use Carbon\Carbon;
 
 const PRICE_RANGE = [
     "" => "None",
-    "0" => "Free",
-    "1" => "$",
-    "2" => "$$",
-    "3" => "$$$",
-    "4" => "$$$$",
+    "0" => "< USD 500K",
+    "1" => "USD 500K - 1M",
+    "2" => "USD 1M - 5M",
+    "3" => "USD 5M+",
+];
+
+const CATEGORIES = [
+    "0" => "MarTech",
+    "1" => "AgTech",
+    "2" => "BioTech",
+    "3" => "Cibersegurança",
+    "4" => "Comunicação",
+    "5" => "ConstruTech",
+    "6" => "DeepTech",
+    "7" => "EdTech",
+    "8" => "EnergyTech",
+    "9" => "ESG",
+    "10" => "Mídia e entretenimento",
+    "11" => "FinTech",
+    "12" => "FoodTech",
+    "13" => "Gestão de negócios e projetos",
+    "14" => "GovTech",
+    "15" => "GreenTech",
+    "16" => "HealthTech",
+    "17" => "HRTech",
+    "18" => "Indústria",
+    "19" => "InsurTech",
+    "20" => "LegalTech",
+    "21" => "Mobilidade",
+    "22" => "PropTech",
+    "23" => "PetTech",
+    "24" => "Real Estate",
+    "25" => "RegTech",
+    "26" => "RetailTech",
+    "27" => "SportsTech",
+    "28" => "Telecom",
+    "29" => "Turismo",
+    "30" => "LogTech/Supply Chain",
+];
+
+const STAGE = [
+    "0" => "Pre-seed",
+    "1" => "Seed",
+    "2" => "Series A",
+    "3" => "Series B+",
+];
+
+const BUSINESS_MODEL = [
+    "0" => "SaaS",
+    "1" => "Pay-per-use",
+    "2" => "Subscription",
+    "3" => "Transactional",
+    "4" => "Marketplace",
+    "5" => "E-commerce",
+    "6" => "Advertising",
+    "7" => "Outro",
+];
+
+
+const TAGS = [
+    "0" => "Comunidade",
+    "1" => "No-Code",
+    "2" => "Marketplace",
+    "3" => "Mídia social",
+    "4" => "Finança",
+    "5" => "Saúde",
+    "6" => "Info Produto",
+    "7" => "SaaS",
+    "8" => "Crypto",
+    "9" => "Consumidor",
+    "10" => "Jogos",
+    "11" => "Ferramentas de vendas",
+    "12" => "Ferramentas de marketing",
+    "13" => "Ferramentas de Produtividade",
 ];
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];

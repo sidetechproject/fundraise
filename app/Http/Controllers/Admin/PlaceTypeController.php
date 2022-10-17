@@ -41,7 +41,7 @@ class PlaceTypeController extends Controller
     public function create(Request $request)
     {
         $rules = [
-            'category_id' => 'required',
+            // 'category_id' => 'null',
             '%name%' => ''
         ];
         $rule_factory = RuleFactory::make($rules);
@@ -56,7 +56,7 @@ class PlaceTypeController extends Controller
     public function update(Request $request)
     {
         $rules = [
-            'category_id' => 'required',
+            // 'category_id' => 'null',
             '%name%' => ''
         ];
         $rule_factory = RuleFactory::make($rules);

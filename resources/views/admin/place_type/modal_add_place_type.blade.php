@@ -22,14 +22,14 @@
                                 @endforeach
                             </ul>
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="password">Category: *</label>
                                 <select class="form-control" id="category_id" name="category_id" required>
                                     @foreach($categories as $cat)
                                         <option value="{{$cat->id}}">{{$cat->name}}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
 
                             <div class="tab-content">
                                 @foreach($languages as $index => $language)

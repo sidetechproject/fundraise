@@ -15,16 +15,16 @@
                 <li id="menu_place">
                     <a><i class="fa fa-map-marker"></i> Startups <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{{route('admin_place_list')}}"><i class="fa fa-map-marker"></i>Projetos</a></li>
-                        <li><a href="{{route('admin_place_type_list')}}"><i class="fa fa-tags"></i> Tipos</a></li>
-                        <li><a href="{{route('admin_category_list', \App\Models\Category::TYPE_PLACE)}}"><i class="fa fa-list"></i> Categorias</a></li>
-                        <li><a href="{{route('admin_amenities_list')}}"><i class="fa fa-wifi"></i> Tags</a></li>
-                        <li><a href="{{route('admin_city_list')}}"><i class="fa fa-building"></i> Cities</a></li>
-                        <li><a href="{{route('admin_country_list')}}"><i class="fa fa-globe"></i> Countries</a></li>
+                        <li><a href="{{route('admin_place_list')}}"><i class="fa fa-map-marker"></i>Startups</a></li>
+                        <li><a href="{{route('admin_place_type_list')}}"><i class="fa fa-tags"></i> Stages</a></li>
+                        <li><a href="{{route('admin_category_list', \App\Models\Category::TYPE_PLACE)}}"><i class="fa fa-list"></i> Categories</a></li>
+                        <li><a href="{{route('admin_amenities_list')}}"><i class="fa fa-wifi"></i> Business Model</a></li>
+                        <li class="hidden"><a href="{{route('admin_city_list')}}"><i class="fa fa-building"></i> Cities</a></li>
+                        <li class="hidden"><a href="{{route('admin_country_list')}}"><i class="fa fa-globe"></i> Countries</a></li>
                     </ul>
                 </li>
 
-                <li id="menu_blog">
+                <li id="menu_blog" class="hidden">
                     <a><i class="fa fa-newspaper-o"></i> Blog <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{route('admin_post_list_blog')}}">All Posts</a></li>
@@ -33,12 +33,13 @@
                 </li>
                 <li id="menu_pages"><a href="{{route('admin_post_list_page')}}"><i class="fa fa-clone"></i> Pages</a></li>
 
-                <li id="menu_pages"><a href="{{route('admin_booking_list')}}"><i class="fa fa-calendar"></i> Bookings</a></li>
+                <li id="menu_pages" class="hidden"><a href="{{route('admin_booking_list')}}"><i class="fa fa-calendar"></i> Bookings</a></li>
 
-                <li><a href="{{route('admin_review_list')}}"><i class="fa fa-star-half-o"></i> Reviews</a></li>
+                <li class="hidden"><a href="{{route('admin_review_list')}}"><i class="fa fa-star-half-o"></i> Reviews</a></li>
+
                 <li><a href="{{route('admin_user_list')}}"><i class="fa fa-users"></i> Users</a></li>
 
-                <li><a href="{{route('admin_testimonial_list')}}"><i class="fa fa-users"></i> Testimonials</a></li>
+                <li class="hidden"><a href="{{route('admin_testimonial_list')}}"><i class="fa fa-users"></i> Testimonials</a></li>
 
                 <li>
                     <a><i class="fa fa-cog"></i> Settings <span class="fa fa-chevron-down"></span></a>

@@ -3,11 +3,11 @@
 @section('main')
     <div class="page-title">
         <div class="title_left">
-            <h3>Amenities</h3>
+            <h3>Tags</h3>
         </div>
         <div class="title_right">
             <div class="pull-right">
-                <button class="btn btn-primary" id="btn_add_amenities" type="button">+ Add amenities</button>
+                <button class="btn btn-primary" id="btn_add_amenities" type="button">+ Add tag</button>
             </div>
         </div>
     </div>
@@ -20,9 +20,9 @@
                     <table class="table table-striped table-bordered golo-datatable">
                         <thead>
                         <tr>
-                            <th width="3%">ID</th>
-                            <th width="5%">Icon</th>
-                            <th>Amenities Name</th>
+                            <th width="5%">ID</th>
+                            {{-- <th width="5%">Icon</th> --}}
+                            <th width="60%">Tag Name</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -30,7 +30,7 @@
                         @foreach($amenities as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
-                                <td><img class="amenities_icon" src="{{getImageUrl($item->icon)}}" alt="Amenities icon"></td>
+                                {{-- <td><img class="amenities_icon" src="{{getImageUrl($item->icon)}}" alt="Amenities icon"></td> --}}
                                 <td>{{$item->name}}</td>
                                 <td>
                                     <button type="button" class="btn btn-warning btn-xs amenities_edit"

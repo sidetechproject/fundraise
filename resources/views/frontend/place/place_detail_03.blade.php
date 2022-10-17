@@ -601,7 +601,6 @@
                                         <input type="hidden" id="place_lat" value="{{$place->lat}}">
                                         <input type="hidden" id="place_lng" value="{{$place->lng}}">
                                         <input type="hidden" id="place_icon_marker" value="{{asset('assets/images/icon-mapker.svg')}}">
-                                        <a href="https://maps.google.com/?q={{$place->address}}" class="direction btn" target="_blank">Get Direction<i class="las la-external-link-alt"></i></a>
                                     </div>
                                     <div class="business-info">
                                         <h4>Business Info</h4>

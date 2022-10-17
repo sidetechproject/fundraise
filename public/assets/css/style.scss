@@ -3229,7 +3229,7 @@ a.place__comments__reply {
 	    	margin-right: 20px;
 			a{
 				font-size: 20px;
-	  			font-weight: 500;	
+	  			font-weight: 500;
 	  			font-family: $font_family_2;
 			    line-height: normal;
 			    text-align: center;
@@ -3620,7 +3620,7 @@ a.place__comments__reply {
 		outline: 0;
 		box-shadow: initial;
 	}
-	input::placeholder { 
+	input::placeholder {
   		font-family: $font_family_1;
   		font-size: 15px;
   		color: $color_7;
@@ -3635,7 +3635,7 @@ a.place__comments__reply {
   		font-size: 15px;
   		color: $color_7;
 	}
-	select{ 
+	select{
   		font-family: $font_family_1;
   		font-size: 15px;
   		color: $color_7;
@@ -4406,7 +4406,7 @@ a.place__comments__reply {
 				opacity: 1;
 				visibility: visible;
 				transition: all 0.3s;
-			}	
+			}
 		}
 		.place__desc.open{
 			height: 100%;
@@ -5570,7 +5570,7 @@ a.place__comments__reply {
   	ul::-webkit-scrollbar {
 	    width: 6px;
 	    background-color: $color_16;
-	} 
+	}
 	ul::-webkit-scrollbar-thumb {
 	    background-color: $color_14;
 	    border-radius: 5px;
@@ -6197,7 +6197,7 @@ a.place__comments__reply {
 }
 .place-thumb-slider{
 	display: block;
-	
+
 }
 .place-item.layout-02{
 	.place-inner{
@@ -6344,7 +6344,7 @@ a.place__comments__reply {
     		color: $color_3;
     	}
 	}
-} 
+}
 .place-thumb-slider{
 	.slick-item:not(:first-child){
 		display: none;
@@ -6739,10 +6739,10 @@ a.place__comments__reply {
     .field-check{
     	margin-bottom: 10px;
     	label{
-    		-webkit-box-flex: 0; 
+    		-webkit-box-flex: 0;
 		    -ms-flex: 0 0 100%;
-		    flex: 0 0 100%; 
-		    max-width: 100%; 
+		    flex: 0 0 100%;
+		    max-width: 100%;
     	}
     	label:before{
     		vertical-align: -2px;
@@ -6893,7 +6893,7 @@ a.place__comments__reply {
 				font-size: 24px;
 				margin-right: 2px;
 			}
-			
+
 		}
 		.close-now{
 			color: #f43319;
@@ -7299,7 +7299,7 @@ a.place__comments__reply {
 			font-family: $font_family_2;
 			font-size: 16px;
   			font-weight: 500;
-  			color: $color_1;	
+  			color: $color_1;
 		}
 		a{
 			font-family: $font_family_2;
@@ -8119,7 +8119,7 @@ a.place__comments__reply {
 		    -o-transition: inherit;
 		    -webkit-transition: inherit;
 		    -ms-transition: inherit;
-		}	
+		}
 	}
 	div.right-header__button:hover{
 		background-color: $color_9;
@@ -8503,7 +8503,7 @@ a.place__comments__reply {
 			a:after{
 				border-bottom-color: $color_3;
 			}
-		} 
+		}
 		img{
 			height: 270px;
 			width: 100%;
@@ -8945,7 +8945,7 @@ a.place__comments__reply {
 	padding: 40px 0 80px;
 	.col-left{
 		padding: 0 !important;
-		-webkit-box-flex: inherit !important; 
+		-webkit-box-flex: inherit !important;
 	    -ms-flex: inherit !important;
 	    flex: inherit !important;
 	    display: inherit !important;
@@ -9124,7 +9124,7 @@ a.place__comments__reply {
 	}
 	.site-banner__title{
 		font-size: 48px;
-		
+
 		font-family: $font_family_2;
 		i{
 			font-family: $font_family_3;
@@ -9609,3 +9609,5 @@ a.place__comments__reply {
 	font-size: 14px;
 	color: $color_1;
 }
+
+

@@ -21,8 +21,8 @@
                         @foreach($languages as $index => $language)
                             <div class="tab-pane fade show {{$index !== 0 ?: "active"}}" id="language_{{$language->code}}" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="form-group">
-                                    <label for="place_name">Place name<small>({{$language->code}})</small>: *</label>
-                                    <input type="text" class="form-control" name="{{$language->code}}[name]" placeholder="What the name of place" autocomplete="off" {{$index !== 0 ?: "required"}}>
+                                    <label for="place_name">Startup name<small>({{$language->code}})</small>: *</label>
+                                    <input type="text" class="form-control" name="{{$language->code}}[name]" placeholder="What the name of startup" autocomplete="off" {{$index !== 0 ?: "required"}}>
                                 </div>
 
                                 <div class="form-group">
@@ -37,14 +37,11 @@
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="price_range">Price range: *</label>
+                    <label for="price_range">Raising: *</label>
                     <select class="form-control" id="price_range" name="price_range">
-                        <option value="">None</option>
-                        <option value="0">Free</option>
-                        <option value="1">$</option>
-                        <option value="2">$$</option>
-                        <option value="3">$$$</option>
-                        <option value="4">$$$$</option>
+                        @foreach(PRICE_RANGE as $key => $price)
+                            <option value="{{$key}}">{{$price}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -76,7 +73,7 @@
         </div>
 
         <div id="hightlight">
-            <p class="lead">Amenities</p>
+            <p class="lead">Business Model</p>
             <div class="checkbox row">
                 @foreach($amenities as $item)
                     <div class="col-md-3 mb-10">
@@ -89,7 +86,7 @@
         <div id="location">
             <p class="lead">Location</p>
 
-            <div class="row">
+            <div class="row hidden">
                 <div class="form-group col-md-6">
                     <label for="select_country">Country: *</label>
                     <select class="form-control" id="select_country" name="country_id" required>
@@ -116,7 +113,7 @@
             </div>
 
             {{--<input type="text" id="pac-input" class="form-control" placeholder="Search address..." autocomplete="off">--}}
-            <div id="map"></div>
+            {{-- <div id="map"></div> --}}
 
         </div>
 
@@ -157,7 +154,7 @@
             <button type="button" class="btn btn-round btn-default" id="social_addmore">+ Add more</button>
         </div>
 
-        <div id="opening_hours">
+        <div id="opening_hours" class="hidden">
             <p class="lead">Opening hours</p>
             <div id="openinghour_list">
                 @foreach(DAYS as $key => $day)
@@ -176,7 +173,7 @@
             <button type="button" class="btn btn-round btn-default" id="openinghour_addmore">+ Add more</button>
         </div>
 
-        <div id="menus">
+        <div id="menus" class="hidden">
             <p class="lead">Menus</p>
 
             <div id="menu_list">
@@ -241,7 +238,7 @@
             </div>
         </div>
 
-        <div id="link_affiliate">
+        <div id="link_affiliate" class="hidden">
             <p class="lead">Booking type</p>
             <div class="btn-group" data-toggle="buttons">
                 <label class="btn btn-secondary" data-toggle-class="btn-default" data-toggle-passive-class="btn-default">
@@ -270,7 +267,7 @@
         <div class="ln_solid"></div>
 
         <div id="golo_seo">
-            <p class="lead">Golo SEO</p>
+            <p class="lead">SEO</p>
 
             <div class="form-group">
                 <label for="seo_title">SEO title:</label>

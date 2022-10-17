@@ -43,9 +43,13 @@
             <div class="row">
                 <div class="col-md-6 col-8">
                     <div class="site">
-                        <div class="site__brand">
+
+                        <div class="site__brand dark">
                             <a title="Logo" href="{{route('home')}}" class="site__brand__logo"><img src="{{asset(setting('logo') ? 'uploads/' . setting('logo') : 'assets/images/assets/logo.png')}}" alt="logo"></a>
-                        </div><!-- .site__brand -->
+                        </div>
+                        <div class="site__brand light">
+                            <a title="Logo" href="{{route('home')}}" class="site__brand__logo"><img src="{{asset(setting('logo') ? 'uploads/fundraisevc-light.png' : 'assets/images/assets/logo.png')}}" alt="logo"></a>
+                        </div>
 
                     </div><!-- .site -->
                 </div><!-- .col-md-6 -->
@@ -180,7 +184,7 @@
                                             <li class="{{isActiveMenu('admin_dashboard')}}"><a href="{{route('admin_dashboard')}}" target="_blank" rel="nofollow">{{__('Dashboard')}}</a></li>
                                         @endif
                                         <li class="{{isActiveMenu('user_profile')}}"><a href="{{route('user_profile')}}">{{__('Profile')}}</a></li>
-                                        <li class="{{isActiveMenu('user_my_place')}}"><a href="{{route('user_my_place')}}">{{__('My Places')}}</a></li>
+                                        <li class="{{isActiveMenu('user_my_place')}}"><a href="{{route('user_my_place')}}">{{__('My Startups')}}</a></li>
                                         {{-- <li class="{{isActiveMenu('user_wishlist')}}"><a href="{{route('user_wishlist')}}">{{__('Wishlist')}}</a></li> --}}
                                         <li>
                                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('Logout')}}</a>
@@ -198,8 +202,8 @@
                             </a>
                         </div>
                         <div class="right-header__button btn">
-                            <a title="Add place" href="{{route('place_addnew')}}">
-                                <span>{{__('Add place')}}</span>
+                            <a title="Add startup" href="{{route('place_addnew')}}">
+                                <span>{{__('Add startup')}}</span>
                             </a>
                         </div><!-- .right-header__button -->
                     </div><!-- .right-header -->
@@ -281,7 +285,7 @@
             </div> --}}
             <!-- .top-footer -->
             <div class="footer__bottom">
-                <p class="footer__bottom__copyright">{{now()->year}} &copy; <a href="{{__('https://microsaas.com.br')}}" target="_blank">{{__('MicroSaaS')}}</a>. {{__('All rights reserved.')}}</p>
+                <p class="footer__bottom__copyright">{{now()->year}} &copy; <a href="{{__('https://fundrasie.vc')}}" target="_blank">{{__('fundrasie.vc')}}</a>. {{__('All rights reserved.')}}</p>
             </div><!-- .top-footer -->
         </div><!-- .container -->
     </footer><!-- site-footer -->
@@ -302,7 +306,6 @@
 <script src="{{asset('assets/libs/chosen/chosen.jquery.min.js')}}"></script>
 <script src="{{asset('assets/js/main.js?v=1.4')}}"></script>
 <script src="{{asset('assets/js/custom.js?v=1.4')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{setting('goolge_map_api_key', 'AIzaSyD-2mhVoLX7oIOgRQ-6bxlJt4TF5k0xhWc')}}&libraries=places&language={{\Illuminate\Support\Facades\App::getLocale()}}"></script>
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
 

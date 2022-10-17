@@ -4,11 +4,11 @@
 
     <div class="page-title">
         <div class="title_left">
-            <h3>Places</h3>
+            <h3>Startups</h3>
         </div>
         <div class="title_right">
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{route('admin_place_create_view')}}">+ Add place</a>
+                <a class="btn btn-primary" href="{{route('admin_place_create_view')}}">+ Add startup</a>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <form class="row">
-                        <div class="col-md-3 form-group">
+                        {{-- <div class="col-md-3 form-group">
                             <label>Select Country:</label>
                             <select class="form-control" id="select_category_id" name="country_id" onchange="this.form.submit()">
                                 <option value="">All Country</option>
@@ -31,8 +31,8 @@
                                     @endif
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="col-md-3 form-group">
+                        </div> --}}
+                        {{-- <div class="col-md-3 form-group">
                             <label>Select City:</label>
                             <select class="form-control" id="select_city_id" name="city_id" onchange="this.form.submit()">
                                 <option value="">All City</option>
@@ -44,7 +44,7 @@
                                     @endif
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="col-md-3 form-group">
                             <label>Select Categories:</label>
                             <select class="form-control" id="select_category_id" name="category_id" onchange="this.form.submit()">
@@ -69,8 +69,8 @@
                         <tr>
                             <th width="3%">ID</th>
                             <th width="5%">Thumb</th>
-                            <th>Place name</th>
-                            <th>City</th>
+                            <th>Startup name</th>
+                            {{-- <th>City</th> --}}
                             <th>Category</th>
                             <th>Status</th>
                             <th width="15%">Action</th>
@@ -83,11 +83,11 @@
                                 <td>{{$place->id}}</td>
                                 <td><img class="place_list_thumb" src="{{getImageUrl($place->thumb)}}" alt="page thumb"></td>
                                 <td>{{$place->name}}</td>
-                                <td>
+                                {{-- <td>
                                     @if($place['city'])
                                         {{$place['city']['name']}}
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td>
                                     @foreach($place->categories as $cat)
                                         <span class="category_name">{{$cat->name}}</span>

@@ -1016,7 +1016,7 @@
      margin-bottom: 0;
 }
 .hidden {
-    display: none;
+    display: none !important;
 }
 .place-04 .place-gallery {
     position: relative;
@@ -1070,4 +1070,11 @@
 }
 .place__box h3 {
     margin-top: 30px;
+}
+
+
+.place-04 .hightlight-grid .place__amenities span {
+    background-color: #dcdcdc;
+    padding: 3px 15px;
+    border-radius: 50px;
 }

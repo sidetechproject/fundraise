@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="member-place-wrap">
                     <div class="member-place-top flex-inline">
-                        <h1>{{__('Place')}}</h1>
+                        <h1>{{__('Startup')}}</h1>
                     </div><!-- .member-place-top -->
                     @include('frontend.common.box-alert')
                     <div class="member-filter">
@@ -55,8 +55,8 @@
                             <th></th>
                             <th>{{__('ID')}}</th>
                             <th>{{__('Thumb')}}</th>
-                            <th>{{__('Place name')}}</th>
-                            <th>{{__('City')}}</th>
+                            <th>{{__('Startup name')}}</th>
+                            {{-- <th>{{__('City')}}</th> --}}
                             <th>{{__('Category')}}</th>
                             <th>{{__('Status')}}</th>
                             <th></th>

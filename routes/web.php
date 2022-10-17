@@ -43,12 +43,12 @@ $router->group([
     $router->get('/city/{slug}', 'CityController@detail')->name('city_detail');
     $router->get('/city/{slug}/{cat_slug}', 'CityController@detail')->name('city_category_detail');
 
-    $router->get('/place/{slug}', 'PlaceController@detail')->name('place_detail');
-    $router->get('/new-place', 'PlaceController@pageAddNew')->name('place_addnew');
-    $router->get('/edit-place/{id}', 'PlaceController@pageAddNew')->name('place_edit')->middleware('auth');
-    $router->post('/place', 'PlaceController@create')->name('place_create')->middleware('auth');
-    $router->put('/place', 'PlaceController@update')->name('place_update')->middleware('auth');
-    $router->get('/places/filter', 'PlaceController@getListFilter')->name('place_get_list_filter');
+    $router->get('/startup/{slug}', 'PlaceController@detail')->name('place_detail');
+    $router->get('/new-startup', 'PlaceController@pageAddNew')->name('place_addnew');
+    $router->get('/edit-startup/{id}', 'PlaceController@pageAddNew')->name('place_edit')->middleware('auth');
+    $router->post('/startup', 'PlaceController@create')->name('place_create')->middleware('auth');
+    $router->put('/startup', 'PlaceController@update')->name('place_update')->middleware('auth');
+    $router->get('/startup/filter', 'PlaceController@getListFilter')->name('place_get_list_filter');
 
     $router->post('/review', 'ReviewController@create')->name('review_create')->middleware('auth');
     $router->post('/wishlist', 'UserController@addWishlist')->name('add_wishlist')->middleware('auth');
@@ -122,12 +122,12 @@ $router->group([
     $router->put('/place-type', 'PlaceTypeController@update')->name('place_type_update');
     $router->delete('/place-type/{id}', 'PlaceTypeController@destroy')->name('place_type_delete');
 
-    $router->get('/place', 'PlaceController@list')->name('place_list');
-    $router->get('/place/add', 'PlaceController@createView')->name('place_create_view');
-    $router->get('/place/edit/{id}', 'PlaceController@createView')->name('place_edit_view');
-    $router->post('/place', 'PlaceController@create')->name('place_create');
-    $router->put('/place', 'PlaceController@update')->name('place_update');
-    $router->delete('/place/{id}', 'PlaceController@destroy')->name('place_delete');
+    $router->get('/startups', 'PlaceController@list')->name('place_list');
+    $router->get('/startups/add', 'PlaceController@createView')->name('place_create_view');
+    $router->get('/startups/edit/{id}', 'PlaceController@createView')->name('place_edit_view');
+    $router->post('/startups', 'PlaceController@create')->name('place_create');
+    $router->put('/startups', 'PlaceController@update')->name('place_update');
+    $router->delete('/startups/{id}', 'PlaceController@destroy')->name('place_delete');
 
     $router->get('/review', 'ReviewController@list')->name('review_list');
     $router->delete('/review', 'ReviewController@destroy')->name('review_delete');

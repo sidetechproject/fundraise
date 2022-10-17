@@ -14,11 +14,11 @@
             <div class="container">
                 <div class="site-banner__content">
                     <h1 class="site-banner__title">
-                        {{__('Business Listing')}}
+                        {{__('Fundraising made easy')}}
                     </h1>
 
                     <p>
-                        É possível para um desenvolvedor solo construir uma microstartup <br \> lucrativa para pagar as contas e viver a vida em seus próprios termos.
+                        {{__('Invest in innovative venture funds and startups validated by fundraise.vc')}}
                     </p>
 
                     {{-- <p>

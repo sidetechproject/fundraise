@@ -131,8 +131,7 @@ class PlaceController extends Controller
         $cities = $this->city->getListByCountry($country_id);
         $categories = $this->category->getListAll(Category::TYPE_PLACE);
 
-        $place_types = Category::query()
-            ->with('place_type')
+        $place_types = PlaceType::query()
             ->get();
 
         $amenities = $this->amenities->getListAll();

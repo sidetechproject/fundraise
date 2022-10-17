@@ -14,15 +14,14 @@
 
                     <div class="dashboard-intro">
                         <div class="dashboard-intro__content">
-                            <h2>MicroSaaS</h2>
+                            <h2>FUNDRAISE.VC</h2>
 
-                            <a class="btn btn-primary" href="{{route('admin_place_create_view')}}">{{ __('Add new place')  }}</a>
+                            <a class="btn btn-primary" href="{{route('admin_place_create_view')}}">{{ __('Add new startup')  }}</a>
                             <p> </p>
                             <p><strong>Staticts:</strong></p>
-                            <p>Cities: {{$count_cities}}</p>
-                            <p>Places: {{$count_places}}</p>
-                            <p>Booking Make: {{$count_bookings}}</p>
-                            <p>Reviews: {{$count_reviews}}</p>
+
+                            <p>Startups: {{$count_places}}</p>
+
                             <p>Users: {{$count_users}}</p>
                         </div>
                     </div>

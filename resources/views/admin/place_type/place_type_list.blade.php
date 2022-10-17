@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
-                <div class="x_title">
+                {{-- <div class="x_title">
                     <div class="row">
                         <div class="col-md-3 form-group">
                             <label>Select Category:</label>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                </div>
+                </div> --}}
 
                 <div class="x_content">
 
@@ -45,7 +45,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Place type name</th>
-                            <th>Category name</th>
+                            {{-- <th>Category name</th> --}}
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -55,7 +55,7 @@
                             <tr>
                                 <td>{{$place_type->id}}</td>
                                 <td>{{$place_type->name}}</td>
-                                <td>{{$place_type['category']['name']}}</td>
+                                {{-- <td>{{$place_type['category']['name']}}</td> --}}
                                 <td>
                                     <button type="button" class="btn btn-warning btn-xs place_type_edit"
                                             data-id="{{$place_type->id}}"

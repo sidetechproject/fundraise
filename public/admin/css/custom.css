@@ -41,13 +41,13 @@
 }
 
 .dashboard-intro {
-    background-image: url("/admin/images/microsaas.jpg");
+    background-image: url("/uploads/fundraisevc-light.png");
     background-repeat: no-repeat;
-    background-position: top right;
+    background-position: center right;
     padding-top: 30px;
     padding-bottom: 30px;
     margin-right: 5%;
-    background-size: 300px 300px;
+    background-size: 300px 40px;
 }
 
 .dashboard-intro__content {
@@ -355,4 +355,27 @@
     width: 105px;
     height: 87px !important;
     object-fit: cover
+}
+
+.hidden {
+    display: none !important;
+}
+
+.btn-warning {
+    color: #000000 !important;
+    background-color: #ffda79;
+    border-color: #ffda79;
+}
+
+.btn-danger {
+    background-color: #ff5252;
+    border-color: #ff5252;
+}
+
+.btn-primary {
+    color: #000000 !important;
+}
+
+.footer {
+    background-color: #040503 !important;
 }

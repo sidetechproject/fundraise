@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add amenities</h4>
+                <h4 class="modal-title">Add tag</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
 
@@ -36,13 +36,13 @@
                                 {{--<label for="name">Amenities name: *</label>--}}
                                 {{--<input type="text" class="form-control" id="amenities_name" name="name" required>--}}
                             {{--</div>--}}
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-md-12">
                                     <p><strong>Icon:</strong></p>
                                     <img id="preview_icon" src="https://via.placeholder.com/100x100?text=icon" alt="no image">
                                     <input type="file" class="form-control" id="amenities_icon" name="icon">
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

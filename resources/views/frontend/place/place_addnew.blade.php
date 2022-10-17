@@ -1,7 +1,7 @@
 @extends('frontend.layouts.template')
 @section('main')
     <main id="main" class="site-main listing-main">
-        <div class="listing-nav">
+        <div class="listing-nav hidden">
             <div class="listing-menu nav-scroll">
                 <ul>
                     <li class="active">
@@ -51,14 +51,14 @@
         </div><!-- .listing-nav -->
 
         <div class="listing-content">
-            <h2>
+            <h2 class="m-auto text-center">
                 @if(isRoute('place_edit'))
-                    {{__('Edit my place')}}
+                    {{__('Edit my startup')}}
                 @else
-                    {{__('Add new place')}}
+                    {{__('Add new startup')}}
                 @endif
             </h2>
-            <form class="upload-form" id="new_place" action="{{route('place_create')}}" method="POST" enctype="multipart/form-data">
+            <form class="upload-form m-auto pt-4" id="new_place" action="{{route('place_create')}}" method="POST" enctype="multipart/form-data">
                 @if(isRoute('place_edit'))
                     @method('PUT')
                 @endif
@@ -67,11 +67,11 @@
                     <h3>{{__('Genaral')}}</h3>
                     <div class="field-inline">
                         <div class="field-group field-input">
-                            <label for="place_name">{{__('Place name')}} ({{$language_default['code']}}) *</label>
-                            <input type="text" id="place_name" name="{{$language_default['code']}}[name]" value="{{$place ? $place['name'] : ''}}" required placeholder="{{__('What the name of place')}}">
+                            <label for="place_name">{{__('Startup name')}} *</label>
+                            <input type="text" id="place_name" name="{{$language_default['code']}}[name]" value="{{$place ? $place['name'] : ''}}" required placeholder="{{__('What the name of your startup')}}">
                         </div>
                         <div class="field-group field-select">
-                            <label for="price_range">{{__('Price Range')}}</label>
+                            <label for="price_range">{{__('Raising')}}</label>
                             <select id="price_range" name="price_range">
                                 @foreach(PRICE_RANGE as $key => $price)
                                     <option value="{{$key}}" {{isSelected($key, $place ? $place['price_range'] : '')}}>{{$price}}</option>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="field-group">
-                        <label for="description">{{__('Description')}} ({{$language_default['code']}}) *</label>
+                        <label for="description">{{__('Description')}} *</label>
                         <textarea class="form-control" id="description" name="{{$language_default['code']}}[description]" rows="5">{{$place ? $place['description'] : ''}}</textarea>
                     </div>
                     <div class="field-group field-select">
@@ -94,21 +94,17 @@
                         <i class="la la-angle-down"></i>
                     </div>
                     <div class="field-group field-select">
-                        <label for="lis_place_type">{{__('Place Type')}} *</label>
-                        <select class="chosen-select" id="lis_place_type" name="place_type[]" data-placeholder="{{__('Select Place Type')}}" multiple required>
-                            @foreach($place_types as $cat)
-                                <optgroup label="{{$cat['name']}}">
-                                    @foreach($cat['place_type'] as $type)
-                                        <option value="{{$type['id']}}" {{isSelected($type['id'], $place ? $place['place_type'] : '')}}>{{$type['name']}}</option>
-                                    @endforeach
-                                </optgroup>
+                        <label for="lis_place_type">{{__('Stage')}} *</label>
+                        <select class="chosen-select" id="lis_place_type" name="place_type[]" data-placeholder="{{__('Select Stage')}}" multiple required>
+                            @foreach($place_types as $type)
+                                <option value="{{$type['id']}}" {{isSelected($type['id'], $place ? $place['place_type'] : '')}}>{{$type['name']}}</option>
                             @endforeach
                         </select>
                         <i class="la la-angle-down"></i>
                     </div>
                 </div><!-- .listing-box -->
                 <div class="listing-box" id="amenities">
-                    <h3>{{__('Amenities')}}</h3>
+                    <h3>{{__('Business Model')}}</h3>
                     <div class="field-group field-check">
                         @foreach($amenities as $item)
                             <label for="amenities_{{$item['id']}}">
@@ -281,14 +277,16 @@
                 <div class="listing-box" id="media">
                     <h3>Media</h3>
                     <div class="field-group field-file">
-                        <label for="thumb_image">{{__('Thumb image')}}</label>
+                        <label for="thumb_image">{{__('Logo')}}</label>
                         <label for="thumb_image" class="preview">
                             @if($place && $place['thumb'])
                                 <input type="file" id="thumb_image" name="thumb" class="upload-file">
                             @else
                                 <input type="file" id="thumb_image" name="thumb" class="upload-file" required>
                             @endif
+
                             <img id="thumb_preview" src="{{$place && $place['thumb'] ? getImageUrl($place['thumb']) : ''}}" alt=""/>
+
                             <i class="la la-cloud-upload-alt"></i>
                         </label>
                         <div class="field-note">{{__('Maximum file size: 1 MB')}}.</div>
@@ -342,11 +340,3 @@
         </div><!-- .listing-content -->
     </main><!-- .site-main -->
 @stop
-
-@push('scripts')
-    @if(setting('map_service', 'google_map') === 'google_map')
-        <script src="{{asset('assets/js/page_place_new.js')}}"></script>
-    @else
-        <script src="{{asset('assets/js/page_place_new_mapbox.js')}}"></script>
-    @endif
-@endpush

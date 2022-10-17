@@ -17,8 +17,6 @@
                     @endif
                 </div>
 
-
-
                 {{-- <div class="place-share">
                     <a title="Save" href="#" class="add-wishlist @if($place->wish_list_count) remove_wishlist active @else @guest open-login @else add_wishlist @endguest @endif" data-id="{{$place->id}}">
                         <i class="la la-bookmark la-24"></i>
@@ -115,14 +113,17 @@
                                     <div class="place__box place__box--npd">
                                         <h1>{{$place->name}}</h1>
                                         <div class="place__meta">
-                                            <div class="place__reviews reviews">
+
+                                            <div class="place__reviews reviews hidden">
                                                     <span class="place__reviews__number reviews__number">
                                                         {{$review_score_avg}}
                                                         <i class="la la-star"></i>
                                                     </span>
                                                 <span class="place__places-item__count reviews_count">({{count($reviews)}} reviews)</span>
                                             </div>
+
                                             <div class="place__currency">{{PRICE_RANGE[$place->price_range]}}</div>
+
                                             @if(isset($place_types))
                                                 <div class="place__category">
                                                     @foreach($place_types as $type)
@@ -137,12 +138,12 @@
 
                             <div class="place__box place__box-overview">
                                 <h3>{{__('Overview')}}</h3>
-                                <div class="place__desc">
+                                <div class="place__desc open">
                                     @php
                                         echo $place->description;
                                     @endphp
                                 </div><!-- .place__desc -->
-                                <a href="#" class="show-more" title="{{__('Show more')}}">{{__('Show more')}}</a>
+                                {{-- <a href="#" class="show-more" title="{{__('Show more')}}">{{__('Show more')}}</a> --}}
                             </div>
 
                             @if(isset($amenities))
@@ -170,7 +171,7 @@
                                 </div>
                             </div><!-- .place__box -->
 
-                            <div class="place__box place__box--reviews">
+                            <div class="place__box place__box--reviews hidden">
                                 <h3 class="place__title--reviews">
                                     {{__('Review')}} ({{count($reviews)}})
                                     @if(isset($reviews))
@@ -300,19 +301,10 @@
                     <div class="col-lg-4">
                         <div class="sidebar sidebar--shop sidebar--border">
                             <div class="widget-reservation-mini">
-                                @if($place->booking_type === \App\Models\Booking::TYPE_AFFILIATE)
-                                    <h3>{{__('Booking online')}}</h3>
-                                    <a href="#" class="open-wg btn">{{__('Book now')}}</a>
-                                @elseif($place->booking_type === \App\Models\Booking::TYPE_BOOKING_FORM)
-                                    <h3>{{__('Make a reservation')}}</h3>
-                                    <a href="#" class="open-wg btn">{{__('Book now')}}</a>
-                                @elseif($place->booking_type === \App\Models\Booking::TYPE_CONTACT_FORM)
-                                    <h3>{{__('Send me a message')}}</h3>
-                                    <a href="#" class="open-wg btn">{{__('Send')}}</a>
-                                @else
-                                    <h3>{{__('Banner Ads')}}</h3>
-                                    <a href="#" class="open-wg btn">{{__('View')}}</a>
-                                @endif
+                                <h3>
+                                    {{$place->name}}
+                                </h3>
+                                <a href="#" class="open-wg btn">{{__('View More')}}</a>
                             </div>
 
                             <aside class="widget widget-shadow widget-reservation">
@@ -333,6 +325,14 @@
                                                 <a href="mailto:{{$place->email}}" rel="nofollow">{{$place->email}}</a>
                                             </li>
                                         @endif
+
+                                        @if($place->website)
+                                            <li>
+                                                <a href="//{{$place->website}}" target="_blank" rel="nofollow">
+                                                    {{ $place->website }}
+                                                </a>
+                                            </li>
+                                        @endif
                                     </ul>
                                 </div><!-- .place__box -->
 
@@ -346,13 +346,9 @@
                                     @endforeach
                                 </div>
 
-
-
-                                @if($place->website)
-                                    <a href="//{{$place->website}}" target="_blank" rel="nofollow" class="btn booking_submit_btn">
-                                        Website
-                                    </a>
-                                @endif
+                                <a href="#" target="_blank" rel="nofollow" class="btn booking_submit_btn">
+                                    Invest
+                                </a>
 
                             </aside><!-- .widget-reservation -->
 
