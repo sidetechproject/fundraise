@@ -1107,3 +1107,8 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+
+.site-header.home-header .right-header__button.btn a {
+    color: #000000;
+}
