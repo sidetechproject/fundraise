@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Booking detail</h4>
+                {{-- <h4 class="modal-title">Detail</h4> --}}
             </div>
 
             <div class="modal-body">
@@ -28,21 +28,14 @@
                         <td id="booking_phone"></td>
                     </tr>
                     <tr>
-                        <th scope="row">Booking place</th>
+                        <th scope="row">Startup</th>
                         <td id="booking_place"></td>
                     </tr>
                     <tr>
-                        <th scope="row">Booking datetime</th>
+                        <th scope="row">Date</th>
                         <td id="booking_datetime"></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Numbber of Adult</th>
-                        <td id="booking_numberofadult"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Numbber of Children</th>
-                        <td id="booking_numberofchildren"></td>
-                    </tr>
+
                     <tr>
                         <th scope="row">Message</th>
                         <td id="booking_message"></td>

@@ -346,11 +346,14 @@
                                     @endforeach
                                 </div>
 
-                                <a href="#" target="_blank" rel="nofollow" class="btn booking_submit_btn">
-                                    Invest
-                                </a>
+                                @if($place->website)
+                                        <a href="//{{$place->website}}" target="_blank" rel="nofollow" class="btn booking_submit_btn">
+                                            {{ $place->website }} <i class="las la-arrow-right"></i>
+                                        </a>
+                                    </li>
+                                @endif
 
-                            </aside><!-- .widget-reservation -->
+                            </aside>
 
                             <aside class="sidebar--shop__item widget widget--ads">
                                 <div class="place-gallery">
@@ -366,6 +369,90 @@
                                     @endif
                                 </div>
                             </aside>
+
+                            <aside class="widget widget-shadow widget-booking-form">
+                                <h3>{{__('I want to invest')}}</h3>
+                                <form class="form-underline" id="booking_submit_form" action="" method="post">
+                                    @csrf
+                                    <div class="field-input">
+                                        <input type="text" id="name" name="name" placeholder="Enter your name *" required value="{{ User() ? User()->name : '' }}">
+                                    </div>
+
+                                    <div class="field-input">
+                                        <input type="text" id="email" name="email" placeholder="Enter your email *" required value="{{ User() ? User()->email : '' }}">
+                                    </div>
+
+                                    <div class="field-input">
+                                        <input type="text" id="phone_number" name="phone_number" placeholder="Enter your phone" value="{{ User() ? User()->phone_number : '' }}">
+                                    </div>
+
+                                    <div class="field-input">
+                                        <textarea type="text" id="message" name="message" placeholder="Enter your message"></textarea>
+                                    </div>
+
+                                    <input type="hidden" name="type" value="{{\App\Models\Booking::TYPE_CONTACT_FORM}}">
+
+                                    <input type="hidden" name="place_id" value="{{$place->id}}">
+
+                                    <button class="btn booking_submit_btn">{{__('Send')}}</button>
+
+                                    <p class="note">{{__("The startup will be notified of your interest in being an investor.")}}</p>
+
+                                    <div class="alert alert-success alert_booking booking_success">
+                                        <p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                <path fill="#4fd3b2" fill-rule="nonzero" d="M9.967 0C4.462 0 0 4.463 0 9.967c0 5.505 4.462 9.967 9.967 9.967 5.505 0 9.967-4.462 9.967-9.967C19.934 4.463 15.472 0 9.967 0zm0 18.065a8.098 8.098 0 1 1 0-16.196 8.098 8.098 0 0 1 8.098 8.098 8.098 8.098 0 0 1-8.098 8.098zm3.917-12.338a.868.868 0 0 0-1.208.337l-3.342 6.003-1.862-2.266c-.337-.388-.784-.589-1.207-.336-.424.253-.6.863-.325 1.255l2.59 3.152c.194.252.415.403.646.446l.002.003.024.002c.052.008.835.152 1.172-.45l3.836-6.891a.939.939 0 0 0-.326-1.255z"></path>
+                                            </svg>
+                                            {{__('The startup has been notified and will get back to you shortly.')}}
+                                        </p>
+                                    </div>
+                                    <div class="alert alert-error alert_booking booking_error">
+                                        <p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                <path fill="#FF2D55" fill-rule="nonzero"
+                                                      d="M11.732 9.96l1.762-1.762a.622.622 0 0 0 0-.88l-.881-.882a.623.623 0 0 0-.881 0L9.97 8.198l-1.761-1.76a.624.624 0 0 0-.883-.002l-.88.881a.622.622 0 0 0 0 .882l1.762 1.76-1.758 1.759a.622.622 0 0 0 0 .88l.88.882a.623.623 0 0 0 .882 0l1.757-1.758 1.77 1.771a.623.623 0 0 0 .883 0l.88-.88a.624.624 0 0 0 0-.882l-1.77-1.771zM9.967 0C4.462 0 0 4.462 0 9.967c0 5.505 4.462 9.967 9.967 9.967 5.505 0 9.967-4.462 9.967-9.967C19.934 4.463 15.472 0 9.967 0zm0 18.065a8.098 8.098 0 1 1 8.098-8.098 8.098 8.098 0 0 1-8.098 8.098z"></path>
+                                            </svg>
+                                            {{__('An error occurred. Please try again.')}}
+                                        </p>
+                                    </div>
+
+                                </form>
+                            </aside><!-- .widget-reservation -->
+
+                            {{-- <aside class="widget widget-shadow widget-reservation">
+                                <h3>{{__('I want to invest')}}</h3>
+                                <form action="#" method="POST" class="form-underline" id="booking_form">
+                                    @csrf
+
+                                    <input type="hidden" name="type" value="{{\App\Models\Booking::TYPE_BOOKING_FORM}}">
+                                    <input type="hidden" name="place_id" value="{{$place->id}}">
+                                    @guest()
+                                        <button class="btn btn-login open-login">{{__('Submit')}}</button>
+                                    @else
+                                        <button class="btn booking_submit_btn">{{__('Submit')}}</button>
+                                    @endguest
+                                    <p class="note">{{__("You won't be charged yet")}}</p>
+
+                                    <div class="alert alert-success alert_booking booking_success">
+                                        <p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                <path fill="#20D706" fill-rule="nonzero" d="M9.967 0C4.462 0 0 4.463 0 9.967c0 5.505 4.462 9.967 9.967 9.967 5.505 0 9.967-4.462 9.967-9.967C19.934 4.463 15.472 0 9.967 0zm0 18.065a8.098 8.098 0 1 1 0-16.196 8.098 8.098 0 0 1 8.098 8.098 8.098 8.098 0 0 1-8.098 8.098zm3.917-12.338a.868.868 0 0 0-1.208.337l-3.342 6.003-1.862-2.266c-.337-.388-.784-.589-1.207-.336-.424.253-.6.863-.325 1.255l2.59 3.152c.194.252.415.403.646.446l.002.003.024.002c.052.008.835.152 1.172-.45l3.836-6.891a.939.939 0 0 0-.326-1.255z"></path>
+                                            </svg>
+                                            {{__('You successfully created your booking.')}}
+                                        </p>
+                                    </div>
+                                    <div class="alert alert-error alert_booking booking_error">
+                                        <p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                <path fill="#FF2D55" fill-rule="nonzero"
+                                                      d="M11.732 9.96l1.762-1.762a.622.622 0 0 0 0-.88l-.881-.882a.623.623 0 0 0-.881 0L9.97 8.198l-1.761-1.76a.624.624 0 0 0-.883-.002l-.88.881a.622.622 0 0 0 0 .882l1.762 1.76-1.758 1.759a.622.622 0 0 0 0 .88l.88.882a.623.623 0 0 0 .882 0l1.757-1.758 1.77 1.771a.623.623 0 0 0 .883 0l.88-.88a.624.624 0 0 0 0-.882l-1.77-1.771zM9.967 0C4.462 0 0 4.462 0 9.967c0 5.505 4.462 9.967 9.967 9.967 5.505 0 9.967-4.462 9.967-9.967C19.934 4.463 15.472 0 9.967 0zm0 18.065a8.098 8.098 0 1 1 8.098-8.098 8.098 8.098 0 0 1-8.098 8.098z"></path>
+                                            </svg>
+                                            {{__('An error occurred. Please try again.')}}
+                                        </p>
+                                    </div>
+                                </form>
+                            </aside> --}}
+                            <!-- .widget-reservation -->
 
                                 {{-- <aside class="sidebar--shop__item widget widget--ads">
                                     @if(setting('ads_sidebar_banner_image'))

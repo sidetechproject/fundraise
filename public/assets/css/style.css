@@ -7665,11 +7665,11 @@ a.place__comments__reply {
     display: none;
 }
 .site__brand.light {
-    display: block;
+    display: inline;
 }
 
 .home-header .site__brand.dark {
-    display: block;
+    display: inline;
 }
 .home-header .site__brand.light {
     display: none;

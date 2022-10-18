@@ -2,7 +2,7 @@
 @section('main')
     <div class="page-title">
         <div class="title_left">
-            <h3>Bookings</h3>
+            <h3>Investments</h3>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -17,7 +17,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Place</th>
+                            <th>Startup</th>
                             <th>Booking at</th>
                             <th>Status</th>
                             <th class="action">Action</th>

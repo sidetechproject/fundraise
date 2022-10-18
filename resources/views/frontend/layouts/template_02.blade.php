@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-6 col-8">
                     <div class="site">
-                        <div class="site__menu hidden">
+                        <div class="site__menu mobile">
                             <a title="Menu Icon" href="#" class="site__menu__icon">
                                 <i class="las la-bars la-24-black"></i>
                             </a>
@@ -100,7 +100,7 @@
                                         </ul>
                                     </div> --}}
                                     <!-- .popup__destinations -->
-                                    <div class="popup__menu popup__box">
+                                    <div class="popup__menu popup__box hidden">
                                         <ul class="menu-arrow">
                                             <li>
                                                 <a title="Home demo" href="{{route('home')}}">Home</a>
@@ -135,10 +135,16 @@
                                         </ul>
                                     </div><!-- .popup__menu -->
                                 </div><!-- .popup__content -->
-                                <div class="popup__button popup__box">
-                                    <a class="btn" href="{{route('place_addnew')}}">
-                                        <span>{{__('Add place')}}</span>
-                                    </a>
+                                <div class="popup__button popup__box ">
+                                    @if(user() && user()->profile == 2)
+                                        <a class="btn" href="{{route('page_search_listing')}}">
+                                            <span>{{__('Search startup')}}</span>
+                                        </a>
+                                    @else
+                                        <a class="btn" href="{{route('place_addnew')}}">
+                                            <span>{{__('Add place')}}</span>
+                                        </a>
+                                    @endif
                                 </div><!-- .popup__button -->
                             </div><!-- .popup -->
                         </div><!-- .site__menu -->

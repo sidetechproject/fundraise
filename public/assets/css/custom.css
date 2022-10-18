@@ -1124,3 +1124,30 @@
 .footer {
     background-color: #040503 !important;
 }
+
+.home-header.home-header-while .site__menu__icon, .site__menu > a {
+    color: #4fd3b2 !important;
+}
+
+.alert p {
+    padding: 22px 22px 22px 25px;
+    border: solid 1px #4fd3b2;
+}
+
+.mobile {
+    display: none;
+}
+.desktop {
+    display: block;
+}
+
+@media only screen and (max-width: 767px) {
+    .mobile {
+        display: block;
+    }
+    .desktop {
+        display: none;
+    }
+}
+
+

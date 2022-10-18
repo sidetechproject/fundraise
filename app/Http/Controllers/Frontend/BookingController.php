@@ -34,10 +34,6 @@ class BookingController extends Controller
         $data = $this->validate($request, [
             'user_id' => '',
             'place_id' => '',
-            'numbber_of_adult' => '',
-            'numbber_of_children' => '',
-            'date' => '',
-            'time' => '',
             'name' => '',
             'email' => '',
             'phone_number' => '',
@@ -51,38 +47,20 @@ class BookingController extends Controller
         if ($booking->save()) {
             $place = Place::find($request['place_id']);
 
-            if ($request->type == Booking::TYPE_CONTACT_FORM) {
-                Log::debug("Booking::TYPE_CONTACT_FORM: " . $request->type);
-                $name = $request->name;
-                $email = $request->email;
-                $phone = $request->phone_number;
-                $datetime = "";
-                $numberofadult = "";
-                $numberofchildren = "";
-                $text_message = $request->message;
-            } else {
-                Log::debug("Booking::submit: " . $request->type);
-                $name = user()->name;
-                $email = user()->email;
-                $phone = user()->phone_number;
-                $datetime = Carbon::parse($booking->date)->format('Y-m-d') . " " . $booking->time;
-                $numberofadult = $booking->numbber_of_adult;
-                $numberofchildren = $booking->numbber_of_children;
-                $text_message = "";
-            }
+            Log::debug("Booking::TYPE_CONTACT_FORM: " . $request->type);
+            $name = $request->name;
+            $email = $request->email;
+            $phone = $request->phone_number;
+            $text_message = $request->message;
 
             Mail::send('frontend.mail.new_booking', [
                 'name' => $name,
                 'email' => $email,
                 'phone' => $phone,
                 'place' => $place->name,
-                'datetime' => $datetime,
-                'numberofadult' => $numberofadult,
-                'numberofchildren' => $numberofchildren,
-                'text_message' => $text_message,
-                'booking_at' => $booking->created_at
-            ], function ($message) use ($request) {
-                $message->to(setting('email_system'), "{$request->first_name}")->subject('Booking from ' . $request->first_name);
+                'text_message' => $text_message
+            ], function ($message) use ($request, $name) {
+                $message->to(setting('email_system'), "{$name}")->subject('New Investor: ' . $name);
             });
 
         }

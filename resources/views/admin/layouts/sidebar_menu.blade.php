@@ -31,9 +31,10 @@
                         <li><a href="{{route('admin_category_list', \App\Models\Category::TYPE_POST)}}">Categories</a></li>
                     </ul>
                 </li>
+
                 <li id="menu_pages"><a href="{{route('admin_post_list_page')}}"><i class="fa fa-clone"></i> Pages</a></li>
 
-                <li id="menu_pages" class="hidden"><a href="{{route('admin_booking_list')}}"><i class="fa fa-calendar"></i> Bookings</a></li>
+                <li id="menu_pages" class=""><a href="{{route('admin_booking_list')}}"><i class="fa fa-calendar"></i> Investments</a></li>
 
                 <li class="hidden"><a href="{{route('admin_review_list')}}"><i class="fa fa-star-half-o"></i> Reviews</a></li>
 
@@ -51,8 +52,6 @@
                 </li>
             </ul>
         </div>
-
     </div>
     <!-- /sidebar menu -->
-
 </div>
