@@ -10,7 +10,7 @@
 {{--                            <a href="#" class="clear-filter"><i class="fal fa-sync"></i>Clear all</a>--}}
                             <a href="#" class="close-filter"><i class="las la-times"></i></a>
                         </div>
-                        <div class="filter-box">
+                        <div class="filter-box hidden">
                             <h3>Cities</h3>
                             <div class="filter-list">
                                 <div class="filter-group">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <div class="filter-box">
-                            <h3>{{__('Place Type')}}</h3>
+                            <h3>{{__('Stage')}}</h3>
                             <div class="filter-list">
                                 <div class="filter-group">
                                     @foreach($place_types as $place_type)
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="filter-box">
-                            <h3>{{__('Amenities')}}</h3>
+                            <h3>{{__('Business Model')}}</h3>
                             <div class="filter-list">
                                 <div class="filter-group">
                                     @foreach($amenities as $item)
@@ -129,13 +129,13 @@
                                                         <span>{{$type->name}}</span>
                                                     @endforeach
                                                 </div>
-                                                <div class="place-city">
-                                                    {{-- <a href="{{route('page_search_listing', ['city[]' => $place['city']['id']])}}">{{$place['city']['name']}}</a> --}}
-                                                </div>
+                                                {{-- <div class="place-city">
+                                                    <a href="{{route('page_search_listing', ['city[]' => $place['city']['id']])}}">{{$place['city']['name']}}</a>
+                                                </div> --}}
                                             </div>
                                             <h3 class="place-title"><a href="{{route('place_detail', $place->slug)}}">{{$place->name}}</a></h3>
                                             <div class="entry-bottom">
-                                                <div class="place-preview">
+                                                <div class="place-preview hidden">
                                                     <div class="place-rating">
                                                         @if($place->reviews_count)
                                                             <span>{{number_format($place->avgReview, 1)}}</span>

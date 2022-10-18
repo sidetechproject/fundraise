@@ -34,10 +34,10 @@
             <div class="row">
                 <div class="col-md-6 col-8">
                     <div class="site">
-                        <div class="site__menu">
-                            {{-- <a title="Menu Icon" href="#" class="site__menu__icon">
+                        <div class="site__menu hidden">
+                            <a title="Menu Icon" href="#" class="site__menu__icon">
                                 <i class="las la-bars la-24-black"></i>
-                            </a> --}}
+                            </a>
                             <div class="popup-background"></div>
                             <div class="popup popup--left">
                                 <a title="Close" href="#" class="popup__close">
@@ -61,7 +61,21 @@
                                             <div class="account-sub">
                                                 <ul>
                                                     <li class="{{isActiveMenu('user_profile')}}"><a href="{{route('user_profile')}}">{{__('Profile')}}</a></li>
-                                                    <li class="{{isActiveMenu('user_my_place')}}"><a href="{{route('user_my_place')}}">{{__('My Startups')}}</a></li>
+
+                                                    @if(Auth::user()->profile == 2)
+                                                        <li class="{{isActiveMenu('user_wishlist')}}">
+                                                            <a href="{{route('user_wishlist')}}">
+                                                                {{__('My Startups')}}
+                                                            </a>
+                                                        </li>
+                                                    @else
+                                                        <li class="{{isActiveMenu('user_my_place')}}">
+                                                            <a href="{{route('user_my_place')}}">
+                                                                {{__('My Startups')}}
+                                                            </a>
+                                                        </li>
+                                                    @endif
+
                                                     {{-- <li class="{{isActiveMenu('user_wishlist')}}"><a href="{{route('user_wishlist')}}">{{__('Wishlist')}}</a></li> --}}
                                                     <li>
                                                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('Logout')}}</a>
@@ -177,15 +191,26 @@
 
                         @guest
                             <div class="right-header__login">
-                                <a title="Login" class="open-login" href="#">{{__('Login')}}</a>
+                                <a title="Login" class="open-login" href="#">
+                                    {{__('Login & Sign Up')}}
+                                </a>
                             </div><!-- .right-header__login -->
                             <div class="popup popup-form">
                                 <a title="Close" href="#" class="popup__close">
                                     <i class="las la-times la-24-black"></i>
                                 </a><!-- .popup__close -->
                                 <ul class="choose-form">
-                                    <li class="nav-login"><a title="Log In" href="#login">{{__('Log In')}}</a></li>
-                                    <li class="nav-signup"><a title="Sign Up" href="#register">Sign Up</a></li>
+                                    <li class="nav-login">
+                                        <a title="Log In" href="#login">
+                                            {{__('Log In')}}
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-signup">
+                                        <a title="Sign Up" href="#register">
+                                            {{__('Sign Up')}}
+                                        </a>
+                                    </li>
                                 </ul>
                                 {{-- <p class="choose-more">{{__('Continue with')}} <a title="Facebook" class="fb" href="{{route('login_social', 'facebook')}}">Facebook</a> or <a title="Google" class="gg" href="{{route('login_social', 'google')}}">Google</a></p>
                                 <p class="choose-or"><span>{{__('Or')}}</span></p> --}}
@@ -218,7 +243,30 @@
                                         <div class="field-input">
                                             <input type="password" id="register_password_confirmation" name="password_confirmation" placeholder="Confirm Password" required>
                                         </div>
-                                        <div class="field-check">
+
+                                        <div class="filter-list">
+                                            <div class="filter-group">
+                                                <div class="field-check">
+                                                    <label class="bc_filter" for="profile_startup">
+                                                        <input type="radio" id="profile_startup" name="profile" value="1" checked="">
+                                                        I'm Startup
+                                                        <span class="checkmark"><i class="la la-check"></i></span>
+                                                    </label>
+                                                </div>
+
+                                                <div class="field-check">
+                                                    <label class="bc_filter" for="profile_investor">
+                                                        <input type="radio" id="profile_investor" name="profile" value="2">
+                                                        I'm Investor
+                                                        <span class="checkmark"><i class="la la-check"></i></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="gl-button btn button w-100" id="submit_register">{{__('Sign Up')}}</button>
+
+                                        <div class="field-check mt-4">
                                             <label for="accept">
                                                 <input type="checkbox" id="accept" checked required>
                                                 Accept the <a title="Terms" href="#">Terms</a> and <a title="Privacy Policy" href="#">Privacy Policy</a>
@@ -229,7 +277,6 @@
                                             </span>
                                             </label>
                                         </div>
-                                        <button type="submit" class="gl-button btn button w-100" id="submit_register">{{__('Sign Up')}}</button>
                                     </form>
 
                                 </div>
@@ -266,11 +313,20 @@
                                 <i class="las la-search la-24-black"></i>
                             </a>
                         </div>
-                        <div class="right-header__button btn">
-                            <a title="Add startup" href="{{route('place_addnew')}}">
-                                <span>{{__('Add startup')}}</span>
-                            </a>
-                        </div><!-- .right-header__button -->
+                        @if(user() && user()->profile == 2)
+                            <div class="right-header__button btn">
+                                <a title="Search startup" href="{{route('page_search_listing')}}">
+                                    <span>{{__('Search startup')}}</span>
+                                </a>
+                            </div>
+                        @else
+                            <div class="right-header__button btn">
+                                <a title="Add startup" href="{{route('place_addnew')}}">
+                                    <span>{{__('Add startup')}}</span>
+                                </a>
+                            </div>
+                        @endif
+                        <!-- .right-header__button -->
                     </div><!-- .right-header -->
                 </div><!-- .col-md-6 -->
             </div><!-- .row -->

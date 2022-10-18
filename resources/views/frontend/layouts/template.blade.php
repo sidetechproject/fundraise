@@ -108,8 +108,8 @@
 
                                     <form class="form-log form-content" id="login" action="{{route('login')}}" method="POST">
                                         @csrf
-                                        <p class="choose-more">{{__('Continue with')}} <a title="Facebook" class="fb" href="{{route('login_social', 'facebook')}}">Facebook</a> or <a title="Google" class="gg" href="{{route('login_social', 'google')}}">Google</a></p>
-                                        <p class="choose-or"><span>{{__('Or')}}</span></p>
+                                        {{-- <p class="choose-more">{{__('Continue with')}} <a title="Facebook" class="fb" href="{{route('login_social', 'facebook')}}">Facebook</a> or <a title="Google" class="gg" href="{{route('login_social', 'google')}}">Google</a></p>
+                                        <p class="choose-or"><span>{{__('Or')}}</span></p> --}}
 
                                         <small class="form-text text-danger golo-d-none" id="login_error">error!</small>
                                         <div class="field-input">
@@ -126,8 +126,8 @@
 
                                     <form class="form-sign form-content" id="register" action="{{route('register')}}" method="post">
                                         @csrf
-                                        <p class="choose-more">{{__('Continue with')}} <a title="Facebook" class="fb" href="{{route('login_social', 'facebook')}}">Facebook</a> or <a title="Google" class="gg" href="{{route('login_social', 'google')}}">Google</a></p>
-                                        <p class="choose-or"><span>{{__('Or')}}</span></p>
+                                        {{-- <p class="choose-more">{{__('Continue with')}} <a title="Facebook" class="fb" href="{{route('login_social', 'facebook')}}">Facebook</a> or <a title="Google" class="gg" href="{{route('login_social', 'google')}}">Google</a></p>
+                                        <p class="choose-or"><span>{{__('Or')}}</span></p> --}}
 
                                         <small class="form-text text-danger golo-d-none" id="register_error">error!</small>
                                         <div class="field-input">
@@ -184,7 +184,21 @@
                                             <li class="{{isActiveMenu('admin_dashboard')}}"><a href="{{route('admin_dashboard')}}" target="_blank" rel="nofollow">{{__('Dashboard')}}</a></li>
                                         @endif
                                         <li class="{{isActiveMenu('user_profile')}}"><a href="{{route('user_profile')}}">{{__('Profile')}}</a></li>
-                                        <li class="{{isActiveMenu('user_my_place')}}"><a href="{{route('user_my_place')}}">{{__('My Startups')}}</a></li>
+
+                                        @if(Auth::user()->profile == 2)
+                                            <li class="{{isActiveMenu('user_wishlist')}}">
+                                                <a href="{{route('user_wishlist')}}">
+                                                    {{__('My Startups')}}
+                                                </a>
+                                            </li>
+                                        @else
+                                            <li class="{{isActiveMenu('user_my_place')}}">
+                                                <a href="{{route('user_my_place')}}">
+                                                    {{__('My Startups')}}
+                                                </a>
+                                            </li>
+                                        @endif
+
                                         {{-- <li class="{{isActiveMenu('user_wishlist')}}"><a href="{{route('user_wishlist')}}">{{__('Wishlist')}}</a></li> --}}
                                         <li>
                                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('Logout')}}</a>
@@ -201,11 +215,20 @@
                                 <i class="la la-search la-24"></i>
                             </a>
                         </div>
-                        <div class="right-header__button btn">
-                            <a title="Add startup" href="{{route('place_addnew')}}">
-                                <span>{{__('Add startup')}}</span>
-                            </a>
-                        </div><!-- .right-header__button -->
+                        @if(user() && user()->profile == 2)
+                            <div class="right-header__button btn">
+                                <a title="Search startup" href="{{route('page_search_listing')}}">
+                                    <span>{{__('Search startup')}}</span>
+                                </a>
+                            </div>
+                        @else
+                            <div class="right-header__button btn">
+                                <a title="Add startup" href="{{route('place_addnew')}}">
+                                    <span>{{__('Add startup')}}</span>
+                                </a>
+                            </div>
+                        @endif
+                        <!-- .right-header__button -->
                     </div><!-- .right-header -->
                 </div><!-- .col-md-6 -->
             </div><!-- .row -->

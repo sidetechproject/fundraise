@@ -1112,3 +1112,15 @@
 .site-header.home-header .right-header__button.btn a {
     color: #000000;
 }
+
+.home-header.home-header-while div.right-header__button:hover {
+    background-color: #4fd3b2;
+}
+
+.popup a {
+    color: #000000 !important;
+}
+
+.footer {
+    background-color: #040503 !important;
+}
