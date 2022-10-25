@@ -380,16 +380,18 @@
         //         e.preventDefault();
         //     });
         // });
-        // 
-        // 
+        //
+        //
         /*  [ Add Socials ]
         - - - - - - - - - - - - - - - - - - - - */
         $('.add-social').on('click', function (e) {
             e.preventDefault();
             var id = $(this).attr('href'),
-                clone = $(id).find('.field-clone').html();
-            $(id).find('.socials-list').append(clone);
+            clone = $(id).find('.field-clone').html();
+
+            $(id).find('.social-list').append(clone);
         });
+
         $(".socials-list").bind("DOMSubtreeModified", function () {
             $('.remove-social').on('click', function (e) {
                 e.preventDefault();
@@ -523,10 +525,10 @@
                 if (fileInput.get(0).files.length) {
                     var fileSize = fileInput.get(0).files[0].size; // in bytes
                     if (fileSize > maxSize) {
-                        alert('file size is more then' + maxSize + ' bytes');
+                        //alert('file size is more then' + maxSize + ' bytes');
                         return false;
                     } else {
-                        alert('file size is correct- ' + fileSize + ' bytes');
+                        //alert('file size is correct- ' + fileSize + ' bytes');
                     }
                 } else {
                     alert('choose file, please');

@@ -27,6 +27,12 @@
                         <th scope="row">Phone Number</th>
                         <td id="booking_phone"></td>
                     </tr>
+
+                    <tr>
+                        <th scope="row">Check Size</th>
+                        <td id="check_size"></td>
+                    </tr>
+
                     <tr>
                         <th scope="row">Startup</th>
                         <td id="booking_place"></td>

@@ -95,12 +95,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="place__left">
+                        <a href="{{ route('page_search_listing') }}" class="text-dark text-black">
+                            <i class="las la-arrow-left ml-2 la-20"></i> Back to all Startups
+                        </a>
 
+                        <div class="place__left">
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="place-thumb">
-                                        <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}" class="logo">
+                                        @if($place->thumb)
+                                            <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}" class="logo">
+                                        @else
+                                            <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo" class="logo">
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-lg-9">
@@ -113,7 +120,6 @@
                                     <div class="place__box place__box--npd">
                                         <h1>{{$place->name}}</h1>
                                         <div class="place__meta">
-
                                             <div class="place__reviews reviews hidden">
                                                     <span class="place__reviews__number reviews__number">
                                                         {{$review_score_avg}}
@@ -131,7 +137,31 @@
                                                     @endforeach
                                                 </div>
                                             @endif
+
+                                            <div class="address">
+                                                <i class="la la-map-marker"></i>
+                                                {{$place->address}}
+                                            </div>
                                         </div><!-- .place__meta -->
+
+                                        <div class="place-gallery text-left">
+                                            @if($place->website)
+                                                <a href="//{{$place->website}}" target="_blank" rel="nofollow" class="lity-btn">
+                                                    Visit Website <i class="las la-external-link-alt ml-2 la-20"></i>
+                                                </a>
+                                            @endif
+                                            @if($place->deck)
+                                                <a href="//{{$place->deck}}" target="_blank" rel="nofollow" class="lity-btn">
+                                                    View Deck <i class="las la-external-link-alt ml-2 la-20"></i>
+                                                </a>
+                                            @endif
+                                            @if($place->video)
+                                                <a title="Video" href="{{$place->video}}" data-lity class="lity-btn">
+                                                    <i class="la la-youtube la-24"></i>
+                                                    {{__('Video')}}
+                                                </a>
+                                            @endif
+                                        </div>
                                     </div><!-- .place__box -->
                                 </div>
                             </div>
@@ -160,16 +190,44 @@
                                 </div><!-- .place__box -->
                             @endif
 
-                            <div class="place__box place__box-map">
+                            {{-- <div class="place__box place__box-map">
                                 <h3 class="place__title--additional">
-                                    {{__('Location')}}
+                                    {{__('Deck')}}
                                 </h3>
 
-                                <div class="address">
-                                    <i class="la la-map-marker"></i>
-                                    {{$place->address}}
-                                </div>
-                            </div><!-- .place__box -->
+                                <iframe src="{{$place->deck}}" width="100%" height="480px" allowfullscreen="" style="border: 0px;"></iframe>
+                            </div> --}}
+                            <!-- .place__box -->
+
+                            @php
+                            $have_opening_hour = false;
+                            if($place->opening_hour){
+                                foreach ($place->opening_hour as $opening):
+                                    if ($opening['title'] && $opening['value']):
+                                    $have_opening_hour = true;
+                                    endif;
+                                endforeach;
+                            }
+                            @endphp
+                            @if($have_opening_hour)
+                                <div class="place__box place__box-open">
+                                    <h3 class="place__title--additional">
+                                        {{__('KEY TRACTION METRICS')}}
+                                    </h3>
+                                    <table class="open-table">
+                                        <tbody>
+                                        @foreach($place->opening_hour as $opening)
+                                            @if($opening['title'] && $opening['value'])
+                                                <tr>
+                                                    <td class="day">{{$opening['title']}}</td>
+                                                    <td class="time">{{$opening['value']}}</td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div><!-- .place__box -->
+                            @endif
 
                             <div class="place__box place__box--reviews hidden">
                                 <h3 class="place__title--reviews">
@@ -307,117 +365,147 @@
                                 <a href="#" class="open-wg btn">{{__('View More')}}</a>
                             </div>
 
-                            <aside class="widget widget-shadow widget-reservation">
-                                <div class="place__box">
-                                    <h1>{{$place->name}}</h1>
+                            <aside class="widget-booking-form">
+                                {{-- <aside class="sidebar--shop__item widget widget--ads">
+                                    <div class="place-gallery">
+                                        <button class="btn" title="Gallery">
+                                            <i class="la la-hand-paper la-24"></i>
+                                            {{__('Intro')}}
+                                        </button>
+                                        <button title="Video" class="btn">
+                                            <i class="la la-wallet la-24"></i>
+                                            {{__('Invest')}}
+                                        </button>
+                                    </div>
+                                </aside> --}}
 
-                                    <ul class="place__contact mt-3">
-                                        @if($place->phone_number)
-                                            <li>
-                                                {{-- <i class="la la-phone"></i> --}}
-                                                <a href="tel:{{$place->phone_number}}" rel="nofollow">{{$place->phone_number}}</a>
+                                <aside class="widget widget-shadow">
+                                    <div class="place__box">
+                                        <h1>{{$place->name}}</h1>
+
+                                        <ul class="place__contact mt-3">
+                                            @if($place->phone_number)
+                                                <li>
+                                                    {{-- <i class="la la-phone"></i> --}}
+                                                    <a href="tel:{{$place->phone_number}}" rel="nofollow">{{$place->phone_number}}</a>
+                                                </li>
+                                            @endif
+
+                                            @if($place->email)
+                                                <li>
+                                                    {{-- <i class="la la-envelope"></i> --}}
+                                                    <a href="mailto:{{$place->email}}" rel="nofollow">{{$place->email}}</a>
+                                                </li>
+                                            @endif
+
+                                            @if($place->website)
+                                                <li>
+                                                    <a href="//{{$place->website}}" target="_blank" rel="nofollow">
+                                                        {{ $place->website }}
+                                                    </a>
+                                                </li>
+                                            @endif
+
+                                            <li class="note">
+                                                {{ $place->created_at->timezone('America/Sao_Paulo')->toFormattedDateString() }}
                                             </li>
-                                        @endif
+                                        </ul>
+                                    </div><!-- .place__box -->
 
-                                        @if($place->email)
-                                            <li>
-                                                {{-- <i class="la la-envelope"></i> --}}
-                                                <a href="mailto:{{$place->email}}" rel="nofollow">{{$place->email}}</a>
-                                            </li>
-                                        @endif
+                                    @if($place->social && isset($place->social[0]) && !empty($place->social[0]['name']))
+                                        <div class="mb-3 mt-3 contact-icons">
+                                            @foreach($place->social as $social)
+                                                @if($social['name'] && $social['url'])
+                                                    <a href="{{SOCIAL_LIST[$social['name']]['base_url'] . $social['url']}}" title="{{$social['url']}}" rel="nofollow" target="_blank">
+                                                        <i class="{{SOCIAL_LIST[$social['name']]['icon']}}"></i>
+                                                    </a>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                </aside>
 
-                                        @if($place->website)
-                                            <li>
-                                                <a href="//{{$place->website}}" target="_blank" rel="nofollow">
-                                                    {{ $place->website }}
-                                                </a>
-                                            </li>
-                                        @endif
-                                    </ul>
-                                </div><!-- .place__box -->
-
-                                <div class="mb-3 mt-3 contact-icons">
-                                    @foreach($place->social as $social)
-                                        @if($social['name'] && $social['url'])
-                                            <a href="{{SOCIAL_LIST[$social['name']]['base_url'] . $social['url']}}" title="{{$social['url']}}" rel="nofollow" target="_blank">
-                                                <i class="{{SOCIAL_LIST[$social['name']]['icon']}}"></i>
+                                {{-- <aside class="sidebar--shop__item widget widget--ads">
+                                    <div class="place-gallery">
+                                        @if(isset($place->gallery))
+                                            <a class="show-gallery" title="Gallery" href="#">
+                                                <i class="la la-images la-24"></i>
+                                                {{__('Gallery')}}
                                             </a>
                                         @endif
-                                    @endforeach
-                                </div>
+                                    </div>
+                                </aside> --}}
 
-                                @if($place->website)
-                                        <a href="//{{$place->website}}" target="_blank" rel="nofollow" class="btn booking_submit_btn">
-                                            {{ $place->website }} <i class="las la-arrow-right"></i>
-                                        </a>
-                                    </li>
-                                @endif
+                                <aside class="widget widget-shadow">
+                                    <h3>{{__('I want to invest')}}</h3>
+                                    <form class="form-underline" id="booking_submit_form" action="" method="post">
+                                        @csrf
+                                        <div class="field-input">
+                                            <input type="text" id="name" name="name" placeholder="Enter your name *" required value="{{ User() ? User()->name : '' }}">
+                                        </div>
 
+                                        <div class="field-input">
+                                            <input type="text" id="email" name="email" placeholder="Enter your email *" required value="{{ User() ? User()->email : '' }}">
+                                        </div>
+
+                                        <div class="field-input">
+                                            <input type="text" id="phone_number" name="phone_number" placeholder="Enter your phone" value="{{ User() ? User()->phone_number : '' }}">
+                                        </div>
+
+                                        <div class="field-input">
+                                            <div class="field-group field-select">
+                                                <select name="check_size" id="check_size" required class="p-0">
+                                                    <option value="">Typical Check Size</option>
+                                                    <option value="1k">$1k</option>
+                                                    <option value="2.5k">$2.5k</option>
+                                                    <option value="5k">$5k</option>
+                                                    <option value="10k">$10k</option>
+                                                    <option value="25k">$25k</option>
+                                                    <option value="50k">$50k</option>
+                                                    <option value="100k">$100k</option>
+                                                    <option value="250k">$250k</option>
+                                                    <option value="500k">$500k</option>
+                                                    <option value="1M+">$1M+</option>
+                                                </select>
+                                                <i class="la la-angle-down"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="field-input">
+                                            <textarea type="text" id="message" name="message" placeholder="Enter your message"></textarea>
+                                        </div>
+
+                                        <input type="hidden" name="type" value="{{\App\Models\Booking::TYPE_CONTACT_FORM}}">
+
+                                        <input type="hidden" name="place_id" value="{{$place->id}}">
+
+                                        <button class="btn booking_submit_btn">{{__('Send')}}</button>
+
+                                        <p class="note">{{__("The startup will be notified of your interest in being an investor.")}}</p>
+
+                                        <div class="alert alert-success alert_booking booking_success">
+                                            <p>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                    <path fill="#4fd3b2" fill-rule="nonzero" d="M9.967 0C4.462 0 0 4.463 0 9.967c0 5.505 4.462 9.967 9.967 9.967 5.505 0 9.967-4.462 9.967-9.967C19.934 4.463 15.472 0 9.967 0zm0 18.065a8.098 8.098 0 1 1 0-16.196 8.098 8.098 0 0 1 8.098 8.098 8.098 8.098 0 0 1-8.098 8.098zm3.917-12.338a.868.868 0 0 0-1.208.337l-3.342 6.003-1.862-2.266c-.337-.388-.784-.589-1.207-.336-.424.253-.6.863-.325 1.255l2.59 3.152c.194.252.415.403.646.446l.002.003.024.002c.052.008.835.152 1.172-.45l3.836-6.891a.939.939 0 0 0-.326-1.255z"></path>
+                                                </svg>
+                                                {{__('The startup has been notified and will get back to you shortly.')}}
+                                            </p>
+                                        </div>
+                                        <div class="alert alert-error alert_booking booking_error">
+                                            <p>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                    <path fill="#FF2D55" fill-rule="nonzero"
+                                                        d="M11.732 9.96l1.762-1.762a.622.622 0 0 0 0-.88l-.881-.882a.623.623 0 0 0-.881 0L9.97 8.198l-1.761-1.76a.624.624 0 0 0-.883-.002l-.88.881a.622.622 0 0 0 0 .882l1.762 1.76-1.758 1.759a.622.622 0 0 0 0 .88l.88.882a.623.623 0 0 0 .882 0l1.757-1.758 1.77 1.771a.623.623 0 0 0 .883 0l.88-.88a.624.624 0 0 0 0-.882l-1.77-1.771zM9.967 0C4.462 0 0 4.462 0 9.967c0 5.505 4.462 9.967 9.967 9.967 5.505 0 9.967-4.462 9.967-9.967C19.934 4.463 15.472 0 9.967 0zm0 18.065a8.098 8.098 0 1 1 8.098-8.098 8.098 8.098 0 0 1-8.098 8.098z"></path>
+                                                </svg>
+                                                {{__('An error occurred. Please try again.')}}
+                                            </p>
+                                        </div>
+
+                                    </form>
+                                </aside>
                             </aside>
 
-                            <aside class="sidebar--shop__item widget widget--ads">
-                                <div class="place-gallery">
-                                    <a class="show-gallery" title="Gallery" href="#">
-                                        <i class="la la-images la-24"></i>
-                                        {{__('Gallery')}}
-                                    </a>
-                                    @if($place->video)
-                                        <a title="Video" href="{{$place->video}}" data-lity class="lity-btn">
-                                            <i class="la la-youtube la-24"></i>
-                                            {{__('Video')}}
-                                        </a>
-                                    @endif
-                                </div>
-                            </aside>
-
-                            <aside class="widget widget-shadow widget-booking-form">
-                                <h3>{{__('I want to invest')}}</h3>
-                                <form class="form-underline" id="booking_submit_form" action="" method="post">
-                                    @csrf
-                                    <div class="field-input">
-                                        <input type="text" id="name" name="name" placeholder="Enter your name *" required value="{{ User() ? User()->name : '' }}">
-                                    </div>
-
-                                    <div class="field-input">
-                                        <input type="text" id="email" name="email" placeholder="Enter your email *" required value="{{ User() ? User()->email : '' }}">
-                                    </div>
-
-                                    <div class="field-input">
-                                        <input type="text" id="phone_number" name="phone_number" placeholder="Enter your phone" value="{{ User() ? User()->phone_number : '' }}">
-                                    </div>
-
-                                    <div class="field-input">
-                                        <textarea type="text" id="message" name="message" placeholder="Enter your message"></textarea>
-                                    </div>
-
-                                    <input type="hidden" name="type" value="{{\App\Models\Booking::TYPE_CONTACT_FORM}}">
-
-                                    <input type="hidden" name="place_id" value="{{$place->id}}">
-
-                                    <button class="btn booking_submit_btn">{{__('Send')}}</button>
-
-                                    <p class="note">{{__("The startup will be notified of your interest in being an investor.")}}</p>
-
-                                    <div class="alert alert-success alert_booking booking_success">
-                                        <p>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                                                <path fill="#4fd3b2" fill-rule="nonzero" d="M9.967 0C4.462 0 0 4.463 0 9.967c0 5.505 4.462 9.967 9.967 9.967 5.505 0 9.967-4.462 9.967-9.967C19.934 4.463 15.472 0 9.967 0zm0 18.065a8.098 8.098 0 1 1 0-16.196 8.098 8.098 0 0 1 8.098 8.098 8.098 8.098 0 0 1-8.098 8.098zm3.917-12.338a.868.868 0 0 0-1.208.337l-3.342 6.003-1.862-2.266c-.337-.388-.784-.589-1.207-.336-.424.253-.6.863-.325 1.255l2.59 3.152c.194.252.415.403.646.446l.002.003.024.002c.052.008.835.152 1.172-.45l3.836-6.891a.939.939 0 0 0-.326-1.255z"></path>
-                                            </svg>
-                                            {{__('The startup has been notified and will get back to you shortly.')}}
-                                        </p>
-                                    </div>
-                                    <div class="alert alert-error alert_booking booking_error">
-                                        <p>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                                                <path fill="#FF2D55" fill-rule="nonzero"
-                                                      d="M11.732 9.96l1.762-1.762a.622.622 0 0 0 0-.88l-.881-.882a.623.623 0 0 0-.881 0L9.97 8.198l-1.761-1.76a.624.624 0 0 0-.883-.002l-.88.881a.622.622 0 0 0 0 .882l1.762 1.76-1.758 1.759a.622.622 0 0 0 0 .88l.88.882a.623.623 0 0 0 .882 0l1.757-1.758 1.77 1.771a.623.623 0 0 0 .883 0l.88-.88a.624.624 0 0 0 0-.882l-1.77-1.771zM9.967 0C4.462 0 0 4.462 0 9.967c0 5.505 4.462 9.967 9.967 9.967 5.505 0 9.967-4.462 9.967-9.967C19.934 4.463 15.472 0 9.967 0zm0 18.065a8.098 8.098 0 1 1 8.098-8.098 8.098 8.098 0 0 1-8.098 8.098z"></path>
-                                            </svg>
-                                            {{__('An error occurred. Please try again.')}}
-                                        </p>
-                                    </div>
-
-                                </form>
-                            </aside><!-- .widget-reservation -->
+                            <!-- .widget-reservation -->
 
                             {{-- <aside class="widget widget-shadow widget-reservation">
                                 <h3>{{__('I want to invest')}}</h3>

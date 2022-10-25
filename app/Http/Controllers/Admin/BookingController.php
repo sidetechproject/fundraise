@@ -40,7 +40,8 @@ class BookingController extends Controller
                 'email' => $booking->email,
                 'phone' => $booking->phone,
                 'place' => $booking->place->name,
-                'text_message' => $booking->message
+                'text_message' => $booking->message,
+                'check_size' => $booking->check_size,
             ], function ($message) use ($request, $booking) {
                 $message->to($booking->user->email, "{$booking->name}")
                 ->subject('New Investor: ' . $booking->name)

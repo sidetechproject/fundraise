@@ -38,6 +38,7 @@ class BookingController extends Controller
             'email' => '',
             'phone_number' => '',
             'message' => '',
+            'check_size' => '',
             'type' => ''
         ]);
 
@@ -52,13 +53,15 @@ class BookingController extends Controller
             $email = $request->email;
             $phone = $request->phone_number;
             $text_message = $request->message;
+            $check_size = $request->check_size;
 
             Mail::send('frontend.mail.new_booking', [
                 'name' => $name,
                 'email' => $email,
                 'phone' => $phone,
                 'place' => $place->name,
-                'text_message' => $text_message
+                'text_message' => $text_message,
+                'check_size' => $check_size,
             ], function ($message) use ($request, $name) {
                 $message->to(setting('email_system'), "{$name}")->subject('New Investor: ' . $name);
             });

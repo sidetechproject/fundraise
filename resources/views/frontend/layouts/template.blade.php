@@ -142,7 +142,30 @@
                                         <div class="field-input">
                                             <input type="password" id="register_password_confirmation" name="password_confirmation" placeholder="Confirm Password" required>
                                         </div>
-                                        <div class="field-check">
+
+                                        <div class="filter-list">
+                                            <div class="filter-group">
+                                                <div class="field-check">
+                                                    <label class="bc_filter" for="profile_startup">
+                                                        <input type="radio" id="profile_startup" name="profile" value="1" checked="">
+                                                        I'm Startup
+                                                        <span class="checkmark"><i class="la la-check"></i></span>
+                                                    </label>
+                                                </div>
+
+                                                <div class="field-check">
+                                                    <label class="bc_filter" for="profile_investor">
+                                                        <input type="radio" id="profile_investor" name="profile" value="2">
+                                                        I'm Investor
+                                                        <span class="checkmark"><i class="la la-check"></i></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="gl-button btn button w-100" id="submit_register">{{__('Sign Up')}}</button>
+
+                                        <div class="field-check mt-4">
                                             <label for="accept">
                                                 <input type="checkbox" id="accept" checked required>
                                                 Accept the <a title="Terms" href="#">Terms</a> and <a title="Privacy Policy" href="#">Privacy Policy</a>
@@ -153,7 +176,6 @@
                                             </span>
                                             </label>
                                         </div>
-                                        <button type="submit" class="gl-button btn button w-100" id="submit_register">{{__('Sign Up')}}</button>
                                     </form>
 
                                     <form class="form-forgotpass form-content" id="forgot_password" action="{{route('api_user_forgot_password')}}" method="POST">

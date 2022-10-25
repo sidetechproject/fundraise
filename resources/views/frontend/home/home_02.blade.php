@@ -97,7 +97,11 @@
                                 <div class="place-inner">
                                     <div class="place-thumb">
                                         <a class="entry-thumb" href="{{route('place_detail', $place->slug)}}">
-                                            <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}">
+                                            @if($place->thumb)
+                                                <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}">
+                                            @else
+                                                <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo">
+                                            @endif
                                         </a>
                                         {{-- <a href="#" class="golo-add-to-wishlist btn-add-to-wishlist @if($place->wish_list_count) remove_wishlist active @else @guest open-login @else add_wishlist @endguest @endif" data-id="{{$place->id}}">
 											<span class="icon-heart">
@@ -136,7 +140,7 @@
 
                                         <div class="desc">
                                             @php
-                                                $out = strlen($place->description) > 140 ? substr($place->description, 0, 140)."..." : $place->description;
+                                                $out = strlen($place->short_description) > 140 ? substr($place->short_description, 0, 140)."..." : $place->short_description;
                                                 echo $out;
                                             @endphp
                                         </div>

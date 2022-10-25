@@ -42,7 +42,7 @@ class Place extends Model  implements TranslatableContract
     protected $fillable = [
         'user_id', 'country_id', 'city_id', 'category', 'place_type', 'slug', 'price_range',
         'amenities', 'address', 'lat', 'lng', 'email', 'phone_number', 'website', 'social', 'opening_hour',
-        'thumb', 'gallery', 'video', 'booking_type', 'link_bookingcom', 'status', 'seo_title', 'seo_description', 'menu', 'faq'
+        'thumb', 'gallery', 'video', 'deck', 'short_description', 'booking_type', 'link_bookingcom', 'status', 'seo_title', 'seo_description', 'menu', 'faq'
     ];
 
     protected $hidden = [];

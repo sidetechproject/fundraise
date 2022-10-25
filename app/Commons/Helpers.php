@@ -87,6 +87,17 @@ const TAGS = [
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
+const METRICS = [
+    "MRR" => "R$236.000,00",
+    "Growth" => "15%",
+    "Total Users" => "120.000",
+    "Active Users" => "20.000",
+    "Paid Users" => "1.200",
+    "Monthly Unique Visitors" => "20.000",
+    "Churn (%)" => "3%",
+    "Monthly Marketing Spend" => "R$12.000,00"
+];
+
 const SOCIAL_LIST = [
     'Facebook' => [
         'icon' => 'la la-facebook-f',

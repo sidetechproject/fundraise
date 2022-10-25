@@ -39,7 +39,9 @@
 
                                 Email: {{$email}} <br><br>
 
-                                Phone number: {{$phone}} <br><br><br>
+                                Phone number: {{$phone}} <br><br>
+
+                                Check Size: {{$check_size}} <br><br><br>
 
                                 Message: {{$text_message}} <br><br><br>
 

@@ -142,7 +142,7 @@ class PlaceController extends Controller
         $model->fill($data);
 
         if ($model->save()) {
-            return redirect(route('admin_place_list'))->with('success', 'Create place success!');
+            return redirect(route('admin_place_list'))->with('success', 'Create startup success!');
         }
 
     }

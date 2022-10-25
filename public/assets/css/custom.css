@@ -1,3 +1,6 @@
+body {
+    background-color: #eeece6;
+}
 .golo-add-to-wishlist .golo-loading {
     width: 25px;
     height: 25px;
@@ -278,6 +281,11 @@
 
 .la-24 {
     font-size: 24px !important;
+}
+
+.la-20 {
+    font-size: 20px !important;
+    vertical-align: -2px;
 }
 
 .la-12 {
@@ -1102,6 +1110,10 @@
     margin-top: 15px;
 }
 
+.place-item.layout-02 .place-title a {
+    color: #000000;
+}
+
 .ellipsis {
     overflow: hidden;
     white-space: nowrap;
@@ -1134,6 +1146,22 @@
     border: solid 1px #4fd3b2;
 }
 
+.note {
+    font-size: 13px;
+    color: #5d5d5d;
+    margin-top: 10px;
+}
+
+.listing-box input, .listing-box select, .listing-box .chosen-choices {
+    border-bottom: 2px solid #eeece6;
+}
+
+
+.place-04 .open-table .day {
+    width: 50%;
+}
+
+
 .mobile {
     display: none;
 }
@@ -1149,5 +1177,6 @@
         display: none;
     }
 }
+
 
 

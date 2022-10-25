@@ -18,7 +18,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Startup</th>
-                            <th>Booking at</th>
+                            <th>Contact at</th>
                             <th>Status</th>
                             <th class="action">Action</th>
                         </tr>
@@ -41,6 +41,7 @@
                                         $booking_name = $booking->name;
                                         $booking_email = $booking->email;
                                         $booking_phone = $booking->phone_number;
+                                        $booking_checksize = $booking->check_size;
                                     @endphp
                                     <td>{{$booking_name}}</td>
                                 @endif
@@ -67,6 +68,7 @@
                                                 data-name="{{$booking_name}}"
                                                 data-email="{{$booking_email}}"
                                                 data-phone="{{$booking_phone}}"
+                                                data-checksize="{{$booking_checksize}}"
                                                 data-place="{{$booking['place']['name']}}"
                                                 data-bookingdatetime="{{$booking->time}} {{formatDate($booking->date, 'd/m/Y')}}"
                                                 data-bookingat="{{formatDate($booking->created_at, 'H:i d/m/Y')}}"

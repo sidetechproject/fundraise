@@ -133,7 +133,14 @@
                                                     <a href="{{route('page_search_listing', ['city[]' => $place['city']['id']])}}">{{$place['city']['name']}}</a>
                                                 </div> --}}
                                             </div>
-                                            <h3 class="place-title"><a href="{{route('place_detail', $place->slug)}}">{{$place->name}}</a></h3>
+                                            <h3 class="place-title">
+                                                <a href="{{route('place_detail', $place->slug)}}">{{$place->name}}</a>
+                                            </h3>
+
+                                            <p class="mb-3">
+                                                {{$place->short_description}}
+                                            </p>
+
                                             <div class="entry-bottom">
                                                 <div class="place-preview hidden">
                                                     <div class="place-rating">

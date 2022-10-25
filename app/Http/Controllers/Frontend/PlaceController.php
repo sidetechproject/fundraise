@@ -175,6 +175,8 @@ class PlaceController extends Controller
             'opening_hour' => '',
             'gallery' => '',
             'video' => '',
+            'deck' => '',
+            'short_description' => '',
             'link_bookingcom' => '',
             'status' => '',
             'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
@@ -191,7 +193,7 @@ class PlaceController extends Controller
         $model->fill($data);
 
         if ($model->save()) {
-            return redirect(route('user_my_place'))->with('success', 'Create place success. Wating admin review and apporeve!');
+            return redirect(route('user_my_place'))->with('success', 'Startup created successfully. Awaiting admin review!');
         }
 
         return $request;
@@ -222,6 +224,8 @@ class PlaceController extends Controller
             'opening_hour' => '',
             'gallery' => '',
             'video' => '',
+            'deck' => '',
+            'short_description' => '',
             'link_bookingcom' => '',
             'status' => '',
             'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
@@ -238,7 +242,7 @@ class PlaceController extends Controller
         $model->fill($data);
 
         if ($model->save()) {
-            return redirect(route('user_my_place'))->with('success', 'Update place success!');
+            return redirect(route('user_my_place'))->with('success', 'Update startup success!');
         }
 
         return $request;

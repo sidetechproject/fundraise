@@ -54,7 +54,7 @@
                         <tr>
                             <th></th>
                             <th>{{__('ID')}}</th>
-                            <th>{{__('Thumb')}}</th>
+                            <th>{{__('Logo')}}</th>
                             <th>{{__('Startup name')}}</th>
                             {{-- <th>{{__('City')}}</th> --}}
                             <th>{{__('Category')}}</th>
@@ -67,16 +67,30 @@
                             @foreach($places as $place)
                                 <tr>
                                     <td data-title=""></td>
-                                    <td data-title="ID">{{$place->id}}</td>
-                                    <td data-title="Thumb"><img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}"></td>
-                                    <td data-title="Place name"><b>{{$place->name}}</b></td>
+                                    <td data-title="ID">
+                                        {{$place->id}}
+                                    </td>
+                                    <td data-title="Thumb">
+                                        @if($place->thumb)
+                                            <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}">
+                                        @else
+                                            <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo">
+                                        @endif
+                                    </td>
+                                    <td data-title="Place name">
+                                        <b>{{$place->name}}</b>
+                                    </td>
+
                                     {{-- <td data-title="City">{{$place['city']['name']}}</td> --}}
+
                                     <td data-title="Category">
                                         @foreach($place->categories as $cat)
                                             {{$cat->name}}
                                         @endforeach
                                     </td>
+
                                     <td data-title="Status" class="{{STATUS[$place->status]}}">{{STATUS[$place->status]}}</td>
+
                                     <td data-title="" class="place-action">
                                         <a href="{{route('place_edit', $place->id)}}" class="edit" title="{{__('Edit')}}"><i class="las la-edit"></i></a>
                                         <a href="{{route('place_detail', $place->slug)}}" class="view" title="{{__('View')}}"><i class="la la-eye"></i></a>

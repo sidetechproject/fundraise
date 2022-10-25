@@ -55,7 +55,7 @@
                 @if(isRoute('place_edit'))
                     {{__('Edit my startup')}}
                 @else
-                    {{__('Add new startup')}}
+                    {{__('Submit Startup')}}
                 @endif
             </h2>
             <form class="upload-form m-auto pt-4" id="new_place" action="{{route('place_create')}}" method="POST" enctype="multipart/form-data">
@@ -64,7 +64,7 @@
                 @endif
                 @csrf
                 <div class="listing-box" id="genaral">
-                    <h3>{{__('Genaral')}}</h3>
+                    <h3>{{__('Basic Details')}}</h3>
                     <div class="field-inline">
                         <div class="field-group field-input">
                             <label for="place_name">{{__('Startup name')}} *</label>
@@ -80,10 +80,17 @@
                             <i class="la la-angle-down"></i>
                         </div>
                     </div>
+
+                    <div class="field-group">
+                        <label for="short_description">{{__('Your startup in a sentence')}} *</label>
+                        <input class="form-control" id="short_description" name="{{$language_default['code']}}[short_description]" value="{{$place ? $place['short_description'] : ''}}" placeholder="{{ __('') }}">
+                    </div>
+
                     <div class="field-group">
                         <label for="description">{{__('Description')}} *</label>
                         <textarea class="form-control" id="description" name="{{$language_default['code']}}[description]" rows="5">{{$place ? $place['description'] : ''}}</textarea>
                     </div>
+
                     <div class="field-group field-select">
                         <label for="lis_category">{{__('Category')}} *</label>
                         <select class="chosen-select" id="lis_category" name="category[]" data-placeholder="{{__('Select Category')}}" multiple required>
@@ -142,7 +149,7 @@
                         </div>
                     </div> --}}
                     <div class="field-group">
-                        <input type="text" id="pac-input" placeholder="{{__('Full Address')}}" value="{{$place ? $place['address'] : ''}}" name="address" autocomplete="off" required/>
+                        <input type="text" id="pac-input" placeholder="{{__('City - State')}}" value="{{$place ? $place['address'] : ''}}" name="address" autocomplete="off" required/>
                     </div>
                     {{-- <div class="field-group field-maps">
                         <div class="field-inline">
@@ -160,16 +167,16 @@
                 <div class="listing-box" id="contact">
                     <h3>Contact Info</h3>
                     <div class="field-group">
-                        <label for="place_email">{{__('Email')}}</label>
-                        <input type="email" id="place_email" value="{{$place ? $place['email'] : ''}}" placeholder="{{__('Your email address')}}" name="email">
+                        <label for="place_email">{{__('Email *')}}</label>
+                        <input type="email" id="place_email" value="{{$place ? $place['email'] : ''}}" placeholder="{{__('Your email address')}}" name="email" required>
                     </div>
                     <div class="field-group">
-                        <label for="place_number">{{__('Phone number')}}</label>
-                        <input type="tel" id="place_number" value="{{$place ? $place['phone_number'] : ''}}" placeholder="{{__('Your phone number')}}" name="phone_number">
+                        <label for="place_number">{{__('Phone number *')}}</label>
+                        <input type="tel" id="place_number" value="{{$place ? $place['phone_number'] : ''}}" placeholder="{{__('Your phone number')}}" name="phone_number" required>
                     </div>
                     <div class="field-group">
-                        <label for="place_website">{{__('Website')}}</label>
-                        <input type="text" id="place_website" value="{{$place ? $place['website'] : ''}}" placeholder="{{__('Your website url')}}" name="website">
+                        <label for="place_website">{{__('Website *')}}</label>
+                        <input type="text" id="place_website" value="{{$place ? $place['website'] : ''}}" placeholder="{{__('Your website url')}}" name="website" required>
                     </div>
                 </div><!-- .listing-box -->
                 <div class="listing-box" id="social">
@@ -177,7 +184,7 @@
                     <div class="field-group">
                         <label for="place_socials">{{__('Social Networks')}}</label>
 
-                        <div class="social_list">
+                        <div class="social_list field-clone">
                             @if($place)
                                 @foreach($place['social'] as $key => $social)
                                     <div class="field-inline field-3col social_item">
@@ -226,8 +233,8 @@
                     </div>
                 </div><!-- .listing-box -->
 
-                {{-- <div class="listing-box" id="open">
-                    <h3>{{__('Opening Hours')}}</h3>
+                <div class="listing-box" id="open">
+                    <h3>{{__('Key Traction Metrics')}}</h3>
                     <div class="group-field" id="time-opening">
                         @if($place)
                             @foreach($place['opening_hour'] as $index => $opening_hour)
@@ -244,17 +251,17 @@
                                 </div>
                             @endforeach
                         @else
-                            @foreach(DAYS as $key => $value)
+                            @foreach(METRICS as $key => $value)
                                 <div class="place-fields-wrap">
                                     <div class="place-fields place-time-opening row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control valid" name="opening_hour[{{$key}}][title]" value="{{$value}}">
+                                                <input type="text" class="form-control valid" name="opening_hour[{{ $loop->index }}][title]" value="{{$key}}">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="opening_hour[{{$key}}][value]" placeholder="{{$value == "Ex: Sunday" ? "Closed" : "Ex: 9:00 AM - 5:00 PM"}}">
+                                                <input type="text" class="form-control" name="opening_hour[{{ $loop->index }}][value]" placeholder="{{$value}}">
                                             </div>
                                         </div>
                                     </div>
@@ -264,63 +271,77 @@
                     </div>
 
                     <a href="#open" class="add-social btn" id="openinghour_addmore">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                            <g fill="#2D2D2D" fill-rule="evenodd">
-                                <path d="M7 0h2v16H7z"/>
-                                <path d="M16 7v2H0V7z"/>
-                            </g>
-                        </svg>
                         <span>{{__('Add more')}}</span>
                     </a>
-                </div> --}}
+                </div>
+
                 <!-- .listing-box -->
                 <div class="listing-box" id="media">
                     <h3>Media</h3>
-                    <div class="field-group field-file">
-                        <label for="thumb_image">{{__('Logo')}}</label>
-                        <label for="thumb_image" class="preview">
-                            @if($place && $place['thumb'])
-                                <input type="file" id="thumb_image" name="thumb" class="upload-file">
-                            @else
-                                <input type="file" id="thumb_image" name="thumb" class="upload-file" required>
-                            @endif
 
-                            <img id="thumb_preview" src="{{$place && $place['thumb'] ? getImageUrl($place['thumb']) : ''}}" alt=""/>
+                    <div class="field-inline field-3col social_item">
+                        <div class="field-group field-file" style="max-width: 30%;">
+                            <label for="thumb_image">{{__('Logo *')}}</label>
+                            <label for="thumb_image" class="preview">
+                                @if($place && $place['thumb'])
+                                    <input type="file" id="thumb_image" name="thumb" class="upload-file">
+                                @else
+                                    <input type="file" id="thumb_image" name="thumb" class="upload-file">
+                                @endif
 
-                            <i class="la la-cloud-upload-alt"></i>
-                        </label>
-                        <div class="field-note">{{__('Maximum file size: 1 MB')}}.</div>
-                    </div>
-                    <div class="field-group field-file">
-                        <label for="gallery_img">{{__('Gallery Images')}}</label>
-                        <div id="gallery_preview">
-                            @if($place && $place['gallery'])
-                                @foreach($place['gallery'] as $gallery)
-                                    <div class="col-sm-2 media-thumb-wrap">
-                                        <figure class="media-thumb">
-                                            <img src="{{getImageUrl($gallery)}}">
-                                            <div class="media-item-actions">
-                                                <a class="icon icon-delete" href="#">
-                                                    <i class="la la-trash-alt"></i>
-                                                </a>
-                                                <input type="hidden" name="gallery[]" value="{{$gallery}}">
-                                                <span class="icon icon-loader"><i class="fa fa-spinner fa-spin"></i></span>
-                                            </div>
-                                        </figure>
-                                    </div>
-                                @endforeach
-                            @endif
+                                <img id="thumb_preview" src="{{$place && $place['thumb'] ? getImageUrl($place['thumb']) : ''}}" alt=""/>
+
+                                <i class="la la-cloud-upload-alt"></i>
+                            </label>
+                            <div class="field-note">{{__('Maximum file size: 1 MB')}}.</div>
                         </div>
-                        <label for="gallery" class="preview w-100">
-                            <input type="file" id="gallery" class="upload-file">
-                            <i class="la la-cloud-upload-alt"></i>
-                        </label>
-                        <div class="field-note">{{__('Maximum file size: 1 MB')}}.</div>
+                        {{-- <div class="field-group field-file" style="min-width: 70%;"">
+                            <label for="gallery_img">{{__('Gallery Images')}}</label>
+                            <div id="gallery_preview">
+                                @if($place && $place['gallery'])
+                                    @foreach($place['gallery'] as $gallery)
+                                        <div class="col-sm-2 media-thumb-wrap">
+                                            <figure class="media-thumb">
+                                                <img src="{{getImageUrl($gallery)}}">
+                                                <div class="media-item-actions">
+                                                    <a class="icon icon-delete" href="#">
+                                                        <i class="la la-trash-alt"></i>
+                                                    </a>
+                                                    <input type="hidden" name="gallery[]" value="{{$gallery}}">
+                                                    <span class="icon icon-loader"><i class="fa fa-spinner fa-spin"></i></span>
+                                                </div>
+                                            </figure>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <label for="gallery" class="preview w-100">
+                                <input type="file" id="gallery" class="upload-file">
+                                <i class="la la-cloud-upload-alt"></i>
+                            </label>
+                            <div class="field-note">{{__('Maximum file size: 1 MB')}}.</div>
+                        </div> --}}
+
+                        <div class="field-group field-file" style="min-width: 70%;">
+                            <div class="field mt-1">
+                                <label for="place_video">{{__('Video')}}</label>
+                                <input type="text" id="place_video" name="video" value="{{$place ? $place['video'] : ''}}" placeholder="{{__('Youtube, Vimeo video url')}}">
+                            </div>
+
+                            <div class="field mt-4">
+                                <label for="place_deck">{{__('Pitch Deck')}}</label>
+                                <input type="text" id="place_deck" name="deck" value="{{$place ? $place['deck'] : ''}}" placeholder="{{__('Google Slides, Google Drive url')}}">
+                            </div>
+                        </div>
                     </div>
-                    <div class="field-group">
-                        <label for="place_video">{{__('Video')}}</label>
-                        <input type="text" id="place_video" name="video" value="{{$place ? $place['video'] : ''}}" placeholder="{{__('Youtube, Vimeo video url')}}">
-                    </div>
+
+                    {{-- <div class="field-group field-file">
+
+                    </div> --}}
+                    {{-- <div class="field-group field-file">
+
+                    </div> --}}
+
                 </div><!-- .listing-box -->
 
                 <div class="field-group field-submit">
@@ -331,7 +352,7 @@
                         @if(isRoute('place_edit'))
                             <input class="btn" type="submit" value="{{__('Update')}}">
                         @else
-                            <input class="btn" type="submit" value="{{__('Submit')}}">
+                            <input class="btn" type="submit" value="{{__('Submit for review')}}">
                         @endif
                     @endguest
                 </div>
@@ -340,3 +361,8 @@
         </div><!-- .listing-content -->
     </main><!-- .site-main -->
 @stop
+
+
+@push('scripts')
+    <script src="{{asset('assets/js/page_place_new.js')}}"></script>
+@endpush

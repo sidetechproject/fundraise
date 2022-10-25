@@ -1594,7 +1594,7 @@ textarea {
   .place__box:last-child {
     padding-bottom: 0;
     border-bottom: 0;
-    margin-bottom: 60px; }
+    margin-bottom: 10px; }
   .place__box .place__amenities i {
     font-size: 26px;
     vertical-align: -6px; }
@@ -2939,13 +2939,15 @@ a.place__comments__reply {
   border: 1px solid #eeeeee;
   background-color: #ffffff;
   padding: 30px;
+  border-radius: 0.5rem;
   margin-bottom: 15px; }
   .listing-box > h3 {
-    font-size: 15px;
-    font-weight: 500;
-    color: #8d8d8d;
     text-transform: uppercase;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #66e3c4;
+    font-size: 22px;
+}
   .listing-box label,
   .listing-box h4.label {
     display: block;
@@ -3507,7 +3509,7 @@ a.place__comments__reply {
   right: 50px;
   bottom: 40px; }
   .place-04 .place-gallery a {
-    padding: 0 17px;
+    padding: 0 15px;
     display: inline-block;
     height: 36px;
     line-height: 36px;
@@ -3517,14 +3519,14 @@ a.place__comments__reply {
     color: #ffffff;
     transition: all 0s;
     background-color: #000000;
-    font-size: 15px;
+    font-size: 14px;
     font-family: "Jost-Book";
     font-weight: normal;
     transition: all 0.3s; }
     .place-04 .place-gallery a:hover {
       background-color: #66e3c4;
       border-color: #66e3c4;
-      color: #ffffff; }
+      color: #040503; }
   .place-04 .place-gallery svg {
     vertical-align: -3px;
     display: inline-block;
