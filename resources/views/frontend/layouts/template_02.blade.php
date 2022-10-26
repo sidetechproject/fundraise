@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-6 col-8">
                     <div class="site">
-                        <div class="site__menu mobile">
+                        <div class="site__menu">
                             <a title="Menu Icon" href="#" class="site__menu__icon">
                                 <i class="las la-bars la-24-black"></i>
                             </a>

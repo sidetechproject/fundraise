@@ -1178,5 +1178,11 @@ body {
     }
 }
 
+@media only screen and (min-width: 767px) {
+    .home-header.home-header-while .site__menu__icon, .site__menu > a {
+        color: #040503 !important;
+        margin-right: -25px;
+    }
+}
 
 

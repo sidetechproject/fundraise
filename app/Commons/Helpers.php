@@ -119,16 +119,16 @@ const SOCIAL_LIST = [
         'name' => 'Youtube',
         'base_url' => 'https://www.youtube.com/'
     ],
-    'Pinterest' => [
-        'icon' => 'la la-pinterest',
-        'name' => 'Pinterest',
-        'base_url' => 'https://www.pinterest.com/'
-    ],
-    'Snapchat' => [
-        'icon' => 'la la-snapchat',
-        'name' => 'Snapchat',
-        'base_url' => 'https://www.snapchat.com/'
-    ]
+    // 'Pinterest' => [
+    //     'icon' => 'la la-pinterest',
+    //     'name' => 'Pinterest',
+    //     'base_url' => 'https://www.pinterest.com/'
+    // ],
+    // 'Snapchat' => [
+    //     'icon' => 'la la-snapchat',
+    //     'name' => 'Snapchat',
+    //     'base_url' => 'https://www.snapchat.com/'
+    // ]
 ];
 
 const STATUS = [
