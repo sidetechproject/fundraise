@@ -93,10 +93,19 @@
                     <div class="slick-slider trending-slider slider-pd30" data-item="4" data-arrows="true" data-itemScroll="4" data-dots="true" data-centerPadding="30" data-tabletitem="2" data-tabletscroll="2" data-smallpcscroll="3" data-smallpcitem="3" data-mobileitem="1" data-mobilescroll="1" data-mobilearrows="false">
 
                         @foreach($trending_places as $place)
+                            @guest
+                                @php
+                                    $link_startup = route('signup');
+                                @endphp
+                            @else
+                                @php
+                                    $link_startup = route('place_detail', $place->slug);
+                                @endphp
+                            @endguest
                             <div class="place-item layout-02">
                                 <div class="place-inner">
                                     <div class="place-thumb">
-                                        <a class="entry-thumb" href="{{route('place_detail', $place->slug)}}">
+                                        <a class="entry-thumb" href="{{ $link_startup }}">
                                             @if($place->thumb)
                                                 <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}">
                                             @else
@@ -133,7 +142,7 @@
                                         </div>
 
                                         <h3 class="place-title">
-                                            <a href="{{route('place_detail', $place->slug)}}" style="color: #000000">
+                                            <a href="{{ $link_startup }}" style="color: #000000">
                                                 {{$place->name}}
                                             </a>
                                         </h3>
