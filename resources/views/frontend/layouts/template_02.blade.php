@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-6 col-8">
                     <div class="site">
-                        <div class="site__menu">
+                        <div class="site__menu mobile">
                             <a title="Menu Icon" href="#" class="site__menu__icon">
                                 <i class="las la-bars la-24-black"></i>
                             </a>
@@ -197,8 +197,8 @@
 
                         @guest
                             <div class="right-header__login">
-                                <a title="Login" class="open-login" href="#">
-                                    {{__('Login & Sign Up')}}
+                                <a title="Login" class="" href="{{ route('signin') }}">
+                                    {{__('Login')}}
                                 </a>
                             </div><!-- .right-header__login -->
                             <div class="popup popup-form">
@@ -222,7 +222,7 @@
                                 <p class="choose-or"><span>{{__('Or')}}</span></p> --}}
                                 <div class="popup-content">
 
-                                    <form action="{{route('login')}}" class="form-log form-content" id="login" method="POST">
+                                    {{-- <form action="{{route('login')}}" class="form-log form-content" id="login" method="POST">
                                         @csrf
                                         <div class="field-input">
                                             <input type="text" id="email" name="email" placeholder="Email Address" required>
@@ -231,10 +231,10 @@
                                             <input type="password" id="password" name="password" placeholder="Password" required>
                                         </div>
                                         <a title="Forgot password" class="forgot_pass" href="#">{{__('Forgot password')}}</a>
-                                        {{--                                    <input type="submit" name="submit" value="Login">--}}
+
                                         <button type="submit" class="gl-button btn button w-100" id="submit_login">{{__('Login')}}</button>
-                                    </form>
-                                    <form class="form-sign form-content" id="register" action="{{route('register')}}" method="post">
+                                    </form> --}}
+                                    {{-- <form class="form-sign form-content" id="register" action="{{route('register')}}" method="post">
                                         @csrf
                                         <small class="form-text text-danger golo-d-none" id="register_error">error!</small>
                                         <div class="field-input">
@@ -283,7 +283,7 @@
                                             </span>
                                             </label>
                                         </div>
-                                    </form>
+                                    </form> --}}
 
                                 </div>
                             </div><!-- .popup-form -->
@@ -319,16 +319,23 @@
                                 <i class="las la-search la-24-black"></i>
                             </a>
                         </div>
+
                         @if(user() && user()->profile == 2)
                             <div class="right-header__button btn">
                                 <a title="Search startup" href="{{route('page_search_listing')}}">
                                     <span>{{__('Search startup')}}</span>
                                 </a>
                             </div>
-                        @else
+                        @elseif(user() && user()->profile == 1)
                             <div class="right-header__button btn">
                                 <a title="Add startup" href="{{route('place_addnew')}}">
                                     <span>{{__('Add startup')}}</span>
+                                </a>
+                            </div>
+                        @else
+                            <div class="right-header__button btn">
+                                <a title="Add startup" href="{{route('signup')}}">
+                                    <span>{{__('Register')}}</span>
                                 </a>
                             </div>
                         @endif

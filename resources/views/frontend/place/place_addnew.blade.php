@@ -55,7 +55,7 @@
                 @if(isRoute('place_edit'))
                     {{__('Edit my startup')}}
                 @else
-                    {{__('Submit Startup')}}
+                    {{__('Add Your Startup')}}
                 @endif
             </h2>
             <form class="upload-form m-auto pt-4" id="new_place" action="{{route('place_create')}}" method="POST" enctype="multipart/form-data">
@@ -64,26 +64,36 @@
                 @endif
                 @csrf
                 <div class="listing-box" id="genaral">
-                    <h3>{{__('Basic Details')}}</h3>
-                    <div class="field-inline">
-                        <div class="field-group field-input">
-                            <label for="place_name">{{__('Startup name')}} *</label>
-                            <input type="text" id="place_name" name="{{$language_default['code']}}[name]" value="{{$place ? $place['name'] : ''}}" required placeholder="{{__('What the name of your startup')}}">
-                        </div>
-                        <div class="field-group field-select">
-                            <label for="price_range">{{__('Raising')}}</label>
-                            <select id="price_range" name="price_range">
-                                @foreach(PRICE_RANGE as $key => $price)
-                                    <option value="{{$key}}" {{isSelected($key, $place ? $place['price_range'] : '')}}>{{$price}}</option>
-                                @endforeach
-                            </select>
-                            <i class="la la-angle-down"></i>
-                        </div>
+                    <h3>
+                        <span class="avatar avatar-xs avatar-primary avatar-circle mr-2">
+                            1
+                        </span>
+                        {{__('Basic Information')}}
+                    </h3>
+
+                    <div class="field-group">
+                        <label for="place_name">{{__('Company name')}} *</label>
+                        <input type="text" id="place_name" name="{{$language_default['code']}}[name]" value="{{$place ? $place['name'] : ''}}" required placeholder="{{__('What the name of your startup')}}">
                     </div>
 
                     <div class="field-group">
-                        <label for="short_description">{{__('Your startup in a sentence')}} *</label>
-                        <input class="form-control" id="short_description" name="{{$language_default['code']}}[short_description]" value="{{$place ? $place['short_description'] : ''}}" placeholder="{{ __('') }}">
+                        <label for="place_website">{{__('Website *')}}</label>
+                        <input type="text" id="place_website" value="{{$place ? $place['website'] : ''}}" placeholder="{{__('Your website url')}}" name="website" required>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="place_email">{{__('Email *')}}</label>
+                        <input type="email" id="place_email" value="{{$place ? $place['email'] : ''}}" placeholder="{{__('Your email address')}}" name="email" value="{{ user() ? user()->email : '' }}" required>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="place_number">{{__('Phone number *')}}</label>
+                        <input type="tel" id="place_number" value="{{$place ? $place['phone_number'] : ''}}" placeholder="{{__('Your phone number')}}" name="phone_number" {{ user() ? user()->phone_number : '' }} required>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="short_description">{{__('Describe your startup in a sentence')}} *</label>
+                        <input class="form-control" id="short_description" name="short_description" value="{{$place ? $place['short_description'] : ''}}" placeholder="{{ __('') }}">
                     </div>
 
                     <div class="field-group">
@@ -92,25 +102,45 @@
                     </div>
 
                     <div class="field-group field-select">
-                        <label for="lis_category">{{__('Category')}} *</label>
-                        <select class="chosen-select" id="lis_category" name="category[]" data-placeholder="{{__('Select Category')}}" multiple required>
+                        <label for="lis_category">{{__('Market')}} *</label>
+                        <select class="chosen-select" id="lis_category" name="category[]" data-placeholder="{{__('Select Market')}}" multiple required>
                             @foreach($categories as $cat)
                                 <option value="{{$cat['id']}}" {{isSelected($cat['id'], $place ? $place['category']: $place)}}>{{$cat['name']}}</option>
                             @endforeach
                         </select>
                         <i class="la la-angle-down"></i>
                     </div>
-                    <div class="field-group field-select">
-                        <label for="lis_place_type">{{__('Stage')}} *</label>
-                        <select class="chosen-select" id="lis_place_type" name="place_type[]" data-placeholder="{{__('Select Stage')}}" multiple required>
-                            @foreach($place_types as $type)
-                                <option value="{{$type['id']}}" {{isSelected($type['id'], $place ? $place['place_type'] : '')}}>{{$type['name']}}</option>
-                            @endforeach
-                        </select>
-                        <i class="la la-angle-down"></i>
+
+                    <div class="field-group">
+                        <label for="foundation">{{__('Foundation')}} *</label>
+                        <input type="text" id="pac-input" placeholder="{{__('01/2022')}}" value="{{$place ? $place['foundation'] : ''}}" name="foundation" autocomplete="off" required/>
                     </div>
-                </div><!-- .listing-box -->
-                <div class="listing-box" id="amenities">
+
+                    <div class="field-group">
+                        <label for="lis_category">{{__('Headquarter Country')}} *</label>
+                        <input type="text" id="pac-input" placeholder="{{__('USA')}}" value="{{$place ? $place['address'] : ''}}" name="address" autocomplete="off" required/>
+                    </div>
+
+                    <div class="field-group field-file" style="max-width: 30%;">
+                        <label for="thumb_image">{{__('Logo *')}}</label>
+                        <label for="thumb_image" class="preview">
+                            @if($place && $place['thumb'])
+                                <input type="file" id="thumb_image" name="thumb" class="upload-file">
+                            @else
+                                <input type="file" id="thumb_image" name="thumb" class="upload-file">
+                            @endif
+
+                            <img id="thumb_preview" src="{{$place && $place['thumb'] ? getImageUrl($place['thumb']) : ''}}" alt=""/>
+
+                            <i class="la la-cloud-upload-alt"></i>
+                        </label>
+                        <div class="field-note">{{__('Maximum file size: 1 MB')}}.</div>
+                    </div>
+
+                </div>
+                <!-- .listing-box -->
+
+                {{-- <div class="listing-box" id="amenities">
                     <h3>{{__('Business Model')}}</h3>
                     <div class="field-group field-check">
                         @foreach($amenities as $item)
@@ -122,11 +152,12 @@
                             </label>
                         @endforeach
                     </div>
-                </div><!-- .listing-box -->
-                <div class="listing-box" id="location">
-                    <h3>{{__('Location')}}</h3>
+                </div> --}}
+                <!-- .listing-box -->
+                <div class="listing-box hidden" id="location">
+                    {{-- <h3>{{__('Location')}}</h3>
                     <label for="place_address">{{__('Place Address')}} *</label>
-                    {{-- <div class="field-clone">
+                    <div class="field-clone">
                         <div class="field-inline field-3col">
                             <div class="field-group field-select">
                                 <select name="country_id" class="custom-select" id="select_country" required>
@@ -147,10 +178,10 @@
                                 <i class="la la-angle-down"></i>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="field-group">
                         <input type="text" id="pac-input" placeholder="{{__('City - State')}}" value="{{$place ? $place['address'] : ''}}" name="address" autocomplete="off" required/>
-                    </div>
+                    </div> --}}
                     {{-- <div class="field-group field-maps">
                         <div class="field-inline">
                             <label for="pac-input">{{__('Place Location at Google Map')}}</label>
@@ -164,7 +195,8 @@
                         </div>
                     </div> --}}
                 </div><!-- .listing-box -->
-                <div class="listing-box" id="contact">
+
+                {{-- <div class="listing-box" id="contact">
                     <h3>Contact Info</h3>
                     <div class="field-group">
                         <label for="place_email">{{__('Email *')}}</label>
@@ -174,13 +206,15 @@
                         <label for="place_number">{{__('Phone number *')}}</label>
                         <input type="tel" id="place_number" value="{{$place ? $place['phone_number'] : ''}}" placeholder="{{__('Your phone number')}}" name="phone_number" required>
                     </div>
-                    <div class="field-group">
-                        <label for="place_website">{{__('Website *')}}</label>
-                        <input type="text" id="place_website" value="{{$place ? $place['website'] : ''}}" placeholder="{{__('Your website url')}}" name="website" required>
-                    </div>
-                </div><!-- .listing-box -->
+                </div> --}}
+
+                <!-- .listing-box -->
                 <div class="listing-box" id="social">
-                    <h3>{{__('Social Networks')}}</h3>
+                    <h3>
+                        <span class="avatar avatar-xs avatar-primary avatar-circle mr-2">
+                            2
+                        </span>
+                        {{__('Social Networks')}}</h3>
                     <div class="field-group">
                         <label for="place_socials">{{__('Social Networks')}}</label>
 
@@ -234,7 +268,12 @@
                 </div><!-- .listing-box -->
 
                 <div class="listing-box" id="open">
-                    <h3>{{__('Key Traction Metrics')}}</h3>
+                    <h3>
+                        <span class="avatar avatar-xs avatar-primary avatar-circle mr-2">
+                            3
+                        </span>
+                        {{__('Key Traction Metrics')}}
+                    </h3>
                     <div class="group-field" id="time-opening">
                         @if($place)
                             @foreach($place['opening_hour'] as $index => $opening_hour)
@@ -277,24 +316,53 @@
 
                 <!-- .listing-box -->
                 <div class="listing-box" id="media">
-                    <h3>Media</h3>
+                    <h3>
+                        <span class="avatar avatar-xs avatar-primary avatar-circle mr-2">
+                            4
+                        </span>
+                        Fundraising
+                    </h3>
 
-                    <div class="field-inline field-3col social_item">
-                        <div class="field-group field-file" style="max-width: 30%;">
-                            <label for="thumb_image">{{__('Logo *')}}</label>
-                            <label for="thumb_image" class="preview">
-                                @if($place && $place['thumb'])
-                                    <input type="file" id="thumb_image" name="thumb" class="upload-file">
-                                @else
-                                    <input type="file" id="thumb_image" name="thumb" class="upload-file">
-                                @endif
+                    <div class="field-group field-select">
+                        <label for="raising">{{__('Raising')}}</label>
+                        <input type="text" id="raising-input" placeholder="{{__('$')}}" value="{{$place ? $place['raising'] : ''}}" name="raising" autocomplete="off" required/>
+                    </div>
 
-                                <img id="thumb_preview" src="{{$place && $place['thumb'] ? getImageUrl($place['thumb']) : ''}}" alt=""/>
+                    <div class="field-group">
+                        <label for="valuation">{{__('Valuation')}} *</label>
+                        <input type="text" id="val-input" placeholder="{{__('$')}}" value="{{$place ? $place['valuation'] : ''}}" name="valuation" autocomplete="off" required/>
+                    </div>
 
-                                <i class="la la-cloud-upload-alt"></i>
-                            </label>
-                            <div class="field-note">{{__('Maximum file size: 1 MB')}}.</div>
-                        </div>
+                    <div class="field-group field-select">
+                        <label for="lis_place_type">{{__('Stage')}} *</label>
+                        <select class="" id="lis_place_type" name="stage" data-placeholder="{{__('Select Stage')}}"  required>
+                            @foreach($place_types as $type)
+                                <option value="{{$type['name']}}" {{isSelected($type['id'], $place ? $place['place_type'] : '')}}>{{$type['name']}}</option>
+                            @endforeach
+                        </select>
+                        <i class="la la-angle-down"></i>
+                    </div>
+
+                    <div class="field-group field-select">
+                        <label for="terms">{{__('Terms')}}</label>
+                        <select id="terms" name="terms">
+                            @foreach(TERMS as $key => $price)
+                                <option value="{{$price}}" {{isSelected($key, $place ? $place['terms'] : '')}}>{{$price}}</option>
+                            @endforeach
+                        </select>
+                        <i class="la la-angle-down"></i>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="place_video">{{__('Video')}}</label>
+                        <input type="text" id="place_video" name="video" value="{{$place ? $place['video'] : ''}}" placeholder="{{__('Youtube, Vimeo video url')}}">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="place_deck">{{__('Pitch Deck')}}</label>
+                        <input type="text" id="place_deck" name="deck" value="{{$place ? $place['deck'] : ''}}" placeholder="{{__('Google Slides, Google Drive url')}}">
+                    </div>
+
                         {{-- <div class="field-group field-file" style="min-width: 70%;"">
                             <label for="gallery_img">{{__('Gallery Images')}}</label>
                             <div id="gallery_preview">
@@ -321,19 +389,6 @@
                             </label>
                             <div class="field-note">{{__('Maximum file size: 1 MB')}}.</div>
                         </div> --}}
-
-                        <div class="field-group field-file" style="min-width: 70%;">
-                            <div class="field mt-1">
-                                <label for="place_video">{{__('Video')}}</label>
-                                <input type="text" id="place_video" name="video" value="{{$place ? $place['video'] : ''}}" placeholder="{{__('Youtube, Vimeo video url')}}">
-                            </div>
-
-                            <div class="field mt-4">
-                                <label for="place_deck">{{__('Pitch Deck')}}</label>
-                                <input type="text" id="place_deck" name="deck" value="{{$place ? $place['deck'] : ''}}" placeholder="{{__('Google Slides, Google Drive url')}}">
-                            </div>
-                        </div>
-                    </div>
 
                     {{-- <div class="field-group field-file">
 

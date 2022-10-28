@@ -215,5 +215,19 @@ class UserController extends Controller
         return back()->with('success', 'Delete place success!');
     }
 
+    public function loginPage()
+    {
+        if (Auth::check())
+            return redirect(route('home'));
 
+        return view('frontend.auth.login');
+    }
+
+    public function registerPage()
+    {
+        if (Auth::check())
+            return redirect(route('home'));
+
+        return view('frontend.auth.register');
+    }
 }

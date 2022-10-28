@@ -48,71 +48,76 @@
                             </form>
                         </div> --}}
                     </div>
-                    <!-- .member-filter -->
-                    <table class="member-place-list table-responsive">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>{{__('ID')}}</th>
-                            <th>{{__('Logo')}}</th>
-                            <th>{{__('Startup name')}}</th>
-                            {{-- <th>{{__('City')}}</th> --}}
-                            <th>{{__('Category')}}</th>
-                            <th>{{__('Status')}}</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if(count($places))
-                            @foreach($places as $place)
-                                <tr>
-                                    <td data-title=""></td>
-                                    <td data-title="ID">
-                                        {{$place->id}}
-                                    </td>
-                                    <td data-title="Thumb">
-                                        @if($place->thumb)
-                                            <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}">
-                                        @else
-                                            <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo">
-                                        @endif
-                                    </td>
-                                    <td data-title="Place name">
-                                        <b>{{$place->name}}</b>
-                                    </td>
+                    @if(count($places))
+                        <!-- .member-filter -->
+                        <table class="member-place-list table-responsive">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>{{__('ID')}}</th>
+                                <th>{{__('Logo')}}</th>
+                                <th>{{__('Startup name')}}</th>
+                                {{-- <th>{{__('City')}}</th> --}}
+                                <th>{{__('Category')}}</th>
+                                <th>{{__('Status')}}</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($places as $place)
+                                    <tr>
+                                        <td data-title=""></td>
+                                        <td data-title="ID">
+                                            {{$place->id}}
+                                        </td>
+                                        <td data-title="Thumb">
+                                            @if($place->thumb)
+                                                <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}">
+                                            @else
+                                                <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo">
+                                            @endif
+                                        </td>
+                                        <td data-title="Place name">
+                                            <b>{{$place->name}}</b>
+                                        </td>
 
-                                    {{-- <td data-title="City">{{$place['city']['name']}}</td> --}}
+                                        {{-- <td data-title="City">{{$place['city']['name']}}</td> --}}
 
-                                    <td data-title="Category">
-                                        @foreach($place->categories as $cat)
-                                            {{$cat->name}}
-                                        @endforeach
-                                    </td>
+                                        <td data-title="Category">
+                                            @foreach($place->categories as $cat)
+                                                {{$cat->name}}
+                                            @endforeach
+                                        </td>
 
-                                    <td data-title="Status" class="{{STATUS[$place->status]}}">{{STATUS[$place->status]}}</td>
+                                        <td data-title="Status" class="{{STATUS[$place->status]}}">{{STATUS[$place->status]}}</td>
 
-                                    <td data-title="" class="place-action">
-                                        <a href="{{route('place_edit', $place->id)}}" class="edit" title="{{__('Edit')}}"><i class="las la-edit"></i></a>
-                                        <a href="{{route('place_detail', $place->slug)}}" class="view" title="{{__('View')}}"><i class="la la-eye"></i></a>
-                                        @if($place->status !== \App\Models\Place::STATUS_DELETE)
-                                            <a href="{{route('user_my_place_delete')}}" class="delete" title="{{__('Delete')}}" onclick="event.preventDefault(); if (confirm('are you sure?')) {document.getElementById('delete_my_place_form_{{$place->id}}').submit();}">
-                                                <i class="la la-trash-alt"></i>
-                                                <form class="d-none" id="delete_my_place_form_{{$place->id}}" action="{{route('user_my_place_delete')}}" method="POST">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <input type="hidden" name="place_id" value="{{$place->id}}">
-                                                </form>
-                                            </a>
-                                        @endif
-                                    </td>
+                                        <td data-title="" class="place-action">
+                                            <a href="{{route('place_edit', $place->id)}}" class="edit" title="{{__('Edit')}}"><i class="las la-edit"></i></a>
+                                            <a href="{{route('place_detail', $place->slug)}}" class="view" title="{{__('View')}}"><i class="la la-eye"></i></a>
+                                            @if($place->status !== \App\Models\Place::STATUS_DELETE)
+                                                <a href="{{route('user_my_place_delete')}}" class="delete" title="{{__('Delete')}}" onclick="event.preventDefault(); if (confirm('are you sure?')) {document.getElementById('delete_my_place_form_{{$place->id}}').submit();}">
+                                                    <i class="la la-trash-alt"></i>
+                                                    <form class="d-none" id="delete_my_place_form_{{$place->id}}" action="{{route('user_my_place_delete')}}" method="POST">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <input type="hidden" name="place_id" value="{{$place->id}}">
+                                                    </form>
+                                                </a>
+                                            @endif
+                                        </td>
 
-                                </tr>
-                            @endforeach
-                        @else
-                            {{__('No item found')}}
-                        @endif
-                        </tbody>
-                    </table>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                        <div class="right-header__button btn">
+                            <a title="Add your startup" href="{{route('place_addnew')}}">
+                                <span>{{__('Add your startup')}}</span>
+                            </a>
+                        </div>
+                    @endif
+
                     <div class="pagination align-left">
                         {{$places->appends(["city_id" => $filter['city'], "category_id" => $filter['category'], "keyword" => $filter['keyword']])->render('frontend.common.pagination')}}
                     </div><!-- .pagination -->

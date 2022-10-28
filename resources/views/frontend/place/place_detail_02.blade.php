@@ -119,6 +119,7 @@
                                     </ul><!-- .place__breadcrumbs -->
                                     <div class="place__box place__box--npd">
                                         <h1>{{$place->name}}</h1>
+
                                         <div class="place__meta">
                                             <div class="place__reviews reviews hidden">
                                                     <span class="place__reviews__number reviews__number">
@@ -128,15 +129,9 @@
                                                 <span class="place__places-item__count reviews_count">({{count($reviews)}} reviews)</span>
                                             </div>
 
-                                            <div class="place__currency">{{PRICE_RANGE[$place->price_range]}}</div>
-
-                                            @if(isset($place_types))
-                                                <div class="place__category">
-                                                    @foreach($place_types as $type)
-                                                        <a title="{{$type->name}}" href="{{route('page_search_listing', ['amenities[]' => $type->id])}}">{{$type->name}}</a>
-                                                    @endforeach
-                                                </div>
-                                            @endif
+                                            <div class="address">
+                                                Foundation at {{$place->foundation}}
+                                            </div>
 
                                             <div class="address">
                                                 <i class="la la-map-marker"></i>
@@ -174,6 +169,27 @@
                                     @endphp
                                 </div><!-- .place__desc -->
                                 {{-- <a href="#" class="show-more" title="{{__('Show more')}}">{{__('Show more')}}</a> --}}
+                            </div>
+
+                            <div class="place__box place__box-overview">
+                                <h3>{{__('Founder   ')}}</h3>
+
+                                <div class="account">
+                                    <img src="{{getUserAvatar(user()->avatar)}}" alt="{{Auth::user()->name}}">
+                                    <span>
+                                        {{Auth::user()->name}}
+                                    </span>
+                                </div>
+
+                                <div class="place__desc open mt-3">
+                                    <a href="@php echo user()->linkedin; @endphp" style="border-bottom: solid 1px #66e3c4;color: #000000;">
+                                        @php echo user()->linkedin; @endphp
+                                    </a>
+                                </div>
+
+                                <div class="place__desc open">
+                                    @php echo user()->bio; @endphp
+                                </div>
                             </div>
 
                             @if(isset($amenities))
@@ -381,38 +397,63 @@
 
                                 <aside class="widget widget-shadow">
                                     <div class="place__box">
-                                        <h1>{{$place->name}}</h1>
+                                        <h1 class="mb-3">
+                                            Terms
+                                        </h1>
+
+                                        <table class="open-table">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="day">Stage</td>
+                                                    <td class="time">{{ $place->stage }}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="day">Investiment Type</td>
+                                                    <td class="time">{{ $place->terms }}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="day">Raising</td>
+                                                    <td class="time">{{ $place->raising }}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="day">Valuation</td>
+                                                    <td class="time">{{ $place->valuation }}</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
 
                                         <ul class="place__contact mt-3">
-                                            @if($place->phone_number)
+                                            {{-- @if($place->phone_number)
                                                 <li>
-                                                    {{-- <i class="la la-phone"></i> --}}
                                                     <a href="tel:{{$place->phone_number}}" rel="nofollow">{{$place->phone_number}}</a>
                                                 </li>
                                             @endif
 
                                             @if($place->email)
                                                 <li>
-                                                    {{-- <i class="la la-envelope"></i> --}}
                                                     <a href="mailto:{{$place->email}}" rel="nofollow">{{$place->email}}</a>
                                                 </li>
-                                            @endif
+                                            @endif --}}
 
-                                            @if($place->website)
+                                            {{-- @if($place->website)
                                                 <li>
                                                     <a href="//{{$place->website}}" target="_blank" rel="nofollow">
                                                         {{ $place->website }}
                                                     </a>
                                                 </li>
-                                            @endif
+                                            @endif --}}
 
                                             <li class="note">
-                                                {{ $place->created_at->timezone('America/Sao_Paulo')->toFormattedDateString() }}
+                                                Applied at {{ $place->created_at->timezone('America/Sao_Paulo')->toFormattedDateString() }}
                                             </li>
                                         </ul>
                                     </div><!-- .place__box -->
 
-                                    @if($place->social && isset($place->social[0]) && !empty($place->social[0]['name']))
+                                    {{-- @if($place->social && isset($place->social[0]) && !empty($place->social[0]['name']))
                                         <div class="mb-3 mt-3 contact-icons">
                                             @foreach($place->social as $social)
                                                 @if($social['name'] && $social['url'])
@@ -422,7 +463,7 @@
                                                 @endif
                                             @endforeach
                                         </div>
-                                    @endif
+                                    @endif --}}
                                 </aside>
 
                                 {{-- <aside class="sidebar--shop__item widget widget--ads">
@@ -472,7 +513,7 @@
                                         </div>
 
                                         <div class="field-input">
-                                            <textarea type="text" id="message" name="message" placeholder="Enter your message"></textarea>
+                                            <textarea type="text" id="message" name="message" placeholder="Enter your message">Hello how are you? I saw your profile on Fundraise.vc and would like to chat about the startup. What do you think?</textarea>
                                         </div>
 
                                         <input type="hidden" name="type" value="{{\App\Models\Booking::TYPE_CONTACT_FORM}}">

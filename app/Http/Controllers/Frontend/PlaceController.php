@@ -179,8 +179,14 @@ class PlaceController extends Controller
             'short_description' => '',
             'link_bookingcom' => '',
             'status' => '',
+            'stage' => '',
+            'terms' => '',
+            'valuation' => '',
+            'foundation' => '',
+            'raising' => '',
             'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
         ]);
+
         $data = $this->validate($request, $rule_factory);
 
         if ($request->hasFile('thumb')) {
@@ -228,6 +234,11 @@ class PlaceController extends Controller
             'short_description' => '',
             'link_bookingcom' => '',
             'status' => '',
+            'stage' => '',
+            'terms' => '',
+            'valuation' => '',
+            'foundation' => '',
+            'raising' => '',
             'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
         ]);
         $data = $this->validate($request, $rule_factory);

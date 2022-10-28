@@ -26,6 +26,9 @@ $router->group([
 
     $router->get('/', 'HomeController@index')->name('home');
 
+    $router->get('/signin', 'UserController@loginPage')->name('signin');
+    $router->get('/signup', 'UserController@registerPage')->name('signup');
+
     $router->get('/language/{locale}', 'HomeController@changeLanguage')->name('change_language');
     $router->get('/search', 'HomeController@search')->name('search');
 
@@ -60,7 +63,7 @@ $router->group([
     $router->get('/user/reset-password', 'UserController@pageResetPassword')->name('user_reset_password');
     $router->put('/user/reset-password', 'ResetPasswordController@reset')->name('user_update_password');
 
-    $router->get('/user/my-place', 'UserController@pageMyPlace')->name('user_my_place')->middleware('auth');
+    $router->get('/user/startups', 'UserController@pageMyPlace')->name('user_my_place')->middleware('auth');
     $router->delete('/user/my-place', 'UserController@deleteMyPlace')->name('user_my_place_delete')->middleware('auth');
 
     $router->get('/user/wishlist', 'UserController@pageWishList')->name('user_wishlist')->middleware('auth');

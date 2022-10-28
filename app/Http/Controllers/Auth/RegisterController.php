@@ -77,6 +77,11 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'profile' => $data['profile'],
+            'ticket' => $data['ticket'],
+            'stage' => $data['stage'],
+            'type_investor' => $data['type_investor'],
+            'bio' => $data['bio'],
+            'linkedin' => $data['linkedin'],
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -90,7 +95,7 @@ class RegisterController extends Controller
             $this->guard()->login($user);
         }
 
-        return $this->response->formatResponse($validator->code, $user, $validator->message);
+        //return $this->response->formatResponse($validator->code, $user, $validator->message);
+        return redirect()->to('/');
     }
-
 }

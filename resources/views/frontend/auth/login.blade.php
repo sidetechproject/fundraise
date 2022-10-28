@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Golo. Dashboard</title>
+    <title>Fundraise</title>
     <link href="{{asset('admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
@@ -19,26 +19,27 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-                <form action="{{ route('login') }}" method="POST" id="login_admin">
+                <form action="{{route('login')}}" class="form-log form-content" id="login_admin" method="POST">
                     @csrf
-                    <h1>Fundraise</h1>
 
-                    <p id="login_error" class="red"></p>
-                    <div>
-                        <input type="text" class="form-control" name="email" placeholder="{{__('Email')}}" required=""/>
+                    <h1>Login</h1>
+
+                    <div class="field-input">
+                        <input type="text" id="email" name="email" placeholder="Email Address" class="form-control" required>
                     </div>
-                    <div>
-                        <input type="password" class="form-control" name="password" placeholder="{{__('Password')}}" required=""/>
+
+                    <div class="field-input">
+                        <input type="password" id="password" name="password" placeholder="Password" class="form-control" required>
                     </div>
-                    <div>
-                        <button class="btn btn-primary" id="submit_login">{{__('Login')}}</button>
-                    </div>
-                    <div class="clearfix"></div>
+
+                    <button type="submit" class="btn btn-primary w-100" id="submit_login">{{__('Login')}}</button>
                 </form>
 
                 <div class="separator">
                     <div>
-                        <p>{{__('© 2020 All Rights Reserved.')}}</p>
+                        <p>
+                            Don't have an account? <a href="{{ route('signup') }}">Register</a>
+                        </p>
                     </div>
                 </div>
             </section>
@@ -63,7 +64,7 @@
                 console.log(response);
                 $('#submit_login').html('Login').prop('disabled', false);
                 if (response.code === 200) {
-                    window.location = `${app_url}/admincp`;
+                    window.location = `${app_url}/`;
                 } else {
                     $('#login_error').show().text(response.message);
                 }
