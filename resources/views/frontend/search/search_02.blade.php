@@ -27,6 +27,7 @@
                                 <a href="#" class="more open-more" data-close="Close" data-more="More">More</a>
                             </div>
                         </div>
+
                         <div class="filter-box">
                             <h3>Categories</h3>
                             <div class="filter-list">
@@ -44,6 +45,7 @@
                                 <a href="#" class="more open-more" data-close="Close" data-more="More">{{__('More')}}</a>
                             </div>
                         </div>
+
                         <div class="filter-box">
                             <h3>{{__('Stage')}}</h3>
                             <div class="filter-list">
@@ -61,7 +63,8 @@
                                 <a href="#" class="more open-more" data-close="Close" data-more="More">{{__('More')}}</a>
                             </div>
                         </div>
-                        <div class="filter-box">
+
+                        <div class="filter-box hidden">
                             <h3>{{__('Business Model')}}</h3>
                             <div class="filter-list">
                                 <div class="filter-group">
@@ -111,7 +114,13 @@
                                 <div class="place-item place-hover layout-02" data-maps="">
                                     <div class="place-inner">
                                         <div class="place-thumb">
-                                            <a class="entry-thumb" href="{{route('place_detail', $place->slug)}}"><img src="{{getImageUrl($place->thumb)}}" alt=""></a>
+                                            <a class="entry-thumb" href="{{route('place_detail', $place->slug)}}">
+                                                @if($place->thumb)
+                                                    <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}">
+                                                @else
+                                                    <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo">
+                                                @endif
+                                            </a>
                                             <a href="#" class="golo-add-to-wishlist btn-add-to-wishlist @if($place->wish_list_count) remove_wishlist active @else @guest open-login @else add_wishlist @endguest @endif" data-id="{{$place->id}}">
 											<span class="icon-heart">
 												<i class="la la-bookmark large"></i>
