@@ -10,16 +10,16 @@
 @section('main')
     <main id="main" class="site-main home-main business-main">
         {{-- <div class="site-banner" {{$home_banner}}> --}}
-        <div class="site-banner">
-            <div class="container">
+        <div class="site-banner" style="height: 80px;">
+            <div class="container hidden">
                 <div class="site-banner__content">
-                    <h1 class="site-banner__title">
+                    {{-- <h1 class="site-banner__title">
                         {{__('Fundraising made easy')}}
                     </h1>
 
                     <p>
                         {{__('Invest in innovative venture funds and startups validated by fundraise.vc')}}
-                    </p>
+                    </p> --}}
 
                     {{-- <p>
                         <i>{{$city_count}}</i> {{__('cities')}}, <i>{{$category_count}}</i> {{__('categories')}}, <i>{{$place_count}}</i> {{__('places')}}.
