@@ -61,6 +61,7 @@
                         <select name="type_investor" class="custom-select" id="type_investor" required>
                             <option value="">{{__('Type of investor')}}</option>
                             <option value="Private Equity">{{__("Private Equity")}}</option>
+                            <option value="Venture Capital">{{__("Venture Capital")}}</option>
                             <option value="Corporate Venture Capital">{{__("Corporate Venture Capital")}}</option>
                             <option value="Family Office">{{__("Family Office")}}</option>
                             <option value="Fund of Funds">{{__("Fund of Funds")}}</option>
