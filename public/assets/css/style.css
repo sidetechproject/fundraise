@@ -968,14 +968,14 @@ textarea {
     vertical-align: -1px;
     margin-right: 2px; }
   .right-header__button a {
-    color: #040503;
+    color: #0e1217;
     font-weight: 500;
     font-family: "Jost-Book";
     display: block; }
 
 .site-banner {
   height: 500px;
-  background-color: #040503;
+  background-color: #0e1217;
   background-repeat: no-repeat;
   background-position: right 30px bottom; }
   .site-banner .container {
@@ -1572,14 +1572,14 @@ textarea {
   line-height: 40px;
   font-weight: 500;
   padding: 0 25px;
-  color: #040503;
+  color: #0e1217;
   outline: 0;
   outline-offset: 0; }
   .btn:hover {
-    color: #040503; }
+    color: #0e1217; }
   .btn:focus {
     box-shadow: none;
-    color: #040503; }
+    color: #0e1217; }
 
 .place__box {
   border-bottom: 1px solid #eee;
@@ -3538,7 +3538,7 @@ a.place__comments__reply {
     .place-04 .place-gallery a:hover {
       background-color: #66e3c4;
       border-color: #66e3c4;
-      color: #040503; }
+      color: #0e1217; }
   .place-04 .place-gallery svg {
     vertical-align: -3px;
     display: inline-block;
@@ -4847,7 +4847,7 @@ a.place__comments__reply {
   top: 0;
   right: 0;
   left: 0;
-  background-color: #040503;
+  background-color: #0e1217;
   z-index: 9; }
 
 .home-main .site-banner {
@@ -6717,7 +6717,7 @@ a.place__comments__reply {
   background-color: #78cc58; }
 
 .bsn-cat-item.rosy-pink a {
-  background-color: #f0626c; }
+  background-color: #2ee0b4; }
 
 .bsn-cat-item.purple a {
   background-color: #d763d7; }
@@ -7265,7 +7265,7 @@ a.place__comments__reply {
       line-height: 40px; }
 
 .header-landing.home-header.home-header-while .right-header__button a {
-  color: #040503;
+  color: #0e1217;
   font-family: "Jost";
   font-weight: 500; }
 
@@ -7555,7 +7555,7 @@ a.place__comments__reply {
 .footer.layout-02 {
   position: relative;
   z-index: 1;
-  background-color: #040503; }
+  background-color: #0e1217; }
   .footer.layout-02 .footer__top__info .footer__top__info__logo img {
     margin-bottom: 40px; }
   .footer.layout-02 .footer__top__info .footer__top__info__desc {
@@ -7672,7 +7672,7 @@ a.place__comments__reply {
 }
 
 .home-header {
-    background-color: #040503;
+    background-color: #0e1217;
 }
 
 .site__brand.dark {

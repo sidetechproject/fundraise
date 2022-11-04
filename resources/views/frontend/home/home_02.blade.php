@@ -56,35 +56,7 @@
         </div>
         <!-- .site-banner -->
 
-        {{-- <div class="business-category">
-            <div class="container">
-                <h2 class="title title-border-bottom align-center">{{__('Browse Businesses by Category')}}</h2>
-                <div class="slick-sliders">
-                    <div class="slick-slider business-cat-slider slider-pd30" data-item="6" data-arrows="true" data-itemScroll="6" data-dots="true" data-centerPadding="50" data-tabletitem="3" data-tabletscroll="3" data-smallpcitem="4" data-smallpcscroll="4" data-mobileitem="2" data-mobilescroll="2" data-mobilearrows="false">
 
-                        @foreach($categories as $cat)
-                            <div class="bsn-cat-item rosy-pink">
-                                <a href="{{route('page_search_listing', ['category[]' => $cat->id])}}" style="background-color:{{$cat->color_code}};">
-                                    <img src="{{getImageUrl($cat->icon_map_marker)}}" alt="{{$cat->name}}">
-                                    <span class="title">{{$cat->name}}</span>
-                                    <span class="place">{{$cat->place_count}} {{__('Places')}}</span>
-                                </a>
-                            </div>
-                        @endforeach
-
-                    </div>
-                    <div class="place-slider__nav slick-nav">
-                        <div class="place-slider__prev slick-nav__prev">
-                            <i class="las la-angle-left"></i>
-                        </div>
-                        <div class="place-slider__next slick-nav__next">
-                            <i class="las la-angle-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        <!-- .business-category -->
 
         <div class="trending trending-business">
             <div class="container">
@@ -182,6 +154,34 @@
                 </div>
             </div>
         </div><!-- .trending -->
+
+        <div class="business-category trending">
+            <div class="container">
+                {{-- <h2 class="title title-border-bottom align-center">{{__('Browse Businesses by Category')}}</h2> --}}
+                <div class="slick-sliders">
+                    <div class="slick-slider business-cat-slider slider-pd30" data-item="6" data-arrows="true" data-itemScroll="6" data-dots="true" data-centerPadding="50" data-tabletitem="3" data-tabletscroll="3" data-smallpcitem="4" data-smallpcscroll="4" data-mobileitem="2" data-mobilescroll="2" data-mobilearrows="false">
+
+                        @foreach($categories as $cat)
+                            <div class="bsn-cat-item rosy-pink">
+                                <a href="{{route('page_search_listing', ['category[]' => $cat->id])}}" style="background-color:{{$cat->color_code}};">
+                                    <span class="title">{{$cat->name}}</span>
+                                    <span class="place">{{$cat->place_count}} {{__('Startups')}}</span>
+                                </a>
+                            </div>
+                        @endforeach
+
+                    </div>
+                    <div class="place-slider__nav slick-nav">
+                        <div class="place-slider__prev slick-nav__prev">
+                            <i class="las la-angle-left"></i>
+                        </div>
+                        <div class="place-slider__next slick-nav__next">
+                            <i class="las la-angle-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         {{-- <div class="featured-cities">
             <div class="container">
