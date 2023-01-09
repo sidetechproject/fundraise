@@ -1,7 +1,7 @@
 @extends('frontend.layouts.template_02')
 @section('main')
     <main id="main" class="site-main">
-        <div class="archive-city">
+        <div class="archive-city container">
             <div class="col-left">
                 <div class="archive-filter">
                     <form action="" class="filterForm" id="filterForm">
@@ -121,15 +121,16 @@
                                                     <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo">
                                                 @endif
                                             </a>
+
                                             <a href="#" class="golo-add-to-wishlist btn-add-to-wishlist @if($place->wish_list_count) remove_wishlist active @else @guest open-login @else add_wishlist @endguest @endif" data-id="{{$place->id}}">
-											<span class="icon-heart">
-												<i class="la la-bookmark large"></i>
-											</span>
+                                                <span class="icon-heart">
+                                                    <i class="la la-bookmark large"></i>
+                                                </span>
                                             </a>
-                                            <a class="entry-category rosy-pink" href="{{route('page_search_listing', ['category[]' => $place['categories'][0]['id']])}}" style="background-color:{{$place['categories'][0]['color_code']}};">
-                                                {{-- <img src="{{getImageUrl($place['categories'][0]['icon_map_marker'])}}" alt="{{$place['categories'][0]['name']}}"> --}}
+
+                                            {{-- <a class="entry-category rosy-pink" href="{{route('page_search_listing', ['category[]' => $place['categories'][0]['id']])}}" style="background-color:{{$place['categories'][0]['color_code']}};">
                                                 <span>{{$place['categories'][0]['name']}}</span>
-                                            </a>
+                                            </a> --}}
                                         </div>
                                         <div class="entry-detail">
                                             <div class="entry-head">
@@ -150,7 +151,34 @@
                                                 {{$place->short_description}}
                                             </p>
 
-                                            <div class="entry-bottom">
+                                            <div class="entry-head">
+
+                                                @foreach($place['place_types'] as $type)
+                                                    <div class="place-type list-item">
+                                                        <span>{{$type->name}}</span>
+                                                    </div>
+                                                @endforeach
+
+                                                @if(isset($place['categories'][0]))
+                                                    <div class="place-type list-item">
+                                                        <span>{{$place['categories'][0]['name']}}</span>
+                                                    </div>
+                                                @endif
+
+                                                <div class="place-city">
+                                                    <span>{{ $place['stage'] }}</span>
+                                                </div>
+
+                                                <div class="place-city">
+                                                    <span>{{ $place['address'] }}</span>
+                                                </div>
+
+                                                <div class="place-city">
+                                                    <span>{{ $place['foundation'] }}</span>
+                                                </div>
+                                            </div>
+
+                                            {{-- <div class="entry-bottom">
                                                 <div class="place-preview hidden">
                                                     <div class="place-rating">
                                                         @if($place->reviews_count)
@@ -163,7 +191,7 @@
                                                 <div class="place-price">
                                                     <span>{{PRICE_RANGE[$place['price_range']]}}</span>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

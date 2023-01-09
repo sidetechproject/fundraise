@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    {!! SEO::generate() !!}
+    <title>Fundraise</title>
+    <meta name="description" content="Fundraise">
+    <meta property="title" content="Fundraise.vc" />
+    <meta property="description" content="Fundraise" />
+    <link rel="icon" sizes="16x16" href="{{asset('assets/images/favicon.png')}}">
+
+    {{-- {!! SEO::generate() !!} --}}
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/jost/stylesheet.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/line-awesome.min.css')}}">
@@ -30,7 +37,7 @@
 <body>
 <div id="wrapper">
     <header id="header" class="site-header {{!isRoute('home') ?: 'home-header home-header-while'}}">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-6 col-8">
                     <div class="site">
@@ -352,7 +359,7 @@
 
     <footer id="footer" class="footer layout-02">
         <div class="container">
-            {{-- <div class="footer__top">
+            <div class="footer__top">
                 <div class="row">
                     <div class="col-lg-5">
                         <div class="footer__top__info">
@@ -370,9 +377,9 @@
                         <aside class="footer__top__nav">
                             <h3>{{__('Company')}}</h3>
                             <ul>
-                                <li><a href="{{url('post/about-us-10')}}">{{__('About Us')}}</a></li>
-                                <li><a href="{{route('post_list_all')}}">{{__('Blog')}}</a></li>
-                                <li><a href="">{{__('Faqs')}}</a></li>
+                                <li><a href="#">{{__('About Us')}}</a></li>
+                                <li><a href="#">{{__('Blog')}}</a></li>
+                                <li><a href="#">{{__('Faqs')}}</a></li>
                                 <li><a href="{{route('page_contact')}}">{{__('Contact')}}</a></li>
                             </ul>
                         </aside>
@@ -391,12 +398,12 @@
                     <div class="col-lg-3">
                         <aside class="footer__top__nav footer__top__nav--contact">
                             <h3>{{__('Contact Us')}}</h3>
-                            <p>{{__('Email: support@domain.com')}}</p>
-                            <p>{{__('Phone: 1 (00) 832 2342')}}</p>
+                            <p>{{__('Email: filipe@fundraise.vc')}}</p>
+                            <p>{{__('Phone: 1 (00) 9999 9999')}}</p>
                             <ul>
                                 <li>
-                                    <a title="Facebook" href="#">
-                                        <i class="la la-facebook la-24"></i>
+                                    <a title="Facebook" href="https://www.linkedin.com/company/fundraisevc/">
+                                        <i class="la la-linkedin la-24"></i>
                                     </a>
                                 </li>
                                 <li>
@@ -418,9 +425,9 @@
                         </aside>
                     </div>
                 </div>
-            </div> --}}
+            </div>
             <div class="footer__bottom">
-                <p class="footer__bottom__copyright">{{now()->year}} &copy; <a href="{{__('https://fundraise.vc')}}" target="_blank">{{__('fundraise.vc')}}</a>. {{__('All rights reserved.')}}</p>
+                <p class="footer__bottom__copyright">{{now()->year}} &copy; {{__('fundraise.vc')}}. {{__('All rights reserved.')}}</p>
             </div>
         </div>
     </footer>

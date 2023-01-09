@@ -94,7 +94,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 mt-4">
                         <a href="{{ route('page_search_listing') }}" class="text-dark text-black">
                             <i class="las la-arrow-left ml-2 la-20"></i> Back to all Startups
                         </a>
@@ -397,9 +397,9 @@
 
                                 <aside class="widget widget-shadow">
                                     <div class="place__box">
-                                        <h1 class="mb-3">
+                                        <h3 class="mb-3 mt-0">
                                             Terms
-                                        </h1>
+                                        </h3>
 
                                         <table class="open-table">
                                             <tbody>
@@ -464,6 +464,14 @@
                                             @endforeach
                                         </div>
                                     @endif --}}
+                                </aside>
+
+                                <aside class="widget widget-shadow">
+                                    <h4 class="m-0 mb-2">
+                                        <img src="https://uploads-ssl.webflow.com/61fe68941d6778510afa422e/61fe68951d67789b31fa42a0_icon-status-good.svg" alt="" width="20px">
+                                        VERIFIED
+                                    </h4>
+                                    This profile is managed by the startup founder.
                                 </aside>
 
                                 {{-- <aside class="sidebar--shop__item widget widget--ads">

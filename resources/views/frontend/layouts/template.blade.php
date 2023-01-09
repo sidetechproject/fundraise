@@ -33,7 +33,7 @@
 <body dir="{{!setting('style_rtl') ?: 'rtl'}}">
 <div id="wrapper">
     <header id="header" class="site-header">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-md-6 col-8">
                     <div class="site">

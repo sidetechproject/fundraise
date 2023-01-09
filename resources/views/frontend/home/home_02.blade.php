@@ -6,7 +6,9 @@
         $home_banner = "style=background-image:url(/assets/images/home-bsn-banner.jpg)";
     }
 @endphp
+
 @extends('frontend.layouts.template_02')
+
 @section('main')
     <main id="main" class="site-main home-main business-main">
         {{-- <div class="site-banner" {{$home_banner}}> --}}
@@ -56,132 +58,135 @@
         </div>
         <!-- .site-banner -->
 
-
-
         <div class="trending trending-business">
             <div class="container">
-                {{-- <h2 class="title title-border-bottom align-center">{{__('Trending Business Places')}}</h2> --}}
-                <div class="slick-sliders">
-                    <div class="slick-slider trending-slider slider-pd30" data-item="4" data-arrows="true" data-itemScroll="4" data-dots="true" data-centerPadding="30" data-tabletitem="2" data-tabletscroll="2" data-smallpcscroll="3" data-smallpcitem="3" data-mobileitem="1" data-mobilescroll="1" data-mobilearrows="false">
+                <div class="row">
+                    <div class="col-xs-12 col-md-9 col-lg-9">
+                        <h2 class="title">{{__('Trending Startups 🔥')}}</h2>
 
-                        @foreach($trending_places as $place)
-                            @guest
-                                @php
-                                    $link_startup = route('signup');
-                                @endphp
-                            @else
-                                @php
-                                    $link_startup = route('place_detail', $place->slug);
-                                @endphp
-                            @endguest
-                            <div class="place-item layout-02">
-                                <div class="place-inner">
-                                    <div class="place-thumb">
-                                        <a class="entry-thumb" href="{{ $link_startup }}">
-                                            @if($place->thumb)
-                                                <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}">
-                                            @else
-                                                <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo">
-                                            @endif
-                                        </a>
-                                        {{-- <a href="#" class="golo-add-to-wishlist btn-add-to-wishlist @if($place->wish_list_count) remove_wishlist active @else @guest open-login @else add_wishlist @endguest @endif" data-id="{{$place->id}}">
-											<span class="icon-heart">
-												<i class="la la-bookmark large"></i>
-											</span>
-                                        </a> --}}
-                                        @if(isset($place['categories'][0]))
-                                        {{-- <a class="entry-category rosy-pink" href="{{route('page_search_listing', ['category[]' => $place['categories'][0]['id']])}}" style="background-color:{{$place['categories'][0]['color_code']}};">
-                                            <img src="{{getImageUrl($place['categories'][0]['icon_map_marker'])}}" alt="{{$place['categories'][0]['name']}}">
-                                            <span>{{$place['categories'][0]['name']}}</span>
-                                        </a> --}}
-                                        @endif
-                                    </div>
+                        <div class="trending-startups">
+                            <div class="" data-item="4" data-arrows="true" data-itemScroll="4" data-dots="true" data-centerPadding="30" data-tabletitem="2" data-tabletscroll="2" data-smallpcscroll="3" data-smallpcitem="3" data-mobileitem="1" data-mobilescroll="1" data-mobilearrows="false">
 
-
-                                    <div class="entry-detail">
-                                        <div class="entry-head">
-                                            <div class="place-type list-item">
-                                                @foreach($place['place_types'] as $type)
-                                                    <span>{{$type->name}}</span>
-                                                @endforeach
-                                            </div>
-                                            {{-- <div class="place-price">
-                                                <span>{{PRICE_RANGE[$place['price_range']]}}</span>
-                                            </div> --}}
-                                            <div class="place-city">
-                                                <span>{{PRICE_RANGE[$place['price_range']]}}</span>
-                                            </div>
-                                        </div>
-
-                                        <h3 class="place-title">
-                                            <a href="{{ $link_startup }}" style="color: #000000">
-                                                {{$place->name}}
-                                            </a>
-                                        </h3>
-
-                                        <div class="desc">
-                                            @php
-                                                $out = strlen($place->short_description) > 140 ? substr($place->short_description, 0, 140)."..." : $place->short_description;
-                                                echo $out;
-                                            @endphp
-                                        </div>
-
-                                        <div class="entry-bottom">
-                                            <div class="place-preview">
-                                                {{-- <div class="place-rating">
-                                                    @if($place->reviews_count)
-                                                        {{number_format($place->avgReview, 1)}}
-                                                        <i class="la la-star"></i>
+                                @foreach($trending_places as $place)
+                                    @guest
+                                        @php
+                                            $link_startup = route('signup');
+                                        @endphp
+                                    @else
+                                        @php
+                                            $link_startup = route('place_detail', $place->slug);
+                                        @endphp
+                                    @endguest
+                                    <div class="place-item layout-02">
+                                        <div class="place-inner">
+                                            <div class="place-thumb">
+                                                <a class="entry-thumb" href="{{ $link_startup }}">
+                                                    @if($place->thumb)
+                                                        <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}">
+                                                    @else
+                                                        <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo">
                                                     @endif
+                                                </a>
+                                                {{-- <a href="#" class="golo-add-to-wishlist btn-add-to-wishlist @if($place->wish_list_count) remove_wishlist active @else @guest open-login @else add_wishlist @endguest @endif" data-id="{{$place->id}}">
+                                                    <span class="icon-heart">
+                                                        <i class="la la-bookmark large"></i>
+                                                    </span>
+                                                </a> --}}
+
+                                            </div>
+
+
+                                            <div class="entry-detail">
+
+                                                <h3 class="place-title">
+                                                    <a href="{{ $link_startup }}" style="color: #475569">
+                                                        {{$place->name}}
+                                                    </a>
+                                                </h3>
+
+                                                <div class="desc">
+                                                    @php
+                                                        $out = strlen($place->short_description) > 140 ? substr($place->short_description, 0, 140)."..." : $place->short_description;
+                                                        echo $out;
+                                                    @endphp
                                                 </div>
-                                                <span class="count-reviews">({{$place->reviews_count}} {{__('reviews')}})</span> --}}
+
+                                                <div class="entry-head">
+
+                                                    @foreach($place['place_types'] as $type)
+                                                        <div class="place-type list-item">
+                                                            <span>{{$type->name}}</span>
+                                                        </div>
+                                                    @endforeach
+
+                                                    @if(isset($place['categories'][0]))
+                                                        <div class="place-type list-item">
+                                                            <span>{{$place['categories'][0]['name']}}</span>
+                                                        </div>
+                                                    @endif
+
+                                                    <div class="place-city">
+                                                        <span>{{ $place['stage'] }}</span>
+                                                    </div>
+
+                                                    <div class="place-city">
+                                                        <span>{{ $place['address'] }}</span>
+                                                    </div>
+
+                                                    <div class="place-city">
+                                                        <span>{{ $place['foundation'] }}</span>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
+                                @endforeach
+                            </div>
+
+                            <a href="{{ route('page_search_listing') }}" class="text-dark text-black">
+                                All Startups <i class="las la-arrow-right ml-2 la-20"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-3 col-lg-3 trending-investors">
+                        <h4 class="sub-title">{{__('Last Investors')}}</h4>
+
+                        <div class="box mt-4">
+                            @foreach($investors as $investor)
+                            <div class="rosy-pink mb-3">
+                                <span class="" style="color:#475569;">{{$investor->name}}</span>
+                                <p class="small">
+                                    <span class="place" style="color:#64748b;">
+                                        {{$investor->ticket}} - {{$investor->stage}} - {{$investor->type_investor}}
+                                    </span>
+                                </p>
+                            </div>
+                            @endforeach
+                        </div>
+
+                        <hr aria-orientation="horizontal" class="divider">
+
+                        <h4 class="sub-title">{{__('Category')}}</h4>
+
+                        <div class="box mt-4">
+                            @foreach($categories as $cat)
+                                <div class="rosy-pink mb-3">
+                                    <a href="{{route('page_search_listing', ['category[]' => $cat->id])}}">
+                                        <span class="title" style="color:#475569;">{{$cat->name}}</span>
+                                        <span class="place" style="color:#64748b;">{{$cat->place_count}} {{__('Startups')}}</span>
+                                    </a>
                                 </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                    {{-- <div class="place-slider__nav slick-nav">
-                        <div class="place-slider__prev slick-nav__prev">
-                            <i class="las la-angle-left"></i>
-                        </div>
-                        <div class="place-slider__next slick-nav__next">
-                            <i class="las la-angle-right"></i>
-                        </div>
-                    </div> --}}
-                </div>
-            </div>
-        </div><!-- .trending -->
-
-        <div class="business-category trending">
-            <div class="container">
-                {{-- <h2 class="title title-border-bottom align-center">{{__('Browse Businesses by Category')}}</h2> --}}
-                <div class="slick-sliders">
-                    <div class="slick-slider business-cat-slider slider-pd30" data-item="6" data-arrows="true" data-itemScroll="6" data-dots="true" data-centerPadding="50" data-tabletitem="3" data-tabletscroll="3" data-smallpcitem="4" data-smallpcscroll="4" data-mobileitem="2" data-mobilescroll="2" data-mobilearrows="false">
-
-                        @foreach($categories as $cat)
-                            <div class="bsn-cat-item rosy-pink">
-                                <a href="{{route('page_search_listing', ['category[]' => $cat->id])}}" style="background-color:{{$cat->color_code}};">
-                                    <span class="title">{{$cat->name}}</span>
-                                    <span class="place">{{$cat->place_count}} {{__('Startups')}}</span>
-                                </a>
-                            </div>
-                        @endforeach
-
-                    </div>
-                    <div class="place-slider__nav slick-nav">
-                        <div class="place-slider__prev slick-nav__prev">
-                            <i class="las la-angle-left"></i>
-                        </div>
-                        <div class="place-slider__next slick-nav__next">
-                            <i class="las la-angle-right"></i>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- .trending -->
+
+
 
         {{-- <div class="featured-cities">
             <div class="container">

@@ -12,6 +12,7 @@ use App\Models\Country;
 use App\Models\Place;
 use App\Models\PlaceType;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -33,25 +34,25 @@ class HomeController extends Controller
         // SEO Meta
         //SEOMeta(setting('app_name'), setting('home_description'));
 
-        $popular_cities = City::query()
-            ->with('country')
-            ->withCount(['places' => function ($query) {
-                $query->where('status', Place::STATUS_ACTIVE);
-            }])
-            ->where('status', Country::STATUS_ACTIVE)
-            ->limit(12)
-            ->get();
+        // $popular_cities = City::query()
+        //     ->with('country')
+        //     ->withCount(['places' => function ($query) {
+        //         $query->where('status', Place::STATUS_ACTIVE);
+        //     }])
+        //     ->where('status', Country::STATUS_ACTIVE)
+        //     ->limit(12)
+        //     ->get();
 
-        $blog_posts = Post::query()
-            ->with(['categories' => function ($query) {
-                $query->where('status', Category::STATUS_ACTIVE)
-                    ->select('id', 'name', 'slug');
-            }])
-            ->where('type', Post::TYPE_BLOG)
-            ->where('status', Post::STATUS_ACTIVE)
-            ->limit(3)
-            ->orderBy('created_at', 'desc')
-            ->get(['id', 'category', 'slug', 'thumb']);
+        // $blog_posts = Post::query()
+        //     ->with(['categories' => function ($query) {
+        //         $query->where('status', Category::STATUS_ACTIVE)
+        //             ->select('id', 'name', 'slug');
+        //     }])
+        //     ->where('type', Post::TYPE_BLOG)
+        //     ->where('status', Post::STATUS_ACTIVE)
+        //     ->limit(3)
+        //     ->orderBy('created_at', 'desc')
+        //     ->get(['id', 'category', 'slug', 'thumb']);
 
 
         $categories = Category::query()
@@ -73,23 +74,30 @@ class HomeController extends Controller
             ->with('avgReview')
             ->withCount('wishList')
             ->where('status', Place::STATUS_ACTIVE)
-            ->limit(10)
+            ->limit(5)
+            ->orderBy('created_at', 'desc')
             ->get();
 
-        $testimonials = Testimonial::query()
-            ->where('status', Testimonial::STATUS_ACTIVE)
+        $investors = User::query()
+            ->where('profile', 2)
+            ->limit(5)
             ->get();
+
+        // $testimonials = Testimonial::query()
+        //     ->where('status', Testimonial::STATUS_ACTIVE)
+        //     ->get();
 
 //        return $trending_places;
 
         $template = setting('template', '01');
 
         return view("frontend.home.home_{$template}", [
-            'popular_cities' => $popular_cities,
-            'blog_posts' => $blog_posts,
+            // 'popular_cities' => $popular_cities,
+            // 'blog_posts' => $blog_posts,
             'categories' => $categories,
             'trending_places' => $trending_places,
-            'testimonials' => $testimonials
+            'investors' => $investors,
+            //'testimonials' => $testimonials
         ]);
     }
 
