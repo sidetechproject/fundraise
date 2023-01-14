@@ -255,7 +255,7 @@
                                     @endif
                                 </h3>
 
-                                <ul class="place__comments">
+                                {{-- <ul class="place__comments">
                                     @foreach($reviews as $review)
                                         <li>
                                             <div class="place__author">
@@ -312,9 +312,9 @@
                                             </div>
                                         </li>
                                     @endforeach
-                                </ul>
+                                </ul> --}}
 
-                                @guest
+                                {{-- @guest
                                     <div class="login-for-review account logged-out">
                                         <a href="#" class="btn-login open-login">{{__('Login')}}</a>
                                         <span>{{__('to review')}}</span>
@@ -366,7 +366,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                @endguest
+                                @endguest --}}
 
                             </div><!-- .place__box -->
                         </div><!-- .place__left -->
@@ -490,15 +490,15 @@
                                     <form class="form-underline" id="booking_submit_form" action="" method="post">
                                         @csrf
                                         <div class="field-input">
-                                            <input type="text" id="name" name="name" placeholder="Enter your name *" required value="{{ User() ? User()->name : '' }}">
+                                            <input type="text" id="name" name="name" placeholder="Enter your name *" required value="{{ $founder ? $founder->name : '' }}">
                                         </div>
 
                                         <div class="field-input">
-                                            <input type="text" id="email" name="email" placeholder="Enter your email *" required value="{{ User() ? User()->email : '' }}">
+                                            <input type="text" id="email" name="email" placeholder="Enter your email *" required value="{{ $founder ? $founder->email : '' }}">
                                         </div>
 
                                         <div class="field-input">
-                                            <input type="text" id="phone_number" name="phone_number" placeholder="Enter your phone" value="{{ User() ? User()->phone_number : '' }}">
+                                            <input type="text" id="phone_number" name="phone_number" placeholder="Enter your phone" value="{{ $founder ? $founder->phone_number : '' }}">
                                         </div>
 
                                         <div class="field-input">
