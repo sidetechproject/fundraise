@@ -80,6 +80,7 @@ class HomeController extends Controller
 
         $investors = User::query()
             ->where('profile', 2)
+            ->orderBy('created_at', 'desc')
             ->limit(5)
             ->get();
 
