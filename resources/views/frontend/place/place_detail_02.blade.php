@@ -175,20 +175,20 @@
                                 <h3>{{__('Founder   ')}}</h3>
 
                                 <div class="account">
-                                    <img src="{{getUserAvatar(user()->avatar)}}" alt="{{Auth::user()->name}}">
+                                    <img src="{{getUserAvatar($founder->avatar)}}" alt="{{$founder->name}}">
                                     <span>
-                                        {{Auth::user()->name}}
+                                        {{$founder->name}}
                                     </span>
                                 </div>
 
                                 <div class="place__desc open mt-3">
-                                    <a href="@php echo user()->linkedin; @endphp" style="border-bottom: solid 1px #66e3c4;color: #000000;">
-                                        @php echo user()->linkedin; @endphp
+                                    <a href="@php echo $founder->linkedin; @endphp" style="border-bottom: solid 1px #66e3c4;color: #000000;">
+                                        @php echo $founder->linkedin; @endphp
                                     </a>
                                 </div>
 
                                 <div class="place__desc open">
-                                    @php echo user()->bio; @endphp
+                                    @php echo $founder->bio; @endphp
                                 </div>
                             </div>
 

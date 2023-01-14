@@ -12,6 +12,7 @@ use App\Models\Country;
 use App\Models\Place;
 use App\Models\PlaceType;
 use App\Models\Review;
+use App\Models\User;
 use Astrotomic\Translatable\Validation\RuleFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,10 @@ class PlaceController extends Controller
     public function detail($slug)
     {
         $place = $this->place->getBySlug($slug);
+
         if (!$place) abort(404);
+
+        $founder = User::find($place->user_id);
 
         $city = City::query()
             ->with('country')
@@ -110,6 +114,7 @@ class PlaceController extends Controller
         return view("frontend.place.place_detail_{$template}", [
             'place' => $place,
             'city' => $city,
+            'founder' => $founder,
             'amenities' => $amenities,
             'categories' => $categories,
             'place_types' => $place_types,
