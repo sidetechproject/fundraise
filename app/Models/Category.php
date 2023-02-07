@@ -40,6 +40,18 @@ class Category extends Model implements TranslatableContract
         return $this->hasMany(PlaceType::class, 'category_id', 'id');
     }
 
+   // public function places()
+   //  {
+   //      return $this->hasMany(Place::class, 'category');
+   //  }
+
+    // public function places()
+    // {
+    //     return Place::all()->filter(function($place) {
+    //         return in_array($this->id, $place->category) ? $place : null;
+    //     });               
+    // }
+
     public function getListAll($type)
     {
         $categories = self::query()

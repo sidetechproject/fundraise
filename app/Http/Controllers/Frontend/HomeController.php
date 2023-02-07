@@ -266,17 +266,24 @@ class HomeController extends Controller
         $filter_country = $request->country;
 
         $categories = Category::query()
+            //->with('places')
             ->where('type', Category::TYPE_PLACE)
+            // ->orderBy('places_count', 'desc')
+            // ->orderBy('id', 'asc')
             ->get();
 
         $place_types = PlaceType::query()
+            // ->orderBy('places_count', 'desc')
+            // ->orderBy('id', 'asc')
             ->get();
 
         $amenities = Amenities::query()
             ->get();
 
-        $countries = Country::query()
-            ->get();
+        $countries = Country::withCount('places')
+                            ->orderBy('places_count', 'desc')
+                            ->orderBy('id', 'asc')
+                            ->get();
 
         $places = Place::query()
             ->with(['country' => function ($query) {

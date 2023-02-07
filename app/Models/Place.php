@@ -68,6 +68,11 @@ class Place extends Model  implements TranslatableContract
         return $this->belongsToJson(Category::class, 'category');
     }
 
+    public function setCategory()
+    {
+        return json_decode($this->category, true);
+    }
+
     public function list_amenities()
     {
         return $this->belongsToJson(Amenities::class, 'amenities');

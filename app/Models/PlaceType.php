@@ -52,4 +52,9 @@ class PlaceType extends Model implements TranslatableContract
 
         return $place_types;
     }
+
+    // public function places()
+    // {
+    //     return $this->hasMany(Place::class, 'place_type');
+    // }
 }

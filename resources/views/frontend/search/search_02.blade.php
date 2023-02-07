@@ -18,7 +18,9 @@
                                         <div class="field-check">
                                             <label class="bc_filter" for="country_{{$country->id}}">
                                                 <input type="checkbox" id="country_{{$country->id}}" name="country[]" value="{{$country->id}}" {{isChecked($country->id, $filter_country)}}>
-                                                {{$country->name}}
+                                                {{$country->name}} 
+
+                                                ({{$country->places_count}})
                                                 <span class="checkmark"><i class="la la-check"></i></span>
                                             </label>
                                         </div>
@@ -36,7 +38,11 @@
                                         <div class="field-check">
                                             <label class="bc_filter" for="cat_{{$cat->id}}">
                                                 <input type="checkbox" id="cat_{{$cat->id}}" name="category[]" value="{{$cat->id}}" {{isChecked($cat->id, $filter_category)}}>
+                                                
                                                 {{$cat->name}}
+
+                                                {{-- ({{$cat->places_count}}) --}}
+
                                                 <span class="checkmark"><i class="la la-check"></i></span>
                                             </label>
                                         </div>
@@ -54,7 +60,11 @@
                                         <div class="field-check">
                                             <label class="bc_filter" for="place_type_{{$place_type->id}}">
                                                 <input type="checkbox" id="place_type_{{$place_type->id}}" name="place_type[]" value="{{$place_type->id}}" {{isChecked($place_type->id, $filter_place_type)}}>
+                                                
                                                 {{$place_type->name}}
+
+                                                {{-- ({{$place_type->places_count}}) --}}
+
                                                 <span class="checkmark"><i class="la la-check"></i></span>
                                             </label>
                                         </div>
