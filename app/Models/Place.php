@@ -40,7 +40,7 @@ class Place extends Model  implements TranslatableContract
     protected $table = 'places';
 
     protected $fillable = [
-        'user_id', 'country_id', 'city_id', 'category', 'place_type', 'slug', 'price_range',
+        'name', 'description', 'user_id', 'country_id', 'city_id', 'category', 'place_type', 'slug', 'price_range',
         'amenities', 'address', 'lat', 'lng', 'email', 'phone_number', 'website', 'social', 'opening_hour',
         'thumb', 'gallery', 'video', 'deck', 'short_description', 'booking_type', 'link_bookingcom', 'status', 'seo_title', 'seo_description', 'menu', 'faq',
         'stage', 'raising', 'terms', 'valuation', 'foundation'
@@ -56,6 +56,11 @@ class Place extends Model  implements TranslatableContract
     public function city()
     {
         return $this->hasOne(City::class, 'id', 'city_id');
+    }
+
+    public function country()
+    {
+        return $this->hasOne(Country::class, 'id', 'country_id');
     }
 
     public function categories()

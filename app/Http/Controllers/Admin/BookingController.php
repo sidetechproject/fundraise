@@ -43,7 +43,7 @@ class BookingController extends Controller
                 'text_message' => $booking->message,
                 'check_size' => $booking->check_size,
             ], function ($message) use ($request, $booking) {
-                $message->to($booking->user->email, "{$booking->name}")
+                $message->to($booking->place->email, "{$booking->place->name}")
                 ->subject('New Investor: ' . $booking->name)
                 ->replyTo($booking->email, $booking->name);
             });

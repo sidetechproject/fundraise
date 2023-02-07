@@ -263,7 +263,7 @@ class HomeController extends Controller
         $filter_category = $request->category;
         $filter_amenities = $request->amenities;
         $filter_place_type = $request->place_type;
-        $filter_city = $request->city;
+        $filter_country = $request->country;
 
         $categories = Category::query()
             ->where('type', Category::TYPE_PLACE)
@@ -275,19 +275,19 @@ class HomeController extends Controller
         $amenities = Amenities::query()
             ->get();
 
-        $cities = City::query()
+        $countries = Country::query()
             ->get();
 
         $places = Place::query()
-            ->with(['city' => function ($query) {
-                return $query->select('id', 'name', 'slug');
+            ->with(['country' => function ($query) {
+                return $query->select('id', 'name');
             }])
             ->with('categories')
             ->with('place_types')
             ->withCount('reviews')
             ->with('avgReview')
             ->withCount('wishList')
-            ->orWhere('address', 'like', "%{$keyword}%")
+            //->orWhere('address', 'like', "%{$keyword}%")
             ->whereTranslationLike('name', "%{$keyword}%")
             ->where('status', Place::STATUS_ACTIVE);
 
@@ -321,22 +321,22 @@ class HomeController extends Controller
             }
         }
 
-        if ($filter_city) {
-            $places->whereIn('city_id', $filter_city);
+        if ($filter_country) {
+            $places->where('country_id', $filter_country);
         }
 
         if ($request->ajax == '1') {
             $places = $places->get();
 
-            $city = null;
-            if (isset($filter_city)) {
-                $city = City::query()
-                    ->whereIn('id', $filter_city)
+            $country = null;
+            if (isset($filter_country)) {
+                $country = Country::query()
+                    ->whereIn('id', $filter_country)
                     ->first();
             }
 
             $data = [
-                'city' => $city,
+                'country' => $country,
                 'places' => $places
             ];
 
@@ -358,11 +358,11 @@ class HomeController extends Controller
             'categories' => $categories,
             'place_types' => $place_types,
             'amenities' => $amenities,
-            'cities' => $cities,
+            'countries' => $countries,
             'filter_category' => $filter_category,
             'filter_amenities' => $filter_amenities,
             'filter_place_type' => $filter_place_type,
-            'filter_city' => $request->city,
+            'filter_country' => $request->country,
         ]);
     }
 

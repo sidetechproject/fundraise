@@ -116,9 +116,16 @@
                         <input type="text" id="pac-input" placeholder="{{__('01/2022')}}" value="{{$place ? $place['foundation'] : ''}}" name="foundation" autocomplete="off" required/>
                     </div>
 
-                    <div class="field-group">
+                    <div class="field-group field-select">
                         <label for="lis_category">{{__('Headquarter Country')}} *</label>
-                        <input type="text" id="pac-input" placeholder="{{__('USA')}}" value="{{$place ? $place['address'] : ''}}" name="address" autocomplete="off" required/>
+                        <select class="chosen-select" id="country_id" name="country_id" data-placeholder="{{__('Select Market')}}" required>
+                            <option>Select</option>
+
+                            @foreach($countries as $country)
+                                <option value="{{$country['id']}}" {{isSelected($country['id'], $place ? $place['address']: $place)}}>{{$country['name']}}</option>
+                            @endforeach
+                        </select>
+                        {{-- <i class="la la-angle-down"></i> --}}
                     </div>
 
                     <div class="field-group field-file" style="max-width: 30%;">

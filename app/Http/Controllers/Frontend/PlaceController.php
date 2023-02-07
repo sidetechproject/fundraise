@@ -45,9 +45,8 @@ class PlaceController extends Controller
 
         $founder = User::find($place->user_id);
 
-        $city = City::query()
-            ->with('country')
-            ->where('id', $place->city_id)
+        $country = Country::query()
+            ->where('id', $place->country_id)
             ->first();
 
         $amenities = Amenities::query()
@@ -113,7 +112,7 @@ class PlaceController extends Controller
 
         return view("frontend.place.place_detail_{$template}", [
             'place' => $place,
-            'city' => $city,
+            'country' => $country,
             'founder' => $founder,
             'amenities' => $amenities,
             'categories' => $categories,
@@ -193,6 +192,9 @@ class PlaceController extends Controller
         ]);
 
         $data = $this->validate($request, $rule_factory);
+
+        $data['valuation'] = preg_replace('/\D/', '', $data['valuation']);
+        $data['raising'] = preg_replace('/\D/', '', $data['raising']);
 
         if ($request->hasFile('thumb')) {
             $thumb = $request->file('thumb');

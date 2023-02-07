@@ -23,11 +23,15 @@ class Country extends Model
     const STATUS_DEACTIVE = 0;
     const DEFAULT = 1;
 
+    public function places()
+    {
+        return $this->hasMany(Place::class, 'country_id');
+    }
+
     public function getFullList()
     {
         return self::query()
-            ->where('status', self::STATUS_ACTIVE)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('id', 'asc')
             ->get();
     }
 }

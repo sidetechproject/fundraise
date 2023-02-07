@@ -135,7 +135,7 @@
 
                                             <div class="address">
                                                 <i class="la la-map-marker"></i>
-                                                {{$place->address}}
+                                                {{$country->name}}
                                             </div>
                                         </div><!-- .place__meta -->
 
@@ -182,7 +182,7 @@
                                 </div>
 
                                 <div class="place__desc open mt-3">
-                                    <a href="@php echo $founder->linkedin; @endphp" style="border-bottom: solid 1px #66e3c4;color: #000000;">
+                                    <a href="@php echo $founder->linkedin; @endphp" style="border-bottom: solid 1px #66e3c4;color: #000000;" target="_blank">
                                         @php echo $founder->linkedin; @endphp
                                     </a>
                                 </div>
@@ -415,12 +415,22 @@
 
                                                 <tr>
                                                     <td class="day">Raising</td>
-                                                    <td class="time">{{ $place->raising }}</td>
+                                                    <td class="time">
+                                                        @php 
+                                                        $raising = preg_replace('/\D/', '', $place->raising); 
+                                                        @endphp
+                                                        ${{ number_format($raising, 0, '.', '.') }}
+                                                    </td>
                                                 </tr>
 
                                                 <tr>
                                                     <td class="day">Valuation</td>
-                                                    <td class="time">{{ $place->valuation }}</td>
+                                                    <td class="time">
+                                                        @php 
+                                                        $valuation = preg_replace('/\D/', '', $place->valuation); 
+                                                        @endphp
+                                                        ${{ number_format($valuation, 0, '.', '.') }}
+                                                    </td>
                                                 </tr>
 
                                             </tbody>

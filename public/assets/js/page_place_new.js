@@ -1,6 +1,120 @@
 (function ($) {
     'use strict';
 
+    // var element = document.getElementById('raising-input');
+    // var maskOptions = {
+    //   mask: '+{7}(000)000-00-00'
+    // };
+    // var mask = IMask(element, maskOptions);
+
+    IMask(
+      document.getElementById('raising-input'),
+      {
+        mask: '$num',
+        blocks: {
+          num: {
+            // nested masks are available!
+            mask: Number,
+            thousandsSeparator: '.'
+          }
+        }
+    });
+
+    IMask(
+      document.getElementById('val-input'),
+      {
+        mask: '$num',
+        blocks: {
+          num: {
+            // nested masks are available!
+            mask: Number,
+            thousandsSeparator: '.'
+          }
+        }
+    });
+
+    IMask(
+      document.querySelector('input[name="opening_hour[0][value]"]'),
+      {
+        mask: '$num',
+        blocks: {
+          num: {
+            // nested masks are available!
+            mask: Number,
+            thousandsSeparator: '.'
+          }
+        }
+    });
+
+    IMask(
+    document.querySelector('input[name="opening_hour[1][value]"]'),
+    {
+        mask: Number,
+        thousandsSeparator: '.'
+    });
+
+    IMask(
+    document.querySelector('input[name="opening_hour[2][value]"]'),
+    {
+        mask: Number,
+        thousandsSeparator: '.'
+    });
+
+
+    IMask(
+      document.querySelector('input[name="opening_hour[3][value]"]'),
+      {
+        mask: '$num',
+        blocks: {
+          num: {
+            // nested masks are available!
+            mask: Number,
+            thousandsSeparator: '.'
+          }
+        }
+    });
+
+    IMask(
+      document.querySelector('input[name="opening_hour[4][value]"]'),
+      {
+        mask: '$num',
+        blocks: {
+          num: {
+            // nested masks are available!
+            mask: Number,
+            thousandsSeparator: '.'
+          }
+        }
+    });
+
+    IMask(
+      document.querySelector('input[name="opening_hour[5][value]"]'),
+      {
+        mask: '$num',
+        blocks: {
+          num: {
+            // nested masks are available!
+            mask: Number,
+            thousandsSeparator: '.'
+          }
+        }
+    });
+
+    IMask(
+    document.querySelector('input[name="opening_hour[6][value]"]'),
+    {
+        mask: Number,
+        thousandsSeparator: '.'
+    });
+
+    IMask(
+    document.getElementById('pac-input'),
+    {
+        mask: Date,
+        lazy: false
+    });
+    
+
     $('input[type=text]').on('keydown', function (e) {
         if (e.which === 13) {
             e.preventDefault();

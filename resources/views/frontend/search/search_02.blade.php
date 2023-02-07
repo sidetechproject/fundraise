@@ -10,15 +10,15 @@
 {{--                            <a href="#" class="clear-filter"><i class="fal fa-sync"></i>Clear all</a>--}}
                             <a href="#" class="close-filter"><i class="las la-times"></i></a>
                         </div>
-                        <div class="filter-box hidden">
-                            <h3>Cities</h3>
+                        <div class="filter-box">
+                            <h3>Countries</h3>
                             <div class="filter-list">
                                 <div class="filter-group">
-                                    @foreach($cities as $city)
+                                    @foreach($countries as $country)
                                         <div class="field-check">
-                                            <label class="bc_filter" for="city_{{$city->id}}">
-                                                <input type="checkbox" id="city_{{$city->id}}" name="city[]" value="{{$city->id}}" {{isChecked($city->id, $filter_city)}}>
-                                                {{$city->name}}
+                                            <label class="bc_filter" for="country_{{$country->id}}">
+                                                <input type="checkbox" id="country_{{$country->id}}" name="country[]" value="{{$country->id}}" {{isChecked($country->id, $filter_country)}}>
+                                                {{$country->name}}
                                                 <span class="checkmark"><i class="la la-check"></i></span>
                                             </label>
                                         </div>
