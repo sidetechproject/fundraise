@@ -46,12 +46,68 @@ body {
  */
 .site-banner .site-banner__content {
     z-index: 1;
+    margin-top: 50px;;
 }
 
 .site-banner {
     background-position: right 0 bottom !important;
+    /* --tw-gradient-stops: #e0e7ff, rgb(224 231 255 / 0); */
+    background-color: #ffffff;
+    background-image: linear-gradient(to bottom, #e0e7ff, rgb(224 231 255 / 0));
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 300px !important;
 }
 
+.home-main .site-banner__content h1, .site-banner__title {
+    font-size: 52px !important;
+    font-weight: bold !important;
+    margin-bottom: 10px !important;
+}
+
+.archive-city .col-left {
+    padding: 40px 0 60px 0;
+}
+
+.main-primary {
+    padding-left: 0;
+}
+
+/* .site-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9;
+} */
+
+.site-banner__content {
+    text-align: left !important;
+}
+.site-banner__content h1, .site-banner__content p {
+    color: rgb(31 41 55 / 1) !important;
+}
+
+.site-banner__content {
+    text-align: left;
+}
+
+.site-banner__content h1 {
+    font-weight: bold;
+}
+
+.site-banner__content p {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    letter-spacing: -.01em;
+    color: rgb(107 114 128 / 1);
+    font-weight: 100;
+}
+
+.home-header, .site-header {
+    background-color: transparent !important;
+}
 /*.site-banner {*/
 /*background-image: url('../images/top-banner.png')*/
 /*}*/
@@ -807,7 +863,11 @@ body {
 }
 
 .place-item.layout-02 .place-thumb img {
-    height: 105px;
+    height: 90px !important;
+}
+
+.place-item.layout-02 .place-thumb {
+    width: 90px !important;
 }
 
 .site__search.layout-02 .site-banner__search.layout-02 {
@@ -1097,13 +1157,15 @@ body {
 
 .place-item.layout-02 .place-type, .place-item.layout-02 .place-city {
     padding: 0px 10px;
-    border-radius: 10px;
-    background: #a0eedb;
-    color: #111111;
+    border-radius: 3px;
+    /* background: #a0eedb; */
+    /* color: #111111; */
     /* border: 2px solid #66e4c5; */
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     margin-left: 8px;
+    background-color: rgb(243 244 246 / 1);
+    color: rgb(107 114 128 / 1);
 }
 
 .place-item.layout-02 .place-type, .place-item.layout-02 .place-city {
@@ -1114,7 +1176,8 @@ body {
 }
 
 .place-item.layout-02 .place-title {
-    margin-bottom: 5px;
+    margin-bottom: 0;
+    font-size: 20px;
 }
 
 .place-item.layout-02 .desc {
@@ -1148,7 +1211,12 @@ body {
 }
 
 .footer {
-    background-color: #ffffff !important;
+    background-color: #1e1c37 !important;
+    border-top: none;
+}
+
+.footer__bottom__copyright {
+    color: #ffffff !important;
 }
 
 .home-header.home-header-while .site__menu__icon, .site__menu > a {
@@ -1201,7 +1269,13 @@ body {
 
 
 .btn {
-    border-radius: 5px;
+    border-radius: 50px;
+    height: auto;
+    padding: 5px 25px;
+}
+
+.btn a {
+    font-weight: bold;
 }
 
 .trending-investors {
@@ -1216,4 +1290,146 @@ body {
     border-style: solid;
     border-bottom-width: 1px;
     width: 100%;
+}
+
+.place-item.layout-02 .entry-head {
+    margin-top: 5px;
+}
+
+/* .place-item.layout-02 .place-inner {
+    background-color: #66e3c48c;
+    padding: 20px;
+    border-radius: 10px;
+} */
+.place-item.layout-02 .entry-detail {
+    background-color: transparent;
+}
+
+.area-places .place-item, .trending-startups .place-item  {
+    padding: 25px 20px !important;
+    margin: 0 !important;
+}
+
+/* .area-places .place-item:first-child, */
+.trending-startups .place-item:first-child  {
+    background: linear-gradient(to bottom,rgba(80,229,190,.5),rgba(80,229,190,.5));
+    border-radius: 10px;
+}
+
+a {
+    border-bottom: solid 1px #66e3c4;color: #000000;
+}
+
+#header a, .footer__top__info a, .footer__top__nav.footer__top__nav--contact a, .place-item a {
+    border-bottom: none;
+}
+
+.place-item.layout-02 .entry-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+}
+.place-item.layout-02 .place-inner {
+    display: flex;
+}
+
+.field-check label input:checked ~ span {
+    background-color: #66e3c4;
+}
+.field-check label input:checked ~ span i {
+    font-size: 14px;
+    color: #000000;
+}
+
+.place-item.layout-02 .place-desc {
+    font-size: 14px;
+    color: #373737;
+    line-height: 2.10;
+}
+.star {
+    fill: #fbbf24;
+    flex-shrink: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    vertical-align: top;
+}
+.home-header, .site-header {
+    border-bottom: solid 1px #E2E8F0;
+}
+
+
+.testimonial-item {
+    position: relative;
+    width: 90%;
+    max-width: 100%;
+    padding: 30px;
+    border-style: solid;
+    border-radius: .75rem;
+    display: flex;
+    background-color: rgb(240 253 250 / 1);
+    border-color: rgb(153 246 228 / 1);
+    border-width: 1px;
+    min-height: 170px;
+}
+
+.testimonial-item.t2 {
+    margin-top: 30px;
+    background-color: rgb(240 249 255 / 1);
+    border-color: rgb(186 230 253 / 1);
+}
+
+.testimonial-item .image {
+    flex-shrink: 0;
+    margin: 0 30px 0 0;
+    position: relative;
+    width: 100px;
+}
+
+.testimonial-item .image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 9999px;
+}
+
+.testimonial-item .testimonial-main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.testimonial-item .content-wrap {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    text-align: left;
+}
+.testimonial-item .testimonial-main-content .content .text{
+    font-size: 1.125rem;
+    line-height: 1.5;
+    letter-spacing: -.01em;
+    padding-bottom: 0.25rem;
+    font-weight: 400;
+}
+
+mark {
+    color: #353451;
+    padding: 0 4px;
+    background: linear-gradient(to bottom,rgba(80,229,190,.5),rgba(80,229,190,.5));
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    background-repeat: no-repeat;
+    background-size: 100% 30%;
+    background-position: 0 80%;
+}
+
+.trending .place-item.layout-02.grid {
+    width: 50%;
+    float: left;
+}
+
+.home-list:hover, .home-grid:hover {
+    color: rgb(80,229,190);
+    cursor: pointer;
 }

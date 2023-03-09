@@ -36,7 +36,7 @@
 
 <body>
 <div id="wrapper">
-    <header id="header" class="site-header {{!isRoute('home') ?: 'home-header home-header-while'}}">
+    <header id="header" class="site-header {{isRoute('home') || isRoute('place_detail') || isRoute('page_search_listing') ? 'home-header home-header-while' : ''}}">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-8">
@@ -358,77 +358,75 @@
     @yield('main')
 
     <footer id="footer" class="footer layout-02">
-        <div class="container">
-            <div class="footer__top">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="footer__top__info">
-                            <a title="Logo" href="#" class="footer__top__info__logo"><img src="{{asset(setting('logo') ? 'uploads/' . setting('logo') : 'assets/images/assets/logo.png')}}" alt="Golo"></a>
-                            <p class="footer__top__info__desc">{{__('Sign-up to receive regular updates from us.')}}</p>
-                            <form action="#" class="footer-subscribe">
-                                <div class="field-input">
-                                    <input type="email" name="email" placeholder="Enter your email" value="">
-                                </div>
-                                <button><i class="las la-arrow-right"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <aside class="footer__top__nav">
-                            <h3>{{__('Company')}}</h3>
-                            <ul>
-                                <li><a href="#">{{__('About Us')}}</a></li>
-                                <li><a href="#">{{__('Blog')}}</a></li>
-                                <li><a href="#">{{__('Faqs')}}</a></li>
-                                <li><a href="{{route('page_contact')}}">{{__('Contact')}}</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-lg-2">
-                        <aside class="footer__top__nav">
-                            <h3>{{__('Support')}}</h3>
-                            <ul>
-                                <li><a href="#">Get in Touch</a></li>
-                                <li><a href="#">Help Center</a></li>
-                                <li><a href="#">Live chat</a></li>
-                                <li><a href="#">How it works</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="col-lg-3">
-                        <aside class="footer__top__nav footer__top__nav--contact">
-                            <h3>{{__('Contact Us')}}</h3>
-                            <p>{{__('Email: filipe@fundraise.vc')}}</p>
-                            <p>{{__('Phone: 1 (00) 9999 9999')}}</p>
-                            <ul>
-                                <li>
-                                    <a title="Facebook" href="https://www.linkedin.com/company/fundraisevc/">
-                                        <i class="la la-linkedin la-24"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a title="Twitter" href="#">
-                                        <i class="la la-twitter la-24"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a title="Youtube" href="#">
-                                        <i class="la la-youtube la-24"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a title="Instagram" href="#">
-                                        <i class="la la-instagram la-24"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </aside>
+        <div class="footer__top hidden">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="footer__top__info">
+                        <a title="Logo" href="#" class="footer__top__info__logo"><img src="{{asset(setting('logo') ? 'uploads/' . setting('logo') : 'assets/images/assets/logo.png')}}" alt="Golo"></a>
+                        <p class="footer__top__info__desc">{{__('Sign-up to receive regular updates from us.')}}</p>
+                        <form action="#" class="footer-subscribe">
+                            <div class="field-input">
+                                <input type="email" name="email" placeholder="Enter your email" value="">
+                            </div>
+                            <button><i class="las la-arrow-right"></i></button>
+                        </form>
                     </div>
                 </div>
+                <div class="col-lg-2">
+                    <aside class="footer__top__nav">
+                        <h3>{{__('Company')}}</h3>
+                        <ul>
+                            <li><a href="#">{{__('About Us')}}</a></li>
+                            <li><a href="#">{{__('Blog')}}</a></li>
+                            <li><a href="#">{{__('Faqs')}}</a></li>
+                            <li><a href="{{route('page_contact')}}">{{__('Contact')}}</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="col-lg-2">
+                    <aside class="footer__top__nav">
+                        <h3>{{__('Support')}}</h3>
+                        <ul>
+                            <li><a href="#">Get in Touch</a></li>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Live chat</a></li>
+                            <li><a href="#">How it works</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="col-lg-3">
+                    <aside class="footer__top__nav footer__top__nav--contact">
+                        <h3>{{__('Contact Us')}}</h3>
+                        <p>{{__('Email: filipe@fundraise.vc')}}</p>
+                        <p>{{__('Phone: 1 (00) 9999 9999')}}</p>
+                        <ul>
+                            <li>
+                                <a title="Facebook" href="https://www.linkedin.com/company/fundraisevc/">
+                                    <i class="la la-linkedin la-24"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Twitter" href="#">
+                                    <i class="la la-twitter la-24"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Youtube" href="#">
+                                    <i class="la la-youtube la-24"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Instagram" href="#">
+                                    <i class="la la-instagram la-24"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
             </div>
-            <div class="footer__bottom">
-                <p class="footer__bottom__copyright">{{now()->year}} &copy; {{__('fundraise.vc')}}. {{__('All rights reserved.')}}</p>
-            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__bottom__copyright">{{now()->year}} &copy; {{__('fundraise.vc')}}. {{__('All rights reserved.')}}</p>
         </div>
     </footer>
     <!-- site-footer -->

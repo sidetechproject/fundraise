@@ -46,7 +46,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\AppConfig::class,
 
             // Check upgrade
-            \App\Http\Middleware\CheckUpgrade::class,
+            \App\Http\Middleware\CheckPermissions::class,
         ],
 
         'api' => [

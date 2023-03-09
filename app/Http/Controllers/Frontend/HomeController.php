@@ -74,7 +74,7 @@ class HomeController extends Controller
             ->with('avgReview')
             ->withCount('wishList')
             ->where('status', Place::STATUS_ACTIVE)
-            ->limit(5)
+            ->limit(6)
             ->orderBy('created_at', 'desc')
             ->get();
 

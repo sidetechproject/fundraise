@@ -12,16 +12,24 @@
 @section('main')
     <main id="main" class="site-main home-main business-main">
         {{-- <div class="site-banner" {{$home_banner}}> --}}
-        <div class="site-banner" style="height: 80px;">
-            <div class="container hidden">
+        <div class="site-banner">
+            <div class="container ">
                 <div class="site-banner__content">
-                    {{-- <h1 class="site-banner__title">
-                        {{__('Fundraising made easy')}}
+                    <h1 class="site-banner__title">
+                        <mark>Fundraising</mark> made easy
                     </h1>
 
+                    @php
+                    $strings = [
+                        'We help to accelerate the flow of capital to pre-seed, seed and series <br> A funding rounds as efficiently and quickly as possible.',
+                        'We are a marketplace connecting venture capitalists and entrepreneurs. <br> A fast and easy way to start investing in startups you believe in.',
+                        'We make it easy to provide critical capital to the startups and venture funds you believe in. <br> A fast and easy way to get started.'
+                    ];
+                    $copy = array_rand($strings);
+                    @endphp
                     <p>
-                        {{__('Invest in innovative venture funds and startups validated by fundraise.vc')}}
-                    </p> --}}
+                        {!! $strings[$copy] !!}
+                    </p>
 
                     {{-- <p>
                         <i>{{$city_count}}</i> {{__('cities')}}, <i>{{$category_count}}</i> {{__('categories')}}, <i>{{$place_count}}</i> {{__('places')}}.
@@ -62,21 +70,30 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-9 col-lg-9">
-                        <h2 class="title">{{__('Trending Startups 🔥')}}</h2>
+                        <div class="d-flex" style="justify-content: space-between;">
+                            <div>
+                                <h2 class="title">{{__('Trending Startups 🔥')}}</h2>
+                            </div>
+
+                            <div>
+                                <span id="list" class="mr-2 home-list">
+                                    <i class="las la-bars ml-2 la-20"></i>
+                                </span>
+
+                                <span  id="grid" class="home-grid">
+                                    <i class="las la-th-large ml-2 la-20"></i>
+                                </span>
+                            </div>
+                        </div>
 
                         <div class="trending-startups">
                             <div class="" data-item="4" data-arrows="true" data-itemScroll="4" data-dots="true" data-centerPadding="30" data-tabletitem="2" data-tabletscroll="2" data-smallpcscroll="3" data-smallpcitem="3" data-mobileitem="1" data-mobilescroll="1" data-mobilearrows="false">
 
                                 @foreach($trending_places as $place)
-                                    @guest
-                                        @php
-                                            $link_startup = route('signup');
-                                        @endphp
-                                    @else
-                                        @php
-                                            $link_startup = route('place_detail', $place->slug);
-                                        @endphp
-                                    @endguest
+                                    @php
+                                        $link_startup = route('place_detail', $place->slug);
+                                    @endphp
+
                                     <div class="place-item layout-02">
                                         <div class="place-inner">
                                             <div class="place-thumb">
@@ -98,44 +115,60 @@
 
                                             <div class="entry-detail">
 
-                                                <h3 class="place-title">
-                                                    <a href="{{ $link_startup }}" style="color: #475569">
-                                                        {{$place->name}}
-                                                    </a>
-                                                </h3>
-
                                                 <div class="desc">
-                                                    @php
-                                                        $out = strlen($place->short_description) > 140 ? substr($place->short_description, 0, 140)."..." : $place->short_description;
-                                                        echo $out;
-                                                    @endphp
+                                                    <h3 class="place-title">
+                                                        <a href="{{ $link_startup }}" style="color: #475569">
+                                                            {{$place->name}}
+
+                                                            @if($loop->index == 0)
+                                                                <svg class="star" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" >
+                                                                    <path d="M11.143 5.143A4.29 4.29 0 0 1 6.857.857a.857.857 0 0 0-1.714 0A4.29 4.29 0 0 1 .857 5.143a.857.857 0 0 0 0 1.714 4.29 4.29 0 0 1 4.286 4.286.857.857 0 0 0 1.714 0 4.29 4.29 0 0 1 4.286-4.286.857.857 0 0 0 0-1.714Z"></path>
+                                                                </svg>
+                                                            @endif
+                                                        </a>
+                                                    </h3>
+
+                                                    <div class="place-desc">
+                                                        @php
+                                                            $out = strlen($place->short_description) > 140 ? substr($place->short_description, 0, 140)."..." : $place->short_description;
+                                                            echo $out;
+                                                        @endphp
+                                                    </div>
+
+                                                    <div class="entry-head">
+                                                        @foreach($place['place_types'] as $type)
+                                                            <div class="place-type list-item">
+                                                                <span>{{$type->name}}</span>
+                                                            </div>
+                                                        @endforeach
+
+                                                        @if(isset($place['categories'][0]))
+                                                            <div class="place-type list-item">
+                                                                <span>{{$place['categories'][0]['name']}}</span>
+                                                            </div>
+                                                        @endif
+
+                                                        <div class="place-city">
+                                                            <span>{{ $place['stage'] }}</span>
+                                                        </div>
+
+                                                        <div class="place-city">
+                                                            <span>{{ $place['address'] }}</span>
+                                                        </div>
+
+                                                        <div class="place-city">
+                                                            <span>{{ $place['foundation'] }}</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
-                                                <div class="entry-head">
-
-                                                    @foreach($place['place_types'] as $type)
-                                                        <div class="place-type list-item">
-                                                            <span>{{$type->name}}</span>
-                                                        </div>
-                                                    @endforeach
-
-                                                    @if(isset($place['categories'][0]))
-                                                        <div class="place-type list-item">
-                                                            <span>{{$place['categories'][0]['name']}}</span>
-                                                        </div>
-                                                    @endif
-
-                                                    <div class="place-city">
-                                                        <span>{{ $place['stage'] }}</span>
-                                                    </div>
-
-                                                    <div class="place-city">
-                                                        <span>{{ $place['address'] }}</span>
-                                                    </div>
-
-                                                    <div class="place-city">
-                                                        <span>{{ $place['foundation'] }}</span>
-                                                    </div>
+                                                <div class="fav">
+                                                    <a href="#" class="golo-add-to-wishlist btn-add-to-wishlist @if($place->wish_list_count) remove_wishlist active @else @guest open-login @else add_wishlist @endguest @endif" data-id="{{$place->id}}">
+                                                        <span class="icon-heart">
+                                                            {{-- <i class="la la-check-double large"></i> --}}
+                                                            <i class="la la-bookmark large"></i>
+                                                        </span>
+                                                    </a>
                                                 </div>
 
                                             </div>
@@ -143,11 +176,59 @@
                                     </div>
                                 @endforeach
                             </div>
+                        </div>
 
+                        <h4 class="mt-5 mb-5">
                             <a href="{{ route('page_search_listing') }}" class="text-dark text-black">
                                 All Startups <i class="las la-arrow-right ml-2 la-20"></i>
                             </a>
+                        </h4>
+
+                        <h1 class="mt-5 mb-5">
+                            Our customers love us
+                        </h1>
+
+                        <div class="testimonial-item">
+                            <div class="image">
+                                <img src="{{ asset('assets/images/avatars/female-3.jpg') }}" alt="female-2">
+                            </div>
+                            <div class="testimonial-main-content">
+                                <div class="content-wrap">
+                                    <div class="content">
+                                        <h3 class="text">
+                                            We see a lot of fundraising platforms, but the companies we see from Fundraise.vc are consistently the most prepared and polished. The platform provides clear steps for each part of the fundraising process, offering guidance before, during, and after funding events.
+                                        </h3>
+                                    </div>
+                                    <div class="info">
+                                        <div class="cite">
+                                            Annie Metzger, CEO
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="testimonial-item t2">
+                            <div class="image">
+                                <img src="{{ asset('assets/images/avatars/female-2.jpg') }}" alt="female-2">
+                            </div>
+                            <div class="testimonial-main-content">
+                                <div class="content-wrap">
+                                    <div class="content">
+                                        <h3 class="text">
+                                            Fundraise.vc is a fundraising platform designed for entrepreneurs and startups to quickly raise capital from VCs. The founders of Fundraise.vc are experts in the fields of investment, financial technology and entrepreneurship.
+                                        </h3>
+                                    </div>
+                                    <div class="info">
+                                        <div class="cite">
+                                            Sam Hansson, Founder & CEO
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
 
                     <div class="col-xs-12 col-md-3 col-lg-3 trending-investors">
@@ -156,10 +237,18 @@
                         <div class="box mt-4">
                             @foreach($investors as $investor)
                             <div class="rosy-pink mb-3">
-                                <span class="" style="color:#475569;">{{$investor->name}}</span>
+                                {{-- <span class="" style="color:#475569;"></span> --}}
+                                <span class="badge badge-secondary">
+                                    {{$investor->type_investor}}
+                                </span>
+
+                                <span class="" style="color:#475569;">
+                                    {{ explode(' ', $investor->name)[0] }}
+                                </span>
+
                                 <p class="small">
                                     <span class="place" style="color:#64748b;">
-                                        {{$investor->ticket}} - {{$investor->stage}} - {{$investor->type_investor}}
+                                        {{$investor->ticket}} - {{$investor->stage}}
                                     </span>
                                 </p>
                             </div>
@@ -305,3 +394,16 @@
         </div> --}}
     </main><!-- .site-main -->
 @stop
+
+
+@push('scripts')
+    <script>
+        $('#grid').click(function(){
+            $('.place-item').addClass('grid');
+        });
+
+        $('#list').click(function(){
+            $('.place-item').removeClass('grid');
+        });
+    </script>
+@endpush

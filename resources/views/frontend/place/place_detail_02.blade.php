@@ -1,6 +1,52 @@
 @extends('frontend.layouts.template_02')
 @section('main')
     <main id="main" class="site-main place-04">
+        <div class="site-banner" style="height: 120px !important;">
+            <div class="container ">
+                <div class="site-banner__content">
+                    {{-- <h1 class="site-banner__title">
+                        {{__('Fundraising made easy')}}
+                    </h1>
+
+                    <p>
+                        {{__('Invest in innovative venture funds and startups validated by fundraise.vc')}}
+                    </p> --}}
+
+                    {{-- <p>
+                        <i>{{$city_count}}</i> {{__('cities')}}, <i>{{$category_count}}</i> {{__('categories')}}, <i>{{$place_count}}</i> {{__('places')}}.
+                    </p> --}}
+
+                    {{-- <form action="{{route('page_search_listing')}}" class="site-banner__search layout-02">
+                        <div class="field-input">
+                            <label for="input_search">{{__('Find')}}</label>
+                            <input class="site-banner__search__input open-suggestion" id="input_search" type="text" placeholder="{{__('Ex: fastfood, beer')}}" autocomplete="off">
+                            <input type="hidden" name="category[]" id="category_id">
+                            <div class="search-suggestions category-suggestion">
+                                <ul>
+                                    <li><a href="#"><span>{{__('Loading...')}}</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="field-input">
+                            <label for="location_search">{{__('Where')}}</label>
+                            <input class="site-banner__search__input open-suggestion" id="location_search" type="text" placeholder="{{__('Your city')}}" autocomplete="off">
+                            <input type="hidden" id="city_id">
+                            <div class="search-suggestions location-suggestion">
+                                <ul>
+                                    <li><a href="#"><span>{{__('Loading...')}}</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="field-submit">
+                            <button><i class="las la-search la-24-black"></i></button>
+                        </div>
+                    </form> --}}
+                </div>
+            </div>
+        </div>
+        <!-- .site-banner -->
+
         <div class="place">
             <div class="slick-sliders">
                 <div class="slick-slider photoswipe hidden" data-item="1" data-arrows="false" data-itemScroll="1" data-dots="false" data-infinite="false" data-centerMode="false" data-centerPadding="0">
@@ -141,12 +187,12 @@
 
                                         <div class="place-gallery text-left">
                                             @if($place->website)
-                                                <a href="//{{$place->website}}" target="_blank" rel="nofollow" class="lity-btn">
+                                                <a href="{{$place->website}}" target="_blank" rel="nofollow" class="lity-btn">
                                                     Visit Website <i class="las la-external-link-alt ml-2 la-20"></i>
                                                 </a>
                                             @endif
                                             @if($place->deck)
-                                                <a href="//{{$place->deck}}" target="_blank" rel="nofollow" class="lity-btn">
+                                                <a href="{{$place->deck}}" target="_blank" rel="nofollow" class="lity-btn">
                                                     View Deck <i class="las la-external-link-alt ml-2 la-20"></i>
                                                 </a>
                                             @endif
@@ -416,8 +462,8 @@
                                                 <tr>
                                                     <td class="day">Raising</td>
                                                     <td class="time">
-                                                        @php 
-                                                        $raising = preg_replace('/\D/', '', $place->raising); 
+                                                        @php
+                                                        $raising = preg_replace('/\D/', '', $place->raising);
                                                         @endphp
                                                         ${{ number_format($raising, 0, '.', '.') }}
                                                     </td>
@@ -426,8 +472,8 @@
                                                 <tr>
                                                     <td class="day">Valuation</td>
                                                     <td class="time">
-                                                        @php 
-                                                        $valuation = preg_replace('/\D/', '', $place->valuation); 
+                                                        @php
+                                                        $valuation = preg_replace('/\D/', '', $place->valuation);
                                                         @endphp
                                                         ${{ number_format($valuation, 0, '.', '.') }}
                                                     </td>

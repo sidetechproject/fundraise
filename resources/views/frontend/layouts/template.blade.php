@@ -350,7 +350,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.3/imask.min.js" integrity="sha512-yJ3vm1HmQtcgeMtbUYCp7PuTLyjU+ffCnVNTuE1Uccv1BmkoaJIXt1EjBVGnscjCILc62hTJJJ2rJJBTcw8RjQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="{{asset('assets/js/custom.js?v=1.4')}}"></script>
+    <script src="{{asset('assets/js/custom.js?v=1.4')}}"></script>
 
 <!-- Load the `mapbox-gl-geocoder` plugin. -->
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
