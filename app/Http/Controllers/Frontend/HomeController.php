@@ -296,6 +296,7 @@ class HomeController extends Controller
             ->withCount('wishList')
             //->orWhere('address', 'like', "%{$keyword}%")
             ->whereTranslationLike('name', "%{$keyword}%")
+            ->orderBy('id', 'desc')
             ->where('status', Place::STATUS_ACTIVE);
 
         if ($filter_category) {
