@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/gijgo/css/gijgo.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css')}}?v=0.01"/>
 
     <meta name="csrf-token" content="{{csrf_token()}}"/>
     <script>
