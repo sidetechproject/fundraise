@@ -10,6 +10,8 @@
     <link href="{{asset('admin/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
     <link href="{{asset('admin/build/css/custom.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
+
     <script>
         var app_url = window.location.origin;
     </script>
@@ -17,19 +19,21 @@
 <body class="login">
 <div>
     <div class="login_wrapper">
-        <div class="animate form login_form">
-            <section class="login_content">
-                <form action="{{route('login')}}" class="form-log form-content" id="login_admin" method="POST">
+        <div class="form login_form">
+            <section class="login_content card">
+                <form action="{{route('login')}}" class="form-log form-content text-left" id="login_admin" method="POST">
                     @csrf
 
-                    <h1>Login</h1>
+                    <h1 class="text-center">Login</h1>
 
                     <div class="field-input">
-                        <input type="text" id="email" name="email" placeholder="Email Address" class="form-control" required>
+                        <label>Email</label>
+                        <input type="text" id="email" name="email" placeholder="me@company.com" class="form-control" required>
                     </div>
 
                     <div class="field-input">
-                        <input type="password" id="password" name="password" placeholder="Password" class="form-control" required>
+                        <label>Password</label>
+                        <input type="password" id="password" name="password" placeholder="******" class="form-control" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100" id="submit_login">{{__('Login')}}</button>

@@ -5,11 +5,33 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>Fundraise</title>
+
+  <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/jost/stylesheet.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/line-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/bootstrap/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/slick/slick-theme.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/slick/slick.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quilljs/css/quill.bubble.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quilljs/css/quill.core.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quilljs/css/quill.snow.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/chosen/chosen.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/photoswipe/photoswipe.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/photoswipe/default-skin/default-skin.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/lity/lity.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/gijgo/css/gijgo.min.css')}}"/>
+
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css')}}"/>
+
+
     <link href="{{asset('admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
     <link href="{{asset('admin/build/css/custom.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
     <script>
         var app_url = window.location.origin;
     </script>
@@ -23,12 +45,12 @@
 <body class="login">
 <div>
     <div class="login_wrapper">
-        <div class="animate form login_form">
-            <section class="login_content">
-                <form class="form-sign form-content" id="register" action="{{route('register')}}" method="post">
+        <div class="form login_form ">
+            <section class="login_content card">
+                <form class="form-sign form-content text-left" id="register" action="{{route('register')}}" method="post">
                     @csrf
 
-                    <h1>Register</h1>
+                    <h1 class="text-center">Register</h1>
 
                     {{-- <small class="form-text text-danger golo-d-none" id="register_error">error!</small> --}}
 
@@ -42,24 +64,30 @@
                     </div>
 
                     <div class="field-input">
+                        <label for="name">Full Name</label>
                         <input type="text" id="register_name" name="name" placeholder="Full Name" class="form-control" required>
                     </div>
 
                     <div class="field-input">
+                        <label for="email">Email</label>
                         <input type="email" id="register_email" name="email" placeholder="Email" class="form-control" required>
                     </div>
 
                     <div class="field-input">
-                        <input type="text" id="linkedin" name="linkedin" placeholder="Linkeind Url" class="form-control" required>
+                        <label for="linkedin">Linkedin</label>
+                        <input type="text" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/" class="form-control" required>
                     </div>
 
                     <div class="field-input mb-4 startup">
+                        <label for="bio">Your Short Bio</label>
                         <textarea type="text" id="bio" name="bio" placeholder="Your Short Bio" class="form-control" required></textarea>
                     </div>
 
                     <div class="field-group field-select mb-4 investor">
+                        <label for="type_investor">{{__('Type of investor')}}</label>
+
                         <select name="type_investor" class="custom-select" id="type_investor" required>
-                            <option value="">{{__('Type of investor')}}</option>
+                            <option value="">{{__('Select')}}</option>
                             <option value="Private Equity">{{__("Private Equity")}}</option>
                             <option value="Venture Capital">{{__("Venture Capital")}}</option>
                             <option value="Corporate Venture Capital">{{__("Corporate Venture Capital")}}</option>
@@ -70,8 +98,10 @@
                     </div>
 
                     <div class="field-group field-select mb-4 investor">
+                        <label for="stage">{{__('Stage')}}</label>
+
                         <select name="stage" class="custom-select" id="stage" required>
-                            <option value="">{{__('Stage')}}</option>
+                            <option value="">{{__('Select')}}</option>
                             <option value="Pre-seed">{{__("Pre-seed")}}</option>
                             <option value="Seed">{{__("Seed")}}</option>
                             <option value="Series A">{{__("Series A")}}</option>
@@ -81,8 +111,10 @@
                     </div>
 
                     <div class="field-group field-select mb-4 investor">
+                        <label for="ticket">{{__('Ticket')}}</label>
+
                         <select name="ticket" class="custom-select" id="ticket" required>
-                            <option value="">{{__('Ticket')}}</option>
+                            <option value="">{{__('Select')}}</option>
                             <option value="< USD 500K">{{__("< USD 500K")}}</option>
                             <option value="USD 500K - 1M">{{__("USD 500K - 1M")}}</option>
                             <option value="USD 1M - 5M">{{__("USD 1M - 5M")}}</option>
@@ -91,12 +123,28 @@
                         <i class="la la-angle-down"></i>
                     </div>
 
+                   {{--  <div class="field-group field-select">
+                        <label for="lis_category">{{__('Sectors')}} *</label>
+                        <select class="chosen-select" id="lis_category" name="category[]" data-placeholder="{{__('Select Sectors')}}" multiple required>
+                            @foreach(\App\Models\Category::getAll(\App\Models\Category::TYPE_PLACE) as $cat)
+                                <option value="{{$cat['id']}}">
+                                    {{$cat['name']}}
+                                </option>
+                            @endforeach
+                        </select>
+                        <i class="la la-angle-down"></i>
+                    </div> --}}
+
                     <div class="field-input">
-                        <input type="password" id="register_password" name="password" placeholder="Password" class="form-control" required>
+                        <label for="password">{{__('Password')}}</label>
+
+                        <input type="password" id="register_password" name="password" placeholder="******" class="form-control" required>
                     </div>
 
                     <div class="field-input">
-                        <input type="password" id="register_password_confirmation" name="password_confirmation" placeholder="Confirm Password" class="form-control" required>
+                        <label for="password">{{__('Confirm Password')}}</label>
+
+                        <input type="password" id="register_password_confirmation" name="password_confirmation" placeholder="******" class="form-control" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100" id="submit_register">{{__('Sign Up')}}</button>
@@ -142,6 +190,22 @@
         </div>
     </div>
 </div>
+
+<script src="{{asset('assets/libs/jquery-1.12.4.js')}}"></script>
+<script src="{{asset('assets/libs/popper/popper.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/libs/slick/slick.min.js')}}"></script>
+<script src="{{asset('assets/libs/slick/jquery.zoom.min.js')}}"></script>
+<script src="{{asset('assets/libs/isotope/isotope.pkgd.min.js')}}"></script>
+<script src="{{asset('assets/libs/photoswipe/photoswipe.min.js')}}"></script>
+<script src="{{asset('assets/libs/photoswipe/photoswipe-ui-default.min.js')}}"></script>
+<script src="{{asset('assets/libs/lity/lity.min.js')}}"></script>
+<script src="{{asset('assets/libs/quilljs/js/quill.core.js')}}"></script>
+<script src="{{asset('assets/libs/quilljs/js/quill.js')}}"></script>
+<script src="{{asset('assets/libs/gijgo/js/gijgo.min.js')}}"></script>
+<script src="{{asset('assets/libs/chosen/chosen.jquery.min.js')}}"></script>
+<script src="{{asset('assets/js/main.js?v=1.4')}}"></script>
+
 
 <script src="{{asset('/admin/vendors/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('/admin/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>

@@ -1433,3 +1433,19 @@ mark {
     color: rgb(80,229,190);
     cursor: pointer;
 }
+
+.login_wrapper {
+    max-width: 436px !important;
+}
+.login_content {
+    min-width: 350px !important;
+}
+.login_content.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem #0001, 0 1rem 2rem #0001;
+    border: none;
+    margin-bottom: 100px;
+    padding: 20px 40px;
+}
+
+ 

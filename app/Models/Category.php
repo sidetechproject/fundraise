@@ -52,6 +52,16 @@ class Category extends Model implements TranslatableContract
     //     });               
     // }
 
+    public static function getAll($type)
+    {
+        $categories = self::query()
+            ->where('type', $type)
+            ->orderBy('priority', 'asc')
+            ->get();
+
+        return $categories;
+    }
+
     public function getListAll($type)
     {
         $categories = self::query()
