@@ -164,7 +164,9 @@
                                         @endforeach
                                     </ul><!-- .place__breadcrumbs -->
                                     <div class="place__box place__box--npd">
-                                        <h1>{{$place->name}}</h1>
+                                        <h1>
+                                            {{$place->name}}
+                                        </h1>
 
                                         <div class="place__meta">
                                             <div class="place__reviews reviews hidden">
@@ -525,9 +527,14 @@
                                 <aside class="widget widget-shadow">
                                     <h4 class="m-0 mb-2">
                                         <img src="https://uploads-ssl.webflow.com/61fe68941d6778510afa422e/61fe68951d67789b31fa42a0_icon-status-good.svg" alt="" width="20px">
-                                        VERIFIED
+                                        VERIFIED {!! $place->verified ? '<span class="badge badge-verified ml-2">Verified by fundraise.vc</span>' : '' !!}
                                     </h4>
-                                    This profile is managed by the startup founder.
+
+                                    @if($place->verified)
+                                        This profile is managed by the founder of the startup and the information has been verified by our team.
+                                    @else
+                                        This profile is managed by the startup founder.
+                                    @endif
                                 </aside>
 
                                 {{-- <aside class="sidebar--shop__item widget widget--ads">

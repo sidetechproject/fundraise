@@ -1476,3 +1476,12 @@ mark {
     background-color: #66e3c4;
     border-color: #66e3c4;
 }
+
+.badge.badge-verified {
+    border: 2px solid rgb(20, 173, 76);
+    color: rgb(20, 173, 76);
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-family: "Jost-Book";
+    font-size: 14px;
+}

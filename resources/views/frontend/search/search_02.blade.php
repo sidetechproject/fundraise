@@ -136,6 +136,9 @@
                                            <div class="desc">
                                                 <h3 class="place-title">
                                                     <a href="{{route('place_detail', $place->slug)}}">{{$place->name}}</a>
+
+                                                    {!! $place->verified ? '<span class="badge badge-verified ml-2">Verified</span>' : '' !!}
+
                                                 </h3>
 
                                                 <p class="place-desc">
