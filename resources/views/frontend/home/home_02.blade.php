@@ -253,7 +253,7 @@
                                         'Venture Capital' => '#AA77FF',
                                         'Corporate Venture Capital' => '#EBB02D',
                                         'Venture Capital' => '#D864A9',
-                                        'Fund of Funds' => '#F7DB6A',
+                                        'Fund of Funds' => '#62CDFF',
                                     ]
                                 @endphp
 
