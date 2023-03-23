@@ -68,7 +68,7 @@ class HomeController extends Controller
             ->where('profile', 2)
             //->where('onboarding', 1)
             ->orderBy('created_at', 'desc')
-            ->limit(10)
+            ->limit(5)
             ->get();
 
         // $testimonials = Testimonial::query()

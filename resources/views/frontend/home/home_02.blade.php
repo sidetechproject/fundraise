@@ -238,12 +238,27 @@
                             @foreach($investors as $investor)
                             <div class="rosy-pink mb-3">
                                 {{-- <span class="" style="color:#475569;"></span> --}}
-                                <span class="badge badge-secondary">
-                                    {{$investor->type_investor}}
-                                </span>
 
-                                <span class="" style="color:#475569;">
-                                    {{ explode(' ', $investor->name)[0] }}
+                                <p class="" style="color:#475569;">
+                                    @php $investor_name = explode(' ', $investor->name); @endphp
+                                    {{ $investor_name[0] }}
+                                    @if(isset($investor_name[1]))
+                                        {{ substr( $investor_name[1], 0, 1) }}.
+                                    @endif
+                                </p>
+
+                                @php
+                                    $colors = [
+                                        'Private Equity' => '#7AA874',
+                                        'Venture Capital' => '#AA77FF',
+                                        'Corporate Venture Capital' => '#EBB02D',
+                                        'Venture Capital' => '#D864A9',
+                                        'Fund of Funds' => '#F7DB6A',
+                                    ]
+                                @endphp
+
+                                <span class="badge badge-secondary" style="background-color: {{ !isset($colors[$investor->type_investor]) ?: $colors[$investor->type_investor] }}">
+                                    {{ $investor->type_investor }}
                                 </span>
 
                                 <p class="small">
