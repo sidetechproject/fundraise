@@ -66,8 +66,9 @@ class HomeController extends Controller
 
         $investors = User::query()
             ->where('profile', 2)
+            ->where('onboarding', 1)
             ->orderBy('created_at', 'desc')
-            ->limit(5)
+            ->limit(10)
             ->get();
 
         // $testimonials = Testimonial::query()
