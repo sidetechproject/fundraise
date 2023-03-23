@@ -28,6 +28,13 @@ class Country extends Model
         return $this->hasMany(Place::class, 'country_id');
     }
 
+    public static function getAll()
+    {
+        return self::query()
+            ->orderBy('id', 'asc')
+            ->get();
+    }
+
     public function getFullList()
     {
         return self::query()

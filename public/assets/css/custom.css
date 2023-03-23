@@ -1324,6 +1324,10 @@ a {
     border-bottom: none;
 }
 
+a.border-bottom-none:hover {
+    text-decoration: none;
+}
+
 .place-item.layout-02 .entry-detail {
     display: flex;
     justify-content: space-between;
@@ -1448,4 +1452,27 @@ mark {
     padding: 20px 40px;
 }
 
- 
+ .login_content h1 {
+    font: normal 25px Jost, Arial, sans-serif;
+    letter-spacing: inherit;
+    line-height: 0px;
+ }
+
+.login_content form input[type="text"], .login_content form input[type="email"], .login_content form input[type="password"] {
+     box-shadow: none;
+     -webkit-box-shadow: none;
+/*     color: #dcd8d8;*/
+}
+
+
+.btn-primary {
+    color: #373737;
+    background-color: #66e3c4;
+    border-color: #66e3c4;
+    font-weight: 500;
+}
+.btn-primary:hover {
+    color: #373737;
+    background-color: #66e3c4;
+    border-color: #66e3c4;
+}

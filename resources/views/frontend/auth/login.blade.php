@@ -42,7 +42,7 @@
                 <div class="separator">
                     <div>
                         <p>
-                            Don't have an account? <a href="{{ route('signup') }}">Register</a>
+                            Don't have an account? <a href="{{ route('signup') }}" class="border-bottom-none">Register</a>
                         </p>
                     </div>
                 </div>

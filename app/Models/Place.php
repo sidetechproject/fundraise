@@ -83,6 +83,11 @@ class Place extends Model  implements TranslatableContract
         return $this->belongsToJson(PlaceType::class, 'place_type');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function reviews()
     {
         return $this->hasMany(Review::class, 'place_id', 'id');
@@ -121,6 +126,7 @@ class Place extends Model  implements TranslatableContract
     {
         $places = self::query()
             ->with('city')
+            ->with('user')
             ->with('categories')
             ->orderBy('id', 'desc');
 

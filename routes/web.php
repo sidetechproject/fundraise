@@ -26,6 +26,9 @@ $router->group([
 
     $router->get('/', 'HomeController@index')->name('home');
 
+    $router->get('/onboarding', 'HomeController@onboarding')->name('onboarding');
+    $router->post('/onboarding', 'UserController@onboarding')->name('onboarding.save')->middleware(['auth']);
+
     $router->get('/signin', 'UserController@loginPage')->name('signin');
     $router->get('/signup', 'UserController@registerPage')->name('signup');
 

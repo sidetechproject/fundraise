@@ -25,8 +25,8 @@
                         <thead>
                         <tr>
                             <th width="3%">ID</th>
-                            <th width="10%">Avatar</th>
                             <th width="15%">Name</th>
+                            <th width="10%">Profile</th>
                             <th width="15%">Email</th>
                             <th width="15%">Status</th>
                             <th width="15%">Is Admin</th>
@@ -37,12 +37,17 @@
                         @foreach($users as $user)
                             <tr>
                                 <td>{{$user->id}}</td>
-                                <td>{{$user->id}}</td>
+
                                 <td>{{$user->name}}</td>
+
+                                <td>{!! $user->profile == 1 ? '<i class="fa fa-rocket mr-2"></i> Startup' : '<i class="fa fa-dollar mr-2"></i> Investor' !!}</td>
+
                                 <td>{{$user->email}}</td>
+
                                 <td>
                                     <input type="checkbox" class="js-switch user_status" data-id="{{$user->id}}" {{isChecked($user->status, \App\Models\User::STATUS_ACTIVE)}}/>
                                 </td>
+
                                 <td>
                                     <input type="checkbox" class="js-switch user_admin" data-id="{{$user->id}}" {{isChecked($user->is_admin, \App\Models\User::USER_ADMIN)}}/>
                                 </td>

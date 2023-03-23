@@ -70,7 +70,7 @@
                             <th width="3%">ID</th>
                             <th width="5%">Thumb</th>
                             <th>Startup name</th>
-                            {{-- <th>City</th> --}}
+                            <th>User</th>
                             <th>Category</th>
                             <th>Status</th>
                             <th width="15%">Action</th>
@@ -83,11 +83,12 @@
                                 <td>{{$place->id}}</td>
                                 <td><img class="place_list_thumb" src="{{getImageUrl($place->thumb)}}" alt="page thumb"></td>
                                 <td>{{$place->name}}</td>
-                                {{-- <td>
-                                    @if($place['city'])
-                                        {{$place['city']['name']}}
-                                    @endif
-                                </td> --}}
+
+                                <td>
+                                    {!! $place->user->profile == 1 ? '<i class="fa fa-rocket mr-2"></i>' : '<i class="fa fa-dollar mr-2"></i>' !!} <strong>#{{ $place->user->id }}</strong> {{ $place->user->name }}
+                                    <br> {{ $place->user->email }}
+                                </td>
+
                                 <td>
                                     @foreach($place->categories as $cat)
                                         <span class="category_name">{{$cat->name}}</span>

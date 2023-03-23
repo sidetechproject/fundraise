@@ -18,6 +18,7 @@ class IsAdmin
         if (auth()->user()->isAdmin() && auth()->user()->isActive()) {
             return $next($request);
         }
+        
         return abort(401);
     }
 }

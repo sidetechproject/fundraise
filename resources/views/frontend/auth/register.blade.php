@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>Fundraise</title>
 
   <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/jost/stylesheet.css')}}"/>
@@ -40,6 +40,68 @@
         .startup, .investor {
             display: none;
         }
+
+        .parent > .row {
+          display: flex;
+          align-items: center;
+          height: 100%;
+        }
+        .col {
+            box-shadow: unset !important;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #e1e6eb;
+            height: 150px;
+            border-radius: 10px;
+        }
+        .col:hover {
+            cursor: pointer;
+            box-shadow: unset !important;
+            background-color: rgba(0,20,40,0.016) !important;
+            border: 1px solid #aab6c2 !important;
+        }
+        .col img {
+          height: 100px;
+          width: 100%;
+          cursor: pointer;
+          transition: transform 1s;
+          object-fit: cover;
+        }
+        .col label {
+          overflow: hidden;
+          position: relative;
+        }
+        .imgbgchk:checked + label > .tick_container {
+          opacity: 1;
+        }
+        /*         aNIMATION */
+        .imgbgchk:checked + label > img {
+          transform: scale(1.05);
+          opacity: 0.3;
+        }
+        .tick_container {
+          transition: 0.5s ease;
+          opacity: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          cursor: pointer;
+          text-align: center;
+        }
+        .tick {
+          background-color: #66e3c4;
+          color: white;
+          font-size: 16px;
+          padding: 6px 12px;
+          height: 40px;
+          width: 40px;
+          border-radius: 100%;
+        }
+        .fields-signup {
+            display: none;
+        }
     </style>
 </head>
 <body class="login">
@@ -50,142 +112,67 @@
                 <form class="form-sign form-content text-left" id="register" action="{{route('register')}}" method="post">
                     @csrf
 
-                    <h1 class="text-center">Register</h1>
+                    <h1 class="text-center">Welcome</h1>
 
-                    {{-- <small class="form-text text-danger golo-d-none" id="register_error">error!</small> --}}
+                    <h6 class="mb-4 mt-5">
+                        Create a new Fundraise account or <a href="{{ route('signin') }}" class="border-bottom-none">click here</a>  to log in if you already have one.
+                    </h6>
 
-                    <div class="field-group field-select mb-4">
-                        <select name="profile" class="custom-select" id="profile" required>
-                            <option value="">{{__('Select your profile')}}</option>
-                            <option value="1">{{__("I'm a Founder")}}</option>
-                            <option value="2">{{__("I'm an Investor")}}</option>
-                        </select>
-                        <i class="la la-angle-down"></i>
+                     <small class="form-text text-danger golo-d-none" id="login_error">error!</small>
+
+                    <div class="container parent">
+                        <div class="row">
+                            <div class='col text-center mr-2'>
+                                <input type="radio" name="profile" id="startup" class="d-none imgbgchk" value="1" required>
+                                <label for="startup" class="mt-4">
+                                    <img src="{{ asset('/assets/images/startup-profile.png') }}" alt="Startup">
+                                    <div class="tick_container">
+                                        <div class="tick">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class='col text-center ml-2'>
+                                <input type="radio" name="profile" id="investor" class="d-none imgbgchk" value="2" required>
+                                <label for="investor" class="mt-4">
+                                    <img src="{{ asset('/assets/images/investor-profile.png') }}" alt="Investor">
+                                    <div class="tick_container">
+                                        <div class="tick">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="field-input">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="register_name" name="name" placeholder="Full Name" class="form-control" required>
+                    <div class="fields-signup">
+                        <div class="field-input mt-4">
+                            <label for="email">Email</label>
+                            <input type="email" id="register_email" name="email" placeholder="Email" class="form-control" required>
+                        </div>
+
+                        <div class="field-input mb-2">
+                            <label for="password">{{__('Password')}}</label>
+
+                            <input type="password" id="register_password" name="password" placeholder="******" class="form-control m-0" required>
+
+                            <small>Password must be at least 8 characters long.</small>
+                        </div>
+
+                        <div class="field-input">
+                            <label for="password">{{__('Confirm Password')}}</label>
+
+                            <input type="password" id="register_password_confirmation" name="password_confirmation" placeholder="******" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100" id="submit_register">
+                            {{__('Sign Up')}}
+                        </button>
                     </div>
-
-                    <div class="field-input">
-                        <label for="email">Email</label>
-                        <input type="email" id="register_email" name="email" placeholder="Email" class="form-control" required>
-                    </div>
-
-                    <div class="field-input">
-                        <label for="linkedin">Linkedin</label>
-                        <input type="text" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/" class="form-control" required>
-                    </div>
-
-                    <div class="field-input mb-4 startup">
-                        <label for="bio">Your Short Bio</label>
-                        <textarea type="text" id="bio" name="bio" placeholder="Your Short Bio" class="form-control" required></textarea>
-                    </div>
-
-                    <div class="field-group field-select mb-4 investor">
-                        <label for="type_investor">{{__('Type of investor')}}</label>
-
-                        <select name="type_investor" class="custom-select" id="type_investor" required>
-                            <option value="">{{__('Select')}}</option>
-                            <option value="Private Equity">{{__("Private Equity")}}</option>
-                            <option value="Venture Capital">{{__("Venture Capital")}}</option>
-                            <option value="Corporate Venture Capital">{{__("Corporate Venture Capital")}}</option>
-                            <option value="Family Office">{{__("Family Office")}}</option>
-                            <option value="Fund of Funds">{{__("Fund of Funds")}}</option>
-                        </select>
-                        <i class="la la-angle-down"></i>
-                    </div>
-
-                    <div class="field-group field-select mb-4 investor">
-                        <label for="stage">{{__('Stage')}}</label>
-
-                        <select name="stage" class="custom-select" id="stage" required>
-                            <option value="">{{__('Select')}}</option>
-                            <option value="Pre-seed">{{__("Pre-seed")}}</option>
-                            <option value="Seed">{{__("Seed")}}</option>
-                            <option value="Series A">{{__("Series A")}}</option>
-                            <option value="Series B+">{{__("Series B+")}}</option>
-                        </select>
-                        <i class="la la-angle-down"></i>
-                    </div>
-
-                    <div class="field-group field-select mb-4 investor">
-                        <label for="ticket">{{__('Ticket')}}</label>
-
-                        <select name="ticket" class="custom-select" id="ticket" required>
-                            <option value="">{{__('Select')}}</option>
-                            <option value="< USD 500K">{{__("< USD 500K")}}</option>
-                            <option value="USD 500K - 1M">{{__("USD 500K - 1M")}}</option>
-                            <option value="USD 1M - 5M">{{__("USD 1M - 5M")}}</option>
-                            <option value="USD 5M+">{{__("USD 5M+")}}</option>
-                        </select>
-                        <i class="la la-angle-down"></i>
-                    </div>
-
-                   {{--  <div class="field-group field-select">
-                        <label for="lis_category">{{__('Sectors')}} *</label>
-                        <select class="chosen-select" id="lis_category" name="category[]" data-placeholder="{{__('Select Sectors')}}" multiple required>
-                            @foreach(\App\Models\Category::getAll(\App\Models\Category::TYPE_PLACE) as $cat)
-                                <option value="{{$cat['id']}}">
-                                    {{$cat['name']}}
-                                </option>
-                            @endforeach
-                        </select>
-                        <i class="la la-angle-down"></i>
-                    </div> --}}
-
-                    <div class="field-input">
-                        <label for="password">{{__('Password')}}</label>
-
-                        <input type="password" id="register_password" name="password" placeholder="******" class="form-control" required>
-                    </div>
-
-                    <div class="field-input">
-                        <label for="password">{{__('Confirm Password')}}</label>
-
-                        <input type="password" id="register_password_confirmation" name="password_confirmation" placeholder="******" class="form-control" required>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-100" id="submit_register">{{__('Sign Up')}}</button>
-
-                    {{-- <div class="field-check mt-4">
-                        <label for="accept">
-                            <input type="checkbox" id="accept" checked required>
-                            Accept the <a title="Terms" href="#">Terms</a> and <a title="Privacy Policy" href="#">Privacy Policy</a>
-                            <span class="checkmark">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6">
-                                <path fill="#FFF" fill-rule="nonzero" d="M2.166 4.444L.768 3.047 0 3.815 1.844 5.66l.002-.002.337.337L7.389.788 6.605.005z"/>
-                            </svg>
-                        </span>
-                        </label>
-                    </div> --}}
                 </form>
-
-                {{-- <form action="" method="POST" id="submit_register">
-                    @csrf
-                    <h1>Register</h1>
-
-                    <p id="login_error" class="red"></p>
-                    <div>
-                        <input type="text" class="form-control" name="email" placeholder="{{__('Email')}}" required=""/>
-                    </div>
-                    <div>
-                        <input type="password" class="form-control" name="password" placeholder="{{__('Password')}}" required=""/>
-                    </div>
-                    <div>
-                        <button class="btn btn-primary" id="submit_login">{{__('Login')}}</button>
-                    </div>
-                    <div class="clearfix"></div>
-                </form> --}}
-
-                <div class="separator">
-                    <div>
-                        <p>
-                            Already have an account? <a href="{{ route('signin') }}">Login</a>
-                        </p>
-                    </div>
-                </div>
             </section>
         </div>
     </div>
@@ -253,36 +240,40 @@
         return indexed_array;
     }
 
-    $( "#profile" ).change(function() {
-        if($( this ).val() == 1) {
-            $( ".startup" ).show();
-            $( ".investor" ).hide();
-
-            $("#bio").prop('required', true);
-
-            $("#type_investor").prop('required', false);
-            $("#stage").prop('required', false);
-            $("#ticket").prop('required', false);
-        } else if($( this ).val() == 2) {
-            $( ".startup" ).hide();
-            $( ".investor" ).show();
-
-            $("#bio").prop('required', false);
-
-            $("#type_investor").prop('required', true);
-            $("#stage").prop('required', true);
-            $("#ticket").prop('required', true);
-        } else {
-            $( ".investor" ).hide();
-            $( ".startup" ).hide();
-
-            $("#bio").prop('required', true);
-
-            $("#type_investor").prop('required', true);
-            $("#stage").prop('required', true);
-            $("#ticket").prop('required', true);
-        }
+    $( "input[name='profile']" ).change(function() {
+        $( ".fields-signup" ).show();
     });
+
+    // $( "input[name='profile']" ).change(function() {
+    //     if($( this ).val() == 1) {
+    //         $( ".startup" ).show();
+    //         $( ".investor" ).hide();
+
+    //         $("#bio").prop('required', true);
+
+    //         $("#type_investor").prop('required', false);
+    //         $("#stage").prop('required', false);
+    //         $("#ticket").prop('required', false);
+    //     } else if($( this ).val() == 2) {
+    //         $( ".startup" ).hide();
+    //         $( ".investor" ).show();
+
+    //         $("#bio").prop('required', false);
+
+    //         $("#type_investor").prop('required', true);
+    //         $("#stage").prop('required', true);
+    //         $("#ticket").prop('required', true);
+    //     } else {
+    //         $( ".investor" ).hide();
+    //         $( ".startup" ).hide();
+
+    //         $("#bio").prop('required', true);
+
+    //         $("#type_investor").prop('required', true);
+    //         $("#stage").prop('required', true);
+    //         $("#ticket").prop('required', true);
+    //     }
+    // });
 </script>
 </body>
 </html>

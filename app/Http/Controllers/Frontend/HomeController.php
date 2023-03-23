@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -29,31 +30,16 @@ class HomeController extends Controller
         $this->response = $response;
     }
 
+    public function onboarding()
+    {
+        return view('frontend.auth.onboarding');
+    }
+
     public function index()
     {
-        // SEO Meta
-        //SEOMeta(setting('app_name'), setting('home_description'));
-
-        // $popular_cities = City::query()
-        //     ->with('country')
-        //     ->withCount(['places' => function ($query) {
-        //         $query->where('status', Place::STATUS_ACTIVE);
-        //     }])
-        //     ->where('status', Country::STATUS_ACTIVE)
-        //     ->limit(12)
-        //     ->get();
-
-        // $blog_posts = Post::query()
-        //     ->with(['categories' => function ($query) {
-        //         $query->where('status', Category::STATUS_ACTIVE)
-        //             ->select('id', 'name', 'slug');
-        //     }])
-        //     ->where('type', Post::TYPE_BLOG)
-        //     ->where('status', Post::STATUS_ACTIVE)
-        //     ->limit(3)
-        //     ->orderBy('created_at', 'desc')
-        //     ->get(['id', 'category', 'slug', 'thumb']);
-
+        if (is_null(Auth::user()) || !Auth::user()->onboarding) {
+            return redirect('onboarding');
+        }
 
         $categories = Category::query()
             ->where('categories.status', Category::STATUS_ACTIVE)

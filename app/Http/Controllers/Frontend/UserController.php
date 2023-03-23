@@ -154,6 +154,27 @@ class UserController extends Controller
         ]);
     }
 
+    public function onboarding(Request $request)
+    {
+        $data = $this->validate($request, [
+            'name' => 'required',
+            'linkedin' => '',
+            'bio' => '',
+            'type_investor' => '',
+            'stage' => '',
+            'ticket' => '',
+            'category' => '',
+            'countries' => '',
+            'categories' => '',
+        ]);
+
+        $user = User::find(Auth::id());
+        $user->onboarding = 1;
+        $user->fill($data)->save();
+
+        return redirect(route('home'));
+    }
+
     public function updateProfile(Request $request)
     {
         $data = $this->validate($request, [

@@ -20,7 +20,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'avatar', 'phone_number', 'facebook', 'instagram', 'status', 'is_admin', 'profile', 'ticket', 'stage', 'type_investor', 'bio', 'linkedin'];
+    protected $fillable = ['name', 'email', 'password', 'avatar', 'phone_number', 'facebook', 'instagram', 'status', 'is_admin', 'profile', 'ticket', 'stage', 'type_investor', 'bio', 'linkedin', 'categories', 'countries'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -41,6 +41,9 @@ class User extends Authenticatable
 
     const USER_DEFAULT = 0;
     const USER_ADMIN = 1;
+
+    const PROFILE_STARTUP = 1;
+    const PROFILE_INVESTOR = 2;
 
     public function isAdmin()
     {
@@ -81,7 +84,7 @@ class User extends Authenticatable
             'message' => ''
         ];
         $rules = [
-            'name' => ['required', 'string', 'max:255'],
+            //'name' => ['required', 'string', 'max:255'],
             'profile' => ['required', 'string', 'max:2'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],

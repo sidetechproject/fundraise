@@ -58,7 +58,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            //'name' => ['required', 'string', 'max:255'],
             'profile' => ['required', 'string', 'max:2'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -74,14 +74,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            //'name' => $data['name'],
             'email' => $data['email'],
             'profile' => $data['profile'],
-            'ticket' => $data['ticket'],
-            'stage' => $data['stage'],
-            'type_investor' => $data['type_investor'],
-            'bio' => $data['bio'],
-            'linkedin' => $data['linkedin'],
+            // 'ticket' => $data['ticket'],
+            // 'stage' => $data['stage'],
+            // 'type_investor' => $data['type_investor'],
+            // 'bio' => $data['bio'],
+            // 'linkedin' => $data['linkedin'],
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -95,7 +95,7 @@ class RegisterController extends Controller
             $this->guard()->login($user);
         }
 
-        //return $this->response->formatResponse($validator->code, $user, $validator->message);
+        // return $this->response->formatResponse($validator->code, null, $validator->message);
         return redirect()->to('/');
     }
 }

@@ -75,6 +75,8 @@ class Kernel extends HttpKernel
 
         // Check role admin
         'auth.admin' => \App\Http\Middleware\IsAdmin::class,
+
+        'onboarding' => \App\Http\Middleware\Onboarding::class,
     ];
 
     /**

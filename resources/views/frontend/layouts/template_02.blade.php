@@ -143,11 +143,13 @@
                                     </div><!-- .popup__menu -->
                                 </div><!-- .popup__content -->
                                 <div class="popup__button popup__box ">
-                                    @if(user() && user()->profile == 2)
+                                    @if(user())
                                         <a class="btn" href="{{route('page_search_listing')}}">
                                             <span>{{__('Search startup')}}</span>
                                         </a>
-                                    @else
+                                    @endif
+
+                                    @if(user())
                                         <a class="btn" href="{{route('place_addnew')}}">
                                             <span>{{__('Add place')}}</span>
                                         </a>
@@ -333,13 +335,17 @@
                                     <span>{{__('Search startup')}}</span>
                                 </a>
                             </div>
-                        @elseif(user() && user()->profile == 1)
+                        @endif
+                        
+                        @if(user())
                             <div class="right-header__button btn">
                                 <a title="Add startup" href="{{route('place_addnew')}}">
                                     <span>{{__('Add startup')}}</span>
                                 </a>
                             </div>
-                        @else
+                        @endif
+                        
+                        @if(!user())
                             <div class="right-header__button btn">
                                 <a title="Add startup" href="{{route('signup')}}">
                                     <span>{{__('Register')}}</span>
