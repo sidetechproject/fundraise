@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Spark\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Billable;
 
     protected $table = 'users';
 
@@ -33,7 +34,8 @@ class User extends Authenticatable
 
     protected $casts = [
         'is_admin' => 'integer',
-        'status' => 'integer'
+        'status' => 'integer',
+        'trial_ends_at' => 'datetime'
     ];
 
     const STATUS_DEACTIVE = 0;

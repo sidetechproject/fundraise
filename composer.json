@@ -29,7 +29,8 @@
         "stripe/stripe-php": "^7.94",
         "symfony/translation": "^6.1",
         "unisharp/laravel-filemanager": "^2.5.1",
-        "whichbrowser/parser": "^2.0"
+        "whichbrowser/parser": "^2.0",
+        "laravel/spark-stripe": "^4.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
@@ -79,6 +80,12 @@
             "@php artisan key:generate --ansi"
         ]
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://spark.laravel.com"
+        }
+    ],
     "extra": {
         "laravel": {
             "dont-discover": []
