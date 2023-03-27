@@ -24,9 +24,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/photoswipe/default-skin/default-skin.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/lity/lity.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/gijgo/css/gijgo.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}?v={{env('VERSION')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css')}}?v=0.01"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css')}}?v={{env('VERSION')}}"/>
 
     <meta name="csrf-token" content="{{csrf_token()}}"/>
     <script>
@@ -336,7 +336,7 @@
                                 </a>
                             </div>
                         @endif
-                        
+
                         @if(user())
                             <div class="right-header__button btn">
                                 <a title="Add startup" href="{{route('place_addnew')}}">
@@ -344,7 +344,7 @@
                                 </a>
                             </div>
                         @endif
-                        
+
                         @if(!user())
                             <div class="right-header__button btn">
                                 <a title="Add startup" href="{{route('signup')}}">
@@ -477,8 +477,8 @@
 <script src="{{asset('assets/libs/gijgo/js/gijgo.min.js')}}"></script>
 <script src="{{asset('assets/libs/chosen/chosen.jquery.min.js')}}"></script>
 <!-- orther script -->
-<script src="{{asset('assets/js/main_business.js?v=1.0')}}"></script>
-<script src="{{asset('assets/js/custom.js?v=1.0')}}"></script>
+<script src="{{asset('assets/js/main_business.js?v=1.0')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/js/custom.js?v=1.0')}}?v={{env('VERSION')}}"></script>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />

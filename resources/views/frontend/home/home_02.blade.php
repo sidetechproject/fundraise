@@ -256,6 +256,8 @@
                                         'Corporate Venture Capital' => '#EBB02D',
                                         'Venture Capital' => '#D864A9',
                                         'Fund of Funds' => '#62CDFF',
+                                        'Angel' => '#FFBF9B',
+                                        'Angel Syndicate' => '#B46060',
                                     ]
                                 @endphp
 

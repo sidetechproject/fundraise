@@ -177,31 +177,18 @@
                     <div class="field-group field-select mb-4">
                         <label for="type_investor">{{__('Type of investor')}}</label>
 
-
                         <select name="type_investor" class="custom-select" id="type_investor" required>
                             <option value="">{{__('Select')}}</option>
                             <option value="Private Equity">{{__("Private Equity")}}</option>
                             <option value="Venture Capital">{{__("Venture Capital")}}</option>
                             <option value="Corporate Venture Capital">{{__("Corporate Venture Capital")}}</option>
                             <option value="Family Office">{{__("Family Office")}}</option>
+                            <option value="Angel">{{__("Angel")}}</option>
+                            <option value="Angel Syndicate">{{__("Angel Syndicate")}}</option>
                             <option value="Fund of Funds">{{__("Fund of Funds")}}</option>
                         </select>
                     </div>
-                    @endif
-
-                    @if(auth()->user()->profile == \App\Models\User::PROFILE_INVESTOR)
-                    <div class="field-group field-select mb-4">
-                        <label for="stage">{{__('Stage')}}</label>
-
-                        <select name="stage" class="custom-select" id="stage" required>
-                            <option value="">{{__('Select')}}</option>
-                            <option value="Pre-seed">{{__("Pre-seed")}}</option>
-                            <option value="Seed">{{__("Seed")}}</option>
-                            <option value="Series A">{{__("Series A")}}</option>
-                            <option value="Series B+">{{__("Series B+")}}</option>
-                        </select>
-                    </div>
-                    @endif
+                   @endif
 
                    @if(auth()->user()->profile == \App\Models\User::PROFILE_INVESTOR)
                     <div class="field-group field-select mb-4">
@@ -209,10 +196,57 @@
 
                         <select name="ticket" class="custom-select" id="ticket" required>
                             <option value="">{{__('Select')}}</option>
-                            <option value="< USD 500K">{{__("< USD 500K")}}</option>
-                            <option value="USD 500K - 1M">{{__("USD 500K - 1M")}}</option>
-                            <option value="USD 1M - 5M">{{__("USD 1M - 5M")}}</option>
-                            <option value="USD 5M+">{{__("USD 5M+")}}</option>
+                            <option value="< $50K">{{__("< $50K")}}</option>
+                            <option value="< $100K">{{__("< $100K")}}</option>
+                            <option value="< $250K">{{__("< $250K")}}</option>
+                            <option value="< $500K">{{__("< $500K")}}</option>
+                            <option value="$500k+">{{__("$500k+")}}</option>
+                        </select>
+                    </div>
+                    @endif
+
+                    @if(auth()->user()->profile == \App\Models\User::PROFILE_INVESTOR)
+                    <div class="field-group field-select mb-4">
+                        <label for="valuation">{{__('Valuation (Post-Money)')}}</label>
+
+                        <select name="valuation" class="custom-select" id="valuation" required>
+                            <option value="" disabled>{{__('Select')}}</option>
+                            <option value="< $500K">{{__("< $500K")}}</option>
+                            <option value="$500K - 1M">{{__("$500K - 1M")}}</option>
+                            <option value="$1M - 5M">{{__("$1M - 5M")}}</option>
+                            <option value="$5M - 15M">{{__("$5M - 15M")}}</option>
+                            <option value="$15M+">{{__("$15M+")}}</option>
+                        </select>
+                    </div>
+                    @endif
+
+                    @if(auth()->user()->profile == \App\Models\User::PROFILE_INVESTOR)
+                    <div class="field-group field-select mb-4">
+                        <label for="mrr">{{__('MRR')}}</label>
+
+                        <select name="mrr" class="custom-select" id="mrr" required>
+                            <option value="">{{__('Select')}}</option>
+                            <option value="0">{{__("0")}}</option>
+                            <option value="< $5K">{{__("< $5K")}}</option>
+                            <option value="< $50K">{{__("< $50K")}}</option>
+                            <option value="< $100K">{{__("< $100K")}}</option>
+                            <option value="< $250K">{{__("< $250K")}}</option>
+                            <option value="< $500K">{{__("< $500K")}}</option>
+                            <option value="$500k+">{{__("$500k+")}}</option>
+                        </select>
+                    </div>
+                    @endif
+
+                    @if(auth()->user()->profile == \App\Models\User::PROFILE_INVESTOR)
+                    <div class="field-group field-select mb-4">
+                        <label for="stage">{{__('Stages')}}</label>
+
+                        <select name="stage" class="chosen-select custom-select" id="stage[]" required multiple data-placeholder="{{__('Select Stages')}}">
+                            <option value="" disabled>{{__('Select')}}</option>
+                            <option value="Pre-seed">{{__("Pre-seed")}}</option>
+                            <option value="Seed">{{__("Seed")}}</option>
+                            <option value="Series A">{{__("Series A")}}</option>
+                            <option value="Series B+">{{__("Series B+")}}</option>
                         </select>
                     </div>
                     @endif

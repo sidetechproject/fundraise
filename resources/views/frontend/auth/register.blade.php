@@ -8,30 +8,30 @@
 
     <title>Fundraise</title>
 
-  <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/jost/stylesheet.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/line-awesome.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/bootstrap/css/bootstrap.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/slick/slick-theme.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/slick/slick.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quilljs/css/quill.bubble.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quilljs/css/quill.core.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quilljs/css/quill.snow.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/chosen/chosen.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/photoswipe/photoswipe.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/photoswipe/default-skin/default-skin.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/lity/lity.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/gijgo/css/gijgo.min.css')}}"/>
+  <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/jost/stylesheet.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/line-awesome.min.css')}}?v={{env('VERSION')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/bootstrap/css/bootstrap.min.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/slick/slick-theme.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/slick/slick.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quilljs/css/quill.bubble.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quilljs/css/quill.core.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quilljs/css/quill.snow.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/chosen/chosen.min.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/photoswipe/photoswipe.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/photoswipe/default-skin/default-skin.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/lity/lity.min.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/gijgo/css/gijgo.min.css')}}?v={{env('VERSION')}}"/>
 
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}?v={{env('VERSION')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css')}}?v={{env('VERSION')}}"/>
 
 
-    <link href="{{asset('admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('admin/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('admin/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
-    <link href="{{asset('admin/build/css/custom.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}?v={{env('VERSION')}}" rel="stylesheet">
+    <link href="{{asset('admin/vendors/font-awesome/css/font-awesome.min.css')}}?v={{env('VERSION')}}" rel="stylesheet">
+    <link href="{{asset('admin/vendors/nprogress/nprogress.css')}}?v={{env('VERSION')}}" rel="stylesheet">
+    <link href="{{asset('admin/build/css/custom.min.css')}}?v={{env('VERSION')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/custom.css')}}?v={{env('VERSION')}}" rel="stylesheet">
     <script>
         var app_url = window.location.origin;
     </script>
@@ -178,24 +178,24 @@
     </div>
 </div>
 
-<script src="{{asset('assets/libs/jquery-1.12.4.js')}}"></script>
-<script src="{{asset('assets/libs/popper/popper.js')}}"></script>
-<script src="{{asset('assets/libs/bootstrap/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('assets/libs/slick/slick.min.js')}}"></script>
-<script src="{{asset('assets/libs/slick/jquery.zoom.min.js')}}"></script>
-<script src="{{asset('assets/libs/isotope/isotope.pkgd.min.js')}}"></script>
-<script src="{{asset('assets/libs/photoswipe/photoswipe.min.js')}}"></script>
-<script src="{{asset('assets/libs/photoswipe/photoswipe-ui-default.min.js')}}"></script>
-<script src="{{asset('assets/libs/lity/lity.min.js')}}"></script>
-<script src="{{asset('assets/libs/quilljs/js/quill.core.js')}}"></script>
-<script src="{{asset('assets/libs/quilljs/js/quill.js')}}"></script>
-<script src="{{asset('assets/libs/gijgo/js/gijgo.min.js')}}"></script>
-<script src="{{asset('assets/libs/chosen/chosen.jquery.min.js')}}"></script>
-<script src="{{asset('assets/js/main.js?v=1.4')}}"></script>
+<script src="{{asset('assets/libs/jquery-1.12.4.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/popper/popper.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/bootstrap/js/bootstrap.min.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/slick/slick.min.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/slick/jquery.zoom.min.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/isotope/isotope.pkgd.min.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/photoswipe/photoswipe.min.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/photoswipe/photoswipe-ui-default.min.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/lity/lity.min.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/quilljs/js/quill.core.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/quilljs/js/quill.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/gijgo/js/gijgo.min.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/libs/chosen/chosen.jquery.min.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('assets/js/main.js?v=1.4')}}?v={{env('VERSION')}}"></script>
 
 
-<script src="{{asset('/admin/vendors/jquery/dist/jquery.min.js')}}"></script>
-<script src="{{asset('/admin/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('/admin/vendors/jquery/dist/jquery.min.js')}}?v={{env('VERSION')}}"></script>
+<script src="{{asset('/admin/vendors/bootstrap/dist/js/bootstrap.min.js')}}?v={{env('VERSION')}}"></script>
 <script>
     $('#submit_register').submit(function (event) {
         event.preventDefault();

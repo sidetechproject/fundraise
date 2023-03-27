@@ -166,6 +166,8 @@ class UserController extends Controller
             'category' => '',
             'countries' => '',
             'categories' => '',
+            'valuation' => '',
+            'mrr' => '',
         ]);
 
         $user = User::find(Auth::id());
