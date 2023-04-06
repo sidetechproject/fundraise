@@ -311,9 +311,9 @@
 
                                         @if(isUserInvestor())
                                             <li class="{{isActiveMenu('user_wishlist')}}"><a href="{{route('user_wishlist')}}">{{__('My Startups')}}</a></li>
-                                        @endif
 
-                                        <li class="{{isActiveMenu('user_my_place')}}"><a href="{{ '/billing' }}">{{__('Billing')}}</a></li>
+                                            <li class="{{isActiveMenu('user_my_place')}}"><a href="{{ '/billing' }}">{{__('Billing')}}</a></li>
+                                        @endif
 
                                         {{-- <li class="{{isActiveMenu('user_wishlist')}}"><a href="{{route('user_wishlist')}}">{{__('Wishlist')}}</a></li> --}}
                                         <li>
