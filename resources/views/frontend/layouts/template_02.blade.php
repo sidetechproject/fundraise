@@ -28,6 +28,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css')}}?v={{env('VERSION')}}"/>
 
+    @stack('styles')
+
     <meta name="csrf-token" content="{{csrf_token()}}"/>
     <script>
         var app_url = window.location.origin;
@@ -69,15 +71,9 @@
                                                 <ul>
                                                     <li class="{{isActiveMenu('user_profile')}}"><a href="{{route('user_profile')}}">{{__('Profile')}}</a></li>
 
-                                                    @if(Auth::user()->profile == 2)
+                                                    @if(isUserInvestor())
                                                         <li class="{{isActiveMenu('user_wishlist')}}">
                                                             <a href="{{route('user_wishlist')}}">
-                                                                {{__('My Startups')}}
-                                                            </a>
-                                                        </li>
-                                                    @else
-                                                        <li class="{{isActiveMenu('user_my_place')}}">
-                                                            <a href="{{route('user_my_place')}}">
                                                                 {{__('My Startups')}}
                                                             </a>
                                                         </li>
@@ -313,7 +309,9 @@
 
                                         <li class="{{isActiveMenu('user_profile')}}"><a href="{{route('user_profile')}}">{{__('Profile')}}</a></li>
 
-                                        <li class="{{isActiveMenu('user_my_place')}}"><a href="{{route('user_my_place')}}">{{__('My Startups')}}</a></li>
+                                        @if(isUserInvestor())
+                                            <li class="{{isActiveMenu('user_wishlist')}}"><a href="{{route('user_wishlist')}}">{{__('My Startups')}}</a></li>
+                                        @endif
 
                                         {{-- <li class="{{isActiveMenu('user_my_place')}}"><a href="{{ '/billing' }}">{{__('Billing')}}</a></li> --}}
 

@@ -5,16 +5,10 @@
         </a>
     </li>
 
-    @if(user()->profile == 2)
-    <li class="{{isActiveMenu('user_wishlist')}}">
-        <a href="{{route('user_wishlist')}}">
-            {{__('My Startups')}}
-        </a>
-    </li>
-    @else
-        <li class="{{isActiveMenu('user_my_place')}}">
-            <a href="{{route('user_my_place')}}">
-                {{__('Startups')}}
+    @if(isUserInvestor())
+        <li class="{{isActiveMenu('user_wishlist')}}">
+            <a href="{{route('user_wishlist')}}">
+                {{__('My Startups')}}
             </a>
         </li>
     @endif

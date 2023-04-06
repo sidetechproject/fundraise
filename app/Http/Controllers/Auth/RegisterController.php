@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Str;
+use Redirect;
+use App\Commons\Message;
 
 class RegisterController extends Controller
 {
@@ -90,12 +92,18 @@ class RegisterController extends Controller
     {
         $validator = $this->user->validateRegister($request);
 
+        $user = null;
         if ($validator->code == APICode::SUCCESS) {
             $user = $this->user->create($request);
             $this->guard()->login($user);
+            //return $this->response->formatResponse($validator->code, $user, $validator->message);
+            return redirect()->route('onboarding');
         }
 
-        // return $this->response->formatResponse($validator->code, null, $validator->message);
-        return redirect()->to('/');
+        $messageObj = new Message();
+
+        return Redirect::back()->withErrors([
+            "message" => (!$validator->message) ? $messageObj->getMessage($validator->code) : (Message::genErrorMessage($validator->message)),
+        ]);
     }
 }

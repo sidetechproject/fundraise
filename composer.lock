@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9cdad675a3d89cd9b9fed3923bd38511",
+    "content-hash": "93877c6c9b44ccc049b118c1238c4a4b",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -5587,16 +5587,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.128.0",
+            "version": "v10.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "c704949c49b72985c76cc61063aa26fefbd2724e"
+                "reference": "ef2b761e4c69de59892c95d0453e2caa25162faf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/c704949c49b72985c76cc61063aa26fefbd2724e",
-                "reference": "c704949c49b72985c76cc61063aa26fefbd2724e",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/ef2b761e4c69de59892c95d0453e2caa25162faf",
+                "reference": "ef2b761e4c69de59892c95d0453e2caa25162faf",
                 "shasum": ""
             },
             "require": {
@@ -5607,6 +5607,7 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "3.5.0",
+                "php-coveralls/php-coveralls": "^2.5",
                 "phpstan/phpstan": "^1.2",
                 "phpunit/phpunit": "^5.7 || ^9.0",
                 "squizlabs/php_codesniffer": "^3.3"
@@ -5641,9 +5642,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v7.128.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v10.12.0"
             },
-            "time": "2022-05-05T17:18:02+00:00"
+            "time": "2023-03-30T20:27:06+00:00"
         },
         {
             "name": "symfony/console",

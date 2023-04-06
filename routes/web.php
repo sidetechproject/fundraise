@@ -17,6 +17,9 @@ $router->group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
+$router->get('/startup/profile/{id}', 'App\Http\Controllers\Frontend\PlaceController@publicProfile')->name('startup_public_profile');
+//$router->get('/startup/{id}', 'App\Http\Controllers\Frontend\PlaceController@detail')->name('place_detail');
+
 /**
  * Frontend Router
  */
@@ -49,7 +52,7 @@ $router->group([
     $router->get('/city/{slug}', 'CityController@detail')->name('city_detail');
     $router->get('/city/{slug}/{cat_slug}', 'CityController@detail')->name('city_category_detail');
 
-    $router->get('/startup/{slug}', 'PlaceController@detail')->name('place_detail');
+    $router->get('/startup/{id}', 'PlaceController@detail')->name('place_detail');
     $router->get('/new-startup', 'PlaceController@pageAddNew')->name('place_addnew');
     $router->get('/edit-startup/{id}', 'PlaceController@pageAddNew')->name('place_edit')->middleware('auth');
     $router->post('/startup', 'PlaceController@create')->name('place_create')->middleware('auth');
@@ -89,6 +92,8 @@ $router->group([
     $router->get('/category/{slug}', 'CategoryController@listPlace')->name('category_list');
     $router->get('/categories', 'CategoryController@search')->name('category_search');
 
+    $router->post('/invite', 'HomeController@sendInvite')->name('send_invite');
+    $router->get('/connect', 'PlaceController@connect')->name('connect_stripe');
 });
 
 /*

@@ -20,17 +20,17 @@
         "guzzlehttp/guzzle": "^7.4",
         "laravel/framework": "^9.2",
         "laravel/socialite": "^5.5.5",
+        "laravel/spark-stripe": "^4.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "league/csv": "^9.6",
         "protonemedia/laravel-verify-new-email": "^1.2",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "staudenmeir/eloquent-json-relations": "^1.6.3",
-        "stripe/stripe-php": "^7.94",
+        "stripe/stripe-php": "^10.12",
         "symfony/translation": "^6.1",
         "unisharp/laravel-filemanager": "^2.5.1",
-        "whichbrowser/parser": "^2.0",
-        "laravel/spark-stripe": "^4.0"
+        "whichbrowser/parser": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

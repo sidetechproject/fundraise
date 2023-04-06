@@ -93,6 +93,16 @@ class Place extends Model  implements TranslatableContract
         return $this->hasMany(Review::class, 'place_id', 'id');
     }
 
+    public function intros()
+    {
+        return $this->hasMany(Booking::class, 'place_id', 'id');
+    }
+
+    public function invites()
+    {
+        return $this->hasMany(Invite::class, 'startup_id', 'id');
+    }
+
     public function avgReview()
     {
         return $this->reviews()

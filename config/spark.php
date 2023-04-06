@@ -139,7 +139,7 @@ return [
 
             'plans' => [
                 [
-                    'name' => 'For Investors',
+                    'name' => 'Investors',
                     'short_description' => 'Start using the venture fundraising platform for free',
                     'monthly_id' => 'price_1MqN3wFE55P0ACRpgmandUMe',
                     'yearly_id' => 'price_1MqN4uFE55P0ACRphy04IXXf',
@@ -148,20 +148,6 @@ return [
                         'Deal Flow Sourcing',
                         'Ventures Scouting',
                         'Coinvestor Network',
-                        'Due Diligence',
-                        'Standard Contract',
-                    ],
-                ],
-                [
-                    'name' => 'For Startups',
-                    'short_description' => 'Start using the venture fundraising platform for free',
-                    'monthly_id' => 'price_1MqN3wFE55P0ACRpgmandUMe',
-                    'yearly_id' => 'price_1MqN4uFE55P0ACRphy04IXXf',
-                    'features' => [
-                        'Pitch Deck Listing',
-                        'Fundraising Data',
-                        'Traction Metrics',
-                        'Investor Network',
                         'Due Diligence',
                         'Standard Contract',
                     ],

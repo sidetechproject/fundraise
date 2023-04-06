@@ -4,6 +4,8 @@
         <div class="site-banner" style="height: 120px !important;">
             <div class="container ">
                 <div class="site-banner__content">
+
+
                     {{-- <h1 class="site-banner__title">
                         {{__('Fundraising made easy')}}
                     </h1>
@@ -13,7 +15,7 @@
                     </p> --}}
 
                     {{-- <p>
-                        <i>{{$city_count}}</i> {{__('cities')}}, <i>{{$category_count}}</i> {{__('categories')}}, <i>{{$place_count}}</i> {{__('places')}}.
+                        <i>{{$city_count}}</i> {{__('cities')}}, <i>{{$category_count}}</i> {{__('categories')}}, <i>{{$startup_count}}</i> {{__('places')}}.
                     </p> --}}
 
                     {{-- <form action="{{route('page_search_listing')}}" class="site-banner__search layout-02">
@@ -50,8 +52,8 @@
         <div class="place">
             <div class="slick-sliders">
                 <div class="slick-slider photoswipe hidden" data-item="1" data-arrows="false" data-itemScroll="1" data-dots="false" data-infinite="false" data-centerMode="false" data-centerPadding="0">
-                    @if(isset($place->gallery))
-                        @foreach($place->gallery as $gallery)
+                    @if(isset($startup->gallery))
+                        @foreach($startup->gallery as $gallery)
                             <div class="place-slider__item photoswipe-item">
                                 <a href="{{getImageUrl($gallery)}}" data-height="900" data-width="1200" data-caption="{{$gallery}}">
                                     <img src="{{getImageUrl($gallery)}}" alt="{{$gallery}}">
@@ -64,7 +66,7 @@
                 </div>
 
                 {{-- <div class="place-share">
-                    <a title="Save" href="#" class="add-wishlist @if($place->wish_list_count) remove_wishlist active @else @guest open-login @else add_wishlist @endguest @endif" data-id="{{$place->id}}">
+                    <a title="Save" href="#" class="add-wishlist @if($startup->wish_list_count) remove_wishlist active @else @guest open-login @else add_wishlist @endguest @endif" data-id="{{$startup->id}}">
                         <i class="la la-bookmark la-24"></i>
                     </a>
                     <a title="Share" href="#" class="share">
@@ -141,16 +143,22 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mt-4">
-                        <a href="{{ route('page_search_listing') }}" class="text-dark text-black">
-                            <i class="las la-arrow-left ml-2 la-20"></i> Back to all Startups
-                        </a>
+                        @if(isStartupFromCurrentUser($startup))
+                            <a href="{{ route('home') }}" class="text-dark text-black">
+                                <i class="las la-arrow-left ml-2 la-20"></i> Back
+                            </a>
+                        @else
+                            <a href="{{ route('page_search_listing') }}" class="text-dark text-black">
+                                <i class="las la-arrow-left ml-2 la-20"></i> Back to all Startups
+                            </a>
+                        @endif
 
                         <div class="place__left">
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="place-thumb">
-                                        @if($place->thumb && isActiveInvestor())
-                                            <img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}" class="logo">
+                                        @if($startup->thumb && hasAccessToSeeStartup($startup))
+                                            <img src="{{getImageUrl($startup->thumb)}}" alt="{{$startup->name}}" class="logo">
                                         @else
                                             <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo" class="logo">
                                         @endif
@@ -165,10 +173,10 @@
                                     </ul><!-- .place__breadcrumbs -->
                                     <div class="place__box place__box--npd">
                                         <h1>
-                                            @if(isActiveInvestor())
-                                                {{ $place->name }}
+                                            @if(hasAccessToSeeStartup($startup))
+                                                {{ $startup->name }}
                                             @else
-                                                {{$place['categories'][0]['name']}} raising {{ $place->stage }}
+                                                {{$startup['categories'][0]['name']}} raising {{ $startup->stage }}
                                             @endif
                                         </h1>
 
@@ -182,7 +190,7 @@
                                             </div>
 
                                             <div class="address">
-                                                Foundation at {{$place->foundation}}
+                                                Foundation at {{$startup->foundation}}
                                             </div>
 
                                             <div class="address">
@@ -192,9 +200,9 @@
                                         </div><!-- .place__meta -->
 
                                         <div class="place-gallery text-left">
-                                            @if($place->website)
-                                                @if(isActiveInvestor())
-                                                    <a href="{{$place->website}}" target="_blank" rel="nofollow" class="lity-btn">
+                                            @if($startup->website)
+                                                @if(hasAccessToSeeStartup($startup))
+                                                    <a href="{{$startup->website}}" target="_blank" rel="nofollow" class="lity-btn">
                                                         Visit Website <i class="las la-external-link-alt ml-2 la-20"></i>
                                                     </a>
                                                 @else
@@ -203,9 +211,9 @@
                                                     </a>
                                                 @endif
                                             @endif
-                                            @if($place->deck)
-                                                @if(isActiveInvestor())
-                                                    <a href="{{$place->deck}}" target="_blank" rel="nofollow" class="lity-btn">
+                                            @if($startup->deck)
+                                                @if(hasAccessToSeeStartup($startup))
+                                                    <a href="{{$startup->deck}}" target="_blank" rel="nofollow" class="lity-btn">
                                                         View Deck <i class="las la-external-link-alt ml-2 la-20"></i>
                                                     </a>
                                                 @else
@@ -214,9 +222,9 @@
                                                     </a>
                                                 @endif
                                             @endif
-                                            @if($place->video)
-                                                @if(isActiveInvestor())
-                                                    <a title="Video" href="{{$place->video}}" data-lity class="lity-btn">
+                                            @if($startup->video)
+                                                @if(hasAccessToSeeStartup($startup))
+                                                    <a title="Video" href="{{$startup->video}}" data-lity class="lity-btn">
                                                         <i class="la la-youtube la-24"></i>
                                                         {{__('Video')}}
                                                     </a>
@@ -232,11 +240,13 @@
                             </div>
 
                             <div class="place__box place__box-overview">
+
                                 <h3>{{__('Overview')}}</h3>
-                                @if(isActiveInvestor())
+
+                                @if(hasAccessToSeeStartup($startup))
                                     <div class="place__desc open">
                                         @php
-                                            echo $place->description;
+                                            echo $startup->description;
                                         @endphp
                                     </div>
                                 @else
@@ -246,7 +256,7 @@
                                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita placeat magni deserunt minima, sint ullam dolore non quo aliquam quibusdam excepturi provident fuga impedit culpa cumque odit soluta in laudantium.
                                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita placeat magni deserunt minima, sint ullam dolore non quo aliquam quibusdam excepturi provident fuga impedit culpa cumque odit soluta in laudantium.
                                         </span>
-                                        <span class="small">{!! isActiveInvestor() ? $opening['value'] : '<a href="/billing"><i class="las la-lock la-20"></i> Upgrade to unlock</a>' !!}</span>
+                                        <span class="small">{!! hasAccessToSeeStartup($startup) ? $opening['value'] : '<a href="/billing" class="text-dark"><i class="las la-lock la-20"></i> Upgrade to unlock</a>' !!}</span>
                                     </div>
                                 @endif
                                 {{-- <a href="#" class="show-more" title="{{__('Show more')}}">{{__('Show more')}}</a> --}}
@@ -258,12 +268,12 @@
                                 <div class="account">
                                     <img src="{{getUserAvatar($founder->avatar)}}" alt="Founder">
                                     <span>
-                                        {{ isActiveInvestor() ? $founder->name : substr($founder->name, 0, 3) . '...' }}
+                                        {{ hasAccessToSeeStartup($startup) ? $founder->name : substr($founder->name, 0, 3) . '...' }}
                                     </span>
                                 </div>
 
                                 <div class="place__desc open mt-3">
-                                    @if(isActiveInvestor())
+                                    @if(hasAccessToSeeStartup($startup))
                                         <a href="@php echo $founder->linkedin; @endphp" style="border-bottom: solid 1px #66e3c4;color: #000000;" target="_blank">
                                             @php echo $founder->linkedin; @endphp
                                         </a>
@@ -298,14 +308,14 @@
                                     {{__('Deck')}}
                                 </h3>
 
-                                <iframe src="{{$place->deck}}" width="100%" height="480px" allowfullscreen="" style="border: 0px;"></iframe>
+                                <iframe src="{{$startup->deck}}" width="100%" height="480px" allowfullscreen="" style="border: 0px;"></iframe>
                             </div> --}}
                             <!-- .place__box -->
 
                             @php
                             $have_opening_hour = false;
-                            if($place->opening_hour){
-                                foreach ($place->opening_hour as $opening):
+                            if($startup->opening_hour){
+                                foreach ($startup->opening_hour as $opening):
                                     if ($opening['title'] && $opening['value']):
                                     $have_opening_hour = true;
                                     endif;
@@ -319,12 +329,12 @@
                                     </h3>
                                     <table class="open-table">
                                         <tbody>
-                                        @foreach($place->opening_hour as $opening)
+                                        @foreach($startup->opening_hour as $opening)
                                             @if($opening['title'] && $opening['value'])
                                                 <tr>
                                                     <td class="day">{{$opening['title']}}</td>
                                                     <td class="time">
-                                                        {!! isActiveInvestor() ? $opening['value'] : '<a href="/billing"><i class="las la-lock la-20"></i> Upgrade to unlock</a>' !!}
+                                                        {!! hasAccessToSeeStartup($startup) ? $opening['value'] : '<a href="/billing"><i class="las la-lock la-20"></i> Upgrade to unlock</a>' !!}
                                                     </td>
                                                 </tr>
                                             @endif
@@ -450,7 +460,7 @@
                                             <div class="field-submit">
                                                 <small class="form-text text-danger" id="review_error">error!</small>
                                                 <input type="hidden" name="score" value="">
-                                                <input type="hidden" name="place_id" value="{{$place->id}}">
+                                                <input type="hidden" name="place_id" value="{{$startup->id}}">
                                                 <button type="submit" class="btn" id="btn_submit_review">{{__('Submit')}}</button>
                                             </div>
                                         </form>
@@ -465,7 +475,7 @@
                         <div class="sidebar sidebar--shop sidebar--border">
                             <div class="widget-reservation-mini">
                                 <h3>
-                                    {{$place->name}}
+                                    {{$startup->name}}
                                 </h3>
                                 <a href="#" class="open-wg btn">{{__('View More')}}</a>
                             </div>
@@ -494,19 +504,19 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="day">Stage</td>
-                                                    <td class="time">{{ $place->stage }}</td>
+                                                    <td class="time">{{ $startup->stage }}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td class="day">Investment Type</td>
-                                                    <td class="time">{{ $place->terms }}</td>
+                                                    <td class="time">{{ $startup->terms }}</td>
                                                 </tr>
 
                                                 <tr>
                                                     <td class="day">Raising</td>
                                                     <td class="time">
                                                         @php
-                                                        $raising = preg_replace('/\D/', '', $place->raising);
+                                                        $raising = preg_replace('/\D/', '', $startup->raising);
                                                         @endphp
                                                         ${{ number_format($raising, 0, '.', '.') }}
                                                     </td>
@@ -516,7 +526,7 @@
                                                     <td class="day">Valuation</td>
                                                     <td class="time">
                                                         @php
-                                                        $valuation = preg_replace('/\D/', '', $place->valuation);
+                                                        $valuation = preg_replace('/\D/', '', $startup->valuation);
                                                         @endphp
                                                         ${{ number_format($valuation, 0, '.', '.') }}
                                                     </td>
@@ -526,35 +536,35 @@
                                         </table>
 
                                         <ul class="place__contact mt-3">
-                                            {{-- @if($place->phone_number)
+                                            {{-- @if($startup->phone_number)
                                                 <li>
-                                                    <a href="tel:{{$place->phone_number}}" rel="nofollow">{{$place->phone_number}}</a>
+                                                    <a href="tel:{{$startup->phone_number}}" rel="nofollow">{{$startup->phone_number}}</a>
                                                 </li>
                                             @endif
 
-                                            @if($place->email)
+                                            @if($startup->email)
                                                 <li>
-                                                    <a href="mailto:{{$place->email}}" rel="nofollow">{{$place->email}}</a>
+                                                    <a href="mailto:{{$startup->email}}" rel="nofollow">{{$startup->email}}</a>
                                                 </li>
                                             @endif --}}
 
-                                            {{-- @if($place->website)
+                                            {{-- @if($startup->website)
                                                 <li>
-                                                    <a href="//{{$place->website}}" target="_blank" rel="nofollow">
-                                                        {{ $place->website }}
+                                                    <a href="//{{$startup->website}}" target="_blank" rel="nofollow">
+                                                        {{ $startup->website }}
                                                     </a>
                                                 </li>
                                             @endif --}}
 
                                             <li class="note">
-                                                Applied at {{ $place->created_at->timezone('America/Sao_Paulo')->toFormattedDateString() }}
+                                                Applied at {{ $startup->created_at->timezone('America/Sao_Paulo')->toFormattedDateString() }}
                                             </li>
                                         </ul>
                                     </div><!-- .place__box -->
 
-                                    {{-- @if($place->social && isset($place->social[0]) && !empty($place->social[0]['name']))
+                                    {{-- @if($startup->social && isset($startup->social[0]) && !empty($startup->social[0]['name']))
                                         <div class="mb-3 mt-3 contact-icons">
-                                            @foreach($place->social as $social)
+                                            @foreach($startup->social as $social)
                                                 @if($social['name'] && $social['url'])
                                                     <a href="{{SOCIAL_LIST[$social['name']]['base_url'] . $social['url']}}" title="{{$social['url']}}" rel="nofollow" target="_blank">
                                                         <i class="{{SOCIAL_LIST[$social['name']]['icon']}}"></i>
@@ -568,10 +578,10 @@
                                 <aside class="widget widget-shadow">
                                     <h4 class="m-0 mb-2">
                                         <img src="https://uploads-ssl.webflow.com/61fe68941d6778510afa422e/61fe68951d67789b31fa42a0_icon-status-good.svg" alt="" width="20px">
-                                        VERIFIED {!! $place->verified ? '<span class="badge badge-verified ml-2">Verified by fundraise.vc</span>' : '' !!}
+                                        VERIFIED {!! $startup->verified ? '<span class="badge badge-verified ml-2">Verified by fundraise.vc</span>' : '' !!}
                                     </h4>
 
-                                    @if($place->verified)
+                                    @if($startup->verified)
                                         This profile is managed by the founder of the startup and the information has been verified by our team.
                                     @else
                                         This profile is managed by the startup founder.
@@ -580,7 +590,7 @@
 
                                 {{-- <aside class="sidebar--shop__item widget widget--ads">
                                     <div class="place-gallery">
-                                        @if(isset($place->gallery))
+                                        @if(isset($startup->gallery))
                                             <a class="show-gallery" title="Gallery" href="#">
                                                 <i class="la la-images la-24"></i>
                                                 {{__('Gallery')}}
@@ -590,7 +600,8 @@
                                 </aside> --}}
 
                                 <aside class="widget widget-shadow">
-                                    <h3>{{__('I want to invest')}}</h3>
+                                    {{-- <h3>{{__('I want to invest')}}</h3> --}}
+                                    <h3>{{__('Intro')}}</h3>
                                     <form class="form-underline" id="booking_submit_form" action="" method="post">
                                         @csrf
                                         <div class="field-input">
@@ -630,10 +641,10 @@
 
                                         <input type="hidden" name="type" value="{{\App\Models\Booking::TYPE_CONTACT_FORM}}">
 
-                                        <input type="hidden" name="place_id" value="{{$place->id}}">
+                                        <input type="hidden" name="place_id" value="{{$startup->id}}">
 
-                                        @if(isActiveInvestor())
-                                            <button class="btn booking_submit_btn">{{__('Send')}}</button>
+                                        @if(hasAccessToSeeStartup($startup))
+                                            <button class="btn booking_submit_btn">{{__('Send Intro')}}</button>
                                         @else
                                             <a href="/billing" class="btn booking_submit_btn">
                                                 <i class="las la-lock la-20"></i> {{ __('Upgrade to unlock') }}
@@ -672,7 +683,7 @@
                                     @csrf
 
                                     <input type="hidden" name="type" value="{{\App\Models\Booking::TYPE_BOOKING_FORM}}">
-                                    <input type="hidden" name="place_id" value="{{$place->id}}">
+                                    <input type="hidden" name="place_id" value="{{$startup->id}}">
                                     @guest()
                                         <button class="btn btn-login open-login">{{__('Submit')}}</button>
                                     @else
@@ -719,7 +730,7 @@
                 <h2 class="similar-places__title title">{{__('Similar places')}}</h2>
                 <div class="similar-places__content">
                     <div class="row">
-                        @foreach($similar_places as $place)
+                        @foreach($similar_places as $startup)
                             <div class="col-lg-3 col-md-6">
                                 @include('frontend.common.place_item')
                             </div>
@@ -730,6 +741,10 @@
         </div> --}}
         <!-- .similar-places -->
     </main><!-- .site-main -->
+
+    @guest
+        @include('frontend.startup.block')
+    @endguest
 @stop
 
 @push('scripts')
@@ -739,4 +754,9 @@
     @else
         <script src="{{asset('assets/js/page_place_detail_mapbox.js')}}"></script>
     @endif
+
+    <script>
+        $('#modal_block').modal({backdrop: 'static', keyboard: false})
+    </script>
 @endpush
+

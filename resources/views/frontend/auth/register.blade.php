@@ -118,7 +118,12 @@
                         Create a new Fundraise account or <a href="{{ route('signin') }}" class="border-bottom-none">click here</a>  to log in if you already have one.
                     </h6>
 
-                     <small class="form-text text-danger golo-d-none" id="login_error">error!</small>
+                    @if($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            {{ $errors->first() }}
+                        </div>
+                    @endif
 
                     <div class="container parent">
                         <div class="row">

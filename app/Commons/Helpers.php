@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Request;
 use Carbon\Carbon;
 
+use function PHPUnit\Framework\assertFalse;
+
 /*
  * Const general
  */
@@ -104,6 +106,11 @@ const METRICS = [
 ];
 
 const SOCIAL_LIST = [
+    'Linkedin' => [
+        'icon' => 'la la-linkedin-f',
+        'name' => 'Linkedin',
+        'base_url' => 'https://www.linkedin.com/'
+    ],
     'Facebook' => [
         'icon' => 'la la-facebook-f',
         'name' => 'Facebook',
@@ -139,7 +146,7 @@ const SOCIAL_LIST = [
 const STATUS = [
     0 => "Deactive",
     1 => "Active",
-    2 => "Pending",
+    2 => "Pending Approval",
     4 => "Deleted",
 ];
 
@@ -328,3 +335,66 @@ function getYoutubeId($url)
     parse_str(parse_url($url, PHP_URL_QUERY), $my_array_of_vars);
     return $my_array_of_vars ? $my_array_of_vars['v'] : '';
 }
+
+function getUserPaymentUrl()
+{
+    $user = \Illuminate\Support\Facades\Auth::user();
+
+    if( $user->profile == 2 ){
+        return env('URL_PLAN_INVESTOR');
+    }
+
+    return env('URL_PLAN_STARTUP');
+}
+
+function isActiveInvestor()
+{
+    $user = \Illuminate\Support\Facades\Auth::user();
+
+    if( $user->profile == 2 && $user->subscribed() ){
+        return true;
+    }
+
+    return false;
+}
+
+function isUserInvestor()
+{
+    $user = \Illuminate\Support\Facades\Auth::user();
+
+    if( $user->profile == 2 ){
+        return true;
+    }
+
+    return false;
+}
+
+function hasAccessToSeeStartup($startup)
+{
+    $user = \Illuminate\Support\Facades\Auth::user();
+
+    $hasInviteToSeeStartup = \App\Models\Invite::where([
+        'invited_email' => $user->email,
+        'startup_id' => $startup->id
+    ])->count();
+
+    if($user){
+        if( ($user->profile == 2 && $user->subscribed()) || $startup->user_id == $user->id || $startup->featured || $hasInviteToSeeStartup){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function isStartupFromCurrentUser($startup)
+{
+    $user = \Illuminate\Support\Facades\Auth::user();
+
+    if( $user && $user->id == $startup->user_id ){
+        return true;
+    }
+
+    return false;
+}
+

@@ -26,6 +26,13 @@
 
                     <h1 class="text-center">Login</h1>
 
+                    @if($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            {{ $errors->first() }}
+                        </div>
+                    @endif
+
                     <div class="field-input">
                         <label>Email</label>
                         <input type="text" id="email" name="email" placeholder="me@company.com" class="form-control" required>

@@ -201,15 +201,9 @@
                                         @endif
                                         <li class="{{isActiveMenu('user_profile')}}"><a href="{{route('user_profile')}}">{{__('Profile')}}</a></li>
 
-                                        @if(Auth::user()->profile == 2)
+                                        @if(isUserInvestor())
                                             <li class="{{isActiveMenu('user_wishlist')}}">
                                                 <a href="{{route('user_wishlist')}}">
-                                                    {{__('My Startups')}}
-                                                </a>
-                                            </li>
-                                        @else
-                                            <li class="{{isActiveMenu('user_my_place')}}">
-                                                <a href="{{route('user_my_place')}}">
                                                     {{__('My Startups')}}
                                                 </a>
                                             </li>

@@ -15,8 +15,15 @@ class CheckPermissions
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {        
-        if($request->getRequestUri() != '/register' && !isRoute('home') && !isRoute('login') && !isRoute('signup') && !isRoute('signin') && $request->route()->uri != 'login' && !auth()->user()){
+    {
+        if($request->getRequestUri() != '/register'
+            && !isRoute('home') && !isRoute('login')
+            && !isRoute('signup')
+            && !isRoute('signin')
+            && $request->route()->uri != 'login'
+            && !auth()->user()
+            && !isRoute('startup_public_profile')
+        ){
             return redirect(route('signup'))->with('success', 'Update startup success!');
         }
 

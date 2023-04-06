@@ -174,7 +174,12 @@ class UserController extends Controller
         $user->onboarding = 1;
         $user->fill($data)->save();
 
-        return redirect(route('home'));
+        $route = 'home';
+        if($user->profile == 1){
+            $route = 'place_addnew';
+        }
+
+        return redirect(route($route));
     }
 
     public function updateProfile(Request $request)

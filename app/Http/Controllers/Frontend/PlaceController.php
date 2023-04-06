@@ -37,9 +37,9 @@ class PlaceController extends Controller
         $this->response = $response;
     }
 
-    public function detail($slug)
+    public function detail($id)
     {
-        $place = $this->place->getBySlug($slug);
+        $place = $this->place->find($id);
 
         if (!$place) abort(404);
 
@@ -108,10 +108,72 @@ class PlaceController extends Controller
         $description = $place->seo_description ? $place->seo_description : Str::limit($place->description, 165);
         SEOMeta($title, $description, getImageUrl($place->thumb));
 
-        $template = setting('template', '01');
+        return view("frontend.startup.detail", [
+            'startup' => $place,
+            'country' => $country,
+            'founder' => $founder,
+            'amenities' => $amenities,
+            'categories' => $categories,
+            'place_types' => $place_types,
+            'reviews' => $reviews,
+            'review_score_avg' => $review_score_avg,
+            'similar_places' => $similar_places
+        ]);
+    }
 
-        return view("frontend.place.place_detail_{$template}", [
-            'place' => $place,
+    public function publicProfile($id)
+    {
+        $place = $this->place->getBySlug($id);
+
+        if (!$place) abort(404);
+
+        $founder = User::find($place->user_id);
+
+        $country = Country::query()
+            ->where('id', $place->country_id)
+            ->first();
+
+        $amenities = Amenities::query()
+            ->whereIn('id', $place->amenities ? $place->amenities : [])
+            ->get(['id', 'name', 'icon']);
+
+        $categories = Category::query()
+            ->whereIn('id', $place->category ? $place->category : [])
+            ->get(['id', 'name', 'slug', 'icon_map_marker']);
+
+        $place_types = PlaceType::query()
+            ->whereIn('id', $place->place_type ? $place->place_type : [])
+            ->get(['id', 'name']);
+
+        $reviews = Review::query()
+            ->with('user')
+            ->where('place_id', $place->id)
+            ->where('status', Review::STATUS_ACTIVE)
+            ->get();
+        $review_score_avg = Review::query()
+            ->where('place_id', $place->id)
+            ->where('status', Review::STATUS_ACTIVE)
+            ->avg('score');
+
+        $similar_places = Place::query()
+            ->with('place_types')
+            ->with('avgReview')
+            ->withCount('reviews')
+            ->withCount('wishList')
+            // ->where('city_id', $city->id)
+            ->where('id', '<>', $place->id);
+        foreach ($place->category as $cat_id):
+            $similar_places->where('category', 'like', "%{$cat_id}%");
+        endforeach;
+        $similar_places = $similar_places->limit(4)->get();
+
+        // SEO Meta
+        $title = $place->seo_title ? $place->seo_title : $place->name;
+        $description = $place->seo_description ? $place->seo_description : Str::limit($place->description, 165);
+        SEOMeta($title, $description, getImageUrl($place->thumb));
+
+        return view("frontend.startup.detail", [
+            'startup' => $place,
             'country' => $country,
             'founder' => $founder,
             'amenities' => $amenities,
@@ -206,7 +268,7 @@ class PlaceController extends Controller
         $model->fill($data);
 
         if ($model->save()) {
-            return redirect(route('user_my_place'))->with('success', 'Startup created successfully. Awaiting admin review!');
+            return redirect(route('home'))->with('success', 'Startup created successfully. Awaiting admin review!');
         }
 
         return $request;
@@ -330,7 +392,7 @@ class PlaceController extends Controller
         $html = "";
         if (count($places)) :
             foreach ($places as $place) :
-                $place_detail_url = route('place_detail', $place->slug);
+                $place_detail_url = route('place_detail', $place->id);
                 $place_price_range = PRICE_RANGE[$place->price_range];
                 $place_thumb = getImageUrl($place->thumb);
 
@@ -383,5 +445,43 @@ class PlaceController extends Controller
         endif;
 
         return $html;
+    }
+
+    public function connect(Request $request)
+    {
+        $code = $request->code;
+
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $response = \Stripe\OAuth::token([
+            'grant_type' => 'authorization_code',
+            'code' => $code,
+        ]);
+
+        dd($response);
+        //  A chave secreta é retornada na propriedade access_token
+        //  A chave publicável na propriedade stripe_publishable_key
+        // Fazer uma chamada pelo cliente:
+
+        \Stripe\Stripe::setApiKey($response->access_token);
+
+        \Stripe\Customer::create([
+            'email' => 'person@example.edu',
+        ], [
+            'api_key' => $response->access_token,
+        ]);
+
+        // $connected_account_id = $response->stripe_user_id;
+        // $access_token = $response->access_token;
+        // $livemode = $response->livemode;
+        // $stripe_publishable_key = $response->stripe_publishable_key;
+
+        // "access_token" => "sk_test_51JocLODafby0rIHzlD6qJgT2IVaqn55SMUONSOsrto5KyTQo8NHm8fIizoszgn7wQE7ELjmy83XTJ66lvCf74vEi009QGxFU4t"
+        // "livemode" => false
+        // "refresh_token" => "rt_NfBdpStPddU2MQnjAmgG6dvFT42TLfVNJQQwnEOtYlDfMVhB"
+        // "token_type" => "bearer"
+        // "stripe_publishable_key" => "pk_test_51JocLODafby0rIHzIKYTfAEacxULV8gG9bVf3Lbv51JIZHgGXgOmzOPzEyF4Y5tsS2aITXAHkoCAGuk4qC84S2v800rFoRwDZ9"
+        // "stripe_user_id" => "acct_1JocLODafby0rIHz"
+        // "scope" => "read_write"
     }
 }

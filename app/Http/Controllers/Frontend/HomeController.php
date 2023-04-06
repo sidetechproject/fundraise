@@ -11,8 +11,10 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Place;
 use App\Models\PlaceType;
+use App\Models\Booking;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Invite;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -41,6 +43,8 @@ class HomeController extends Controller
             return redirect('onboarding');
         }
 
+        $amounts = ['invites' => 0, 'views' => 0, 'intros' => 0, 'raising' => 0];
+
         $categories = Category::query()
             ->where('categories.status', Category::STATUS_ACTIVE)
             ->where('categories.type', Category::TYPE_PLACE)
@@ -51,8 +55,8 @@ class HomeController extends Controller
             ->limit(10)
             ->get();
 
-
-        $trending_places = Place::query()
+        if(isUserInvestor()){
+            $startups = Place::query()
             ->with('categories')
             ->with('city')
             ->with('place_types')
@@ -61,21 +65,66 @@ class HomeController extends Controller
             ->withCount('wishList')
             ->where('status', Place::STATUS_ACTIVE)
             ->limit(6)
+            ->orderBy('featured', 'desc')
             ->orderBy('created_at', 'desc')
+            //->where('featured', 1)
             ->get();
 
-        $investors = User::query()
+            $investors = User::query()
             ->where('profile', 2)
             //->where('onboarding', 1)
             ->orderBy('created_at', 'desc')
             ->limit(5)
             ->get();
+        } else {
+            $startups = Place::query()
+            ->with('categories')
+            ->with('city')
+            ->with('place_types')
+            ->with('intros')
+            ->with('invites')
+            ->withCount('reviews')
+            ->with('avgReview')
+            ->withCount('wishList')
+            ->orderBy('created_at', 'desc')
+            ->where('user_id', Auth::user()->id)
+            ->get();
+
+            $investors = User::query()
+            ->where('profile', 2)
+            //->where('onboarding', 1)
+            ->orderBy('created_at', 'desc')
+            ->limit(8)
+            ->get();
+
+            // $intros = Booking::query()
+            // ->where('user_id', Auth::user()->id)
+            // ->count();
+
+            foreach ($startups as $startup) {
+                $amounts['invites'] += $startup->invites->count();
+                //$amounts['views'] += 1;
+                $amounts['intros'] += $startup->intros->count();
+                $amounts['raising'] += preg_replace('/\D/', '', $startup->raising);
+            }
+        }
+
+        $featured_startup = Place::query()
+            ->with('categories')
+            ->with('city')
+            ->with('place_types')
+            ->withCount('reviews')
+            ->with('avgReview')
+            ->withCount('wishList')
+            ->where('status', Place::STATUS_ACTIVE)
+            ->where('id', '70')
+            ->first();
 
         // $testimonials = Testimonial::query()
         //     ->where('status', Testimonial::STATUS_ACTIVE)
         //     ->get();
 
-//        return $trending_places;
+//        return $startups;
 
         $template = setting('template', '01');
 
@@ -83,8 +132,10 @@ class HomeController extends Controller
             // 'popular_cities' => $popular_cities,
             // 'blog_posts' => $blog_posts,
             'categories' => $categories,
-            'trending_places' => $trending_places,
+            'startups' => $startups,
             'investors' => $investors,
+            'featured_startup' => $featured_startup,
+            'amounts' => $amounts,
             //'testimonials' => $testimonials
         ]);
     }
@@ -117,6 +168,56 @@ class HomeController extends Controller
         });
 
         return back()->with('success', 'Contact has been send!');
+    }
+
+
+    public function sendInvite(Request $request)
+    {
+        // $rule_factory = RuleFactory::make([
+        //     '%name%' => '',
+        //     'icon' => 'mimes:jpeg,jpg,png,gif|max:10000'
+        // ]);
+        // $data = $this->validate($request, $rule_factory);
+
+        $startup = Place::where(['user_id' => Auth::user()->id, 'id' => $request->input('startup_id')])->first();
+
+        if(!$startup || empty($request->input('emails'))){
+            return back()->with('error', 'Invite not sent!');
+        }
+
+        $emails = explode(';', $request->input('emails'));
+        foreach($emails as $invited_email) {
+
+            $alreadyHasInvite = Invite::where([
+                'user_id' => Auth::user()->id,
+                'startup_id' => $request->input('startup_id'),
+                'invited_email' => $invited_email
+            ])->first();
+
+            if($alreadyHasInvite) {
+                return back()->with('error', 'Invite not sent!');
+            }
+
+            $invite = new Invite();
+
+            $invite->invited_email = $invited_email;
+            $invite->user_id = Auth::user()->id;
+            $invite->startup_id = $request->input('startup_id');
+            $invite->status = 1;
+
+            $invite->save();
+
+            Mail::send('frontend.mail.invite', [
+                'startup' => $startup,
+                'invited_email' => $invited_email,
+            ], function ($message) use ($request, $startup, $invited_email) {
+                $message->to($invited_email, "{$invited_email}")
+                ->subject('Invite from ' . $startup->name)
+                ->replyTo($startup->email, $startup->name);
+            });
+        }
+
+        return back()->with('success', 'Invite sent!');
     }
 
     public function ajaxSearch(Request $request)
