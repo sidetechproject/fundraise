@@ -28,19 +28,19 @@
         <p>Share your profile via</p>
 
         <ul class="icons">
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{route('place_detail', $startup->id)}}" target="_blank">
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{route('startup_public_profile', $startup->id)}}" target="_blank">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://twitter.com/intent/tweet?url={{route('place_detail', $startup->id)}}&text={{ $startup->name }}" target="_blank">
+            <a href="https://twitter.com/intent/tweet?url={{route('startup_public_profile', $startup->id)}}&text={{ $startup->name }}" target="_blank">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{route('place_detail', $startup->id)}}" target="_blank">
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{route('startup_public_profile', $startup->id)}}" target="_blank">
                 <i class="fab fa-linkedin"></i>
             </a>
-            <a href="https://wa.me?text={{route('place_detail', $startup->id)}}" target="_blank">
+            <a href="https://wa.me?text={{route('startup_public_profile', $startup->id)}}" target="_blank">
                 <i class="fab fa-whatsapp"></i>
             </a>
-            <a href="https://telegram.me/share/url?url={{route('place_detail', $startup->id)}}&text={{ $startup->name }}" target="_blank">
+            <a href="https://telegram.me/share/url?url={{route('startup_public_profile', $startup->id)}}&text={{ $startup->name }}" target="_blank">
                 <i class="fab fa-telegram-plane"></i>
             </a>
         </ul>
@@ -49,7 +49,7 @@
 
         <div class="field mb-3">
             <i class="url-icon uil uil-link"></i>
-            <input type="text" readonly value="{{route('place_detail', $startup->id)}}">
+            <input type="text" readonly value="{{route('startup_public_profile', $startup->id)}}">
             <button>Copy</button>
         </div>
     </div>
@@ -65,32 +65,17 @@
         $(".popup-share-startup-{{$startup->id}}").toggleClass('show');
     });
 
-    // const shareProfile = document.querySelector(".share-profile"),
-    // popup_share = document.querySelector(".popup-share"),
-    // close_share = popup_share.querySelector(".close"),
-    // field_share = popup_share.querySelector(".field"),
-    // input_share = field_share.querySelector("input"),
-    // copy_share = field_share.querySelector("button");
-
-    // shareProfile.onclick = () => {
-    //     popup_share.classList.toggle("show");
-    // };
-
-    // close_share.onclick = () => {
-    //     shareProfile.click();
-    // };
-
-    // copy_share.onclick = () => {
-    //     input_share.select();
-    //     if (document.execCommand("copy")) {
-    //         field_share.classList.add("active");
-    //         copy_share.innerText = "Copied";
-    //         setTimeout(() => {
-    //         window.getSelection().removeAllRanges();
-    //         field_share.classList.remove("active");
-    //         copy_share.innerText = "Copy";
-    //         }, 3000);
-    //     }
-    // };
+    $(".popup-share-startup-{{$startup->id}} .field button").click(function(){
+        document.querySelector(".popup-share-startup-{{$startup->id}} .field input").select();
+        if (document.execCommand("copy")) {
+            document.querySelector(".popup-share-startup-{{$startup->id}} .field").classList.add("active");
+            document.querySelector(".popup-share-startup-{{$startup->id}} .field button").innerText = "Copied";
+            setTimeout(() => {
+                window.getSelection().removeAllRanges();
+                document.querySelector(".popup-share-startup-{{$startup->id}} .field").classList.remove("active");
+                document.querySelector(".popup-share-startup-{{$startup->id}} .field button").innerText = "Copy";
+            }, 3000);
+        }
+    });
   </script>
 @endpush

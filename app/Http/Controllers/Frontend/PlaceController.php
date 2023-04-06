@@ -123,7 +123,7 @@ class PlaceController extends Controller
 
     public function publicProfile($id)
     {
-        $place = $this->place->getBySlug($id);
+        $place = $this->place->find($id);
 
         if (!$place) abort(404);
 

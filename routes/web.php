@@ -17,9 +17,6 @@ $router->group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-$router->get('/startup/profile/{id}', 'App\Http\Controllers\Frontend\PlaceController@publicProfile')->name('startup_public_profile');
-//$router->get('/startup/{id}', 'App\Http\Controllers\Frontend\PlaceController@detail')->name('place_detail');
-
 /**
  * Frontend Router
  */
@@ -186,3 +183,6 @@ $router->group([
 });
 
 $router->get('/admincp/login', 'Admin\UserController@loginPage')->name('admin_login');
+
+$router->get('/startup/profile/{id}', 'App\Http\Controllers\Frontend\PlaceController@publicProfile')->name('startup_public_profile');
+//$router->get('/startup/{id}', 'App\Http\Controllers\Frontend\PlaceController@detail')->name('place_detail');

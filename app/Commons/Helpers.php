@@ -372,13 +372,12 @@ function isUserInvestor()
 function hasAccessToSeeStartup($startup)
 {
     $user = \Illuminate\Support\Facades\Auth::user();
-
-    $hasInviteToSeeStartup = \App\Models\Invite::where([
-        'invited_email' => $user->email,
-        'startup_id' => $startup->id
-    ])->count();
-
     if($user){
+        $hasInviteToSeeStartup = \App\Models\Invite::where([
+            'invited_email' => $user->email,
+            'startup_id' => $startup->id
+        ])->count();
+
         if( ($user->profile == 2 && $user->subscribed()) || $startup->user_id == $user->id || $startup->featured || $hasInviteToSeeStartup){
             return true;
         }
