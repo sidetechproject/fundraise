@@ -86,6 +86,12 @@
             "url": "https://spark.laravel.com"
         }
     ],
+    "http-basic": {
+        "spark.laravel.com": {
+            "username": "maiconrcf@gmail.com",
+            "password": "6H80TnePJQrgB0VD8sDzjUvcJtgdSFqUls1waeUa"
+        }
+    },
     "extra": {
         "laravel": {
             "dont-discover": []
