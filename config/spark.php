@@ -141,8 +141,8 @@ return [
                 [
                     'name' => 'Investors',
                     'short_description' => 'Start using the venture fundraising platform for free',
-                    'monthly_id' => 'price_1MqN3wFE55P0ACRpgmandUMe',
-                    'yearly_id' => 'price_1MqN4uFE55P0ACRphy04IXXf',
+                    'monthly_id' => 'price_1MtyXlFE55P0ACRpFPb22m1D',
+                    'yearly_id' => 'price_1MtyXlFE55P0ACRp8q51ftWs',
                     'features' => [
                         'Personalized Search',
                         'Deal Flow Sourcing',
