@@ -378,7 +378,7 @@ function hasAccessToSeeStartup($startup)
             'startup_id' => $startup->id
         ])->count();
 
-        if( ($user->profile == 2 && $user->subscribed()) || $startup->user_id == $user->id || $startup->featured || $hasInviteToSeeStartup){
+        if( $user->isAdmin() || ($user->profile == 2 && $user->subscribed()) || $startup->user_id == $user->id || $startup->featured || $hasInviteToSeeStartup){
             return true;
         }
     }
