@@ -93,6 +93,10 @@
                 <img src="{{ asset('assets/images/plaid.svg') }}" alt="" width="200px">
             </button>
 
+            {{-- <a href="{{ !$plaid_active ? $connect['plaid_link_token'] : '' }}" class="link-connect text-white plaid @if($plaid_active) disabled @endif">
+                <img src="{{ asset('assets/images/plaid.svg') }}" alt="" width="200px">
+            </a> --}}
+
             @if($plaid_active) Connected ✅ @endif
         </div>
     </div>

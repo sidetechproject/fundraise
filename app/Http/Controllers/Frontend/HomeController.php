@@ -141,6 +141,8 @@ class HomeController extends Controller
 
         $plaid_link_token = $plaid_response->link_token;
 
+        //$plaid_link_token = 'https://cdn.plaid.com/link/v2/stable/link.html?isWebview=true&token="'.$plaid_link_token.'"&receivedRedirectUri=https://fundraise.vc/connect/plaid';
+
         // $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
         // $stripe_link = $stripe->accountLinks->create([
         //     'account' => env('STRIPE_CONNECT_ACCOUNT_ID'),
