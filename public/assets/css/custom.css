@@ -52,7 +52,7 @@ body {
 .site-banner {
     background-position: right 0 bottom !important;
     /* --tw-gradient-stops: #e0e7ff, rgb(224 231 255 / 0); */
-    background-color: #ffffff;
+    background-color: #F1F6F9;
     background-image: linear-gradient(to bottom, #e0e7ff, rgb(224 231 255 / 0));
     background-repeat: no-repeat;
     background-size: cover;
@@ -1532,7 +1532,7 @@ mark {
 
 .my-startup {
     border: solid 1px #f3f3f3;
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 .total-action {
@@ -1588,4 +1588,51 @@ mark {
 }
 .total-action ul li .entry-number:after {
     background: #66e3c4;
+}
+
+.trending, .business-main, body {
+    background-color: #F1F6F9 !important
+}
+.my-startup {
+    background-color: #FFFFFF !important
+}
+.due-diligence {
+    background-color: #203e7a;
+    border-radius: 0px 0px 20px 20px;
+    color: #ffffff;
+}
+.trending .place-item.layout-02 {
+    margin-bottom: 0;
+}
+.dd-status-success {
+    color: #a9ec55;
+}
+.dd-status-error {
+    color: #e96c6f;
+}
+.dd-status-warning {
+    color: #ffd25f;
+}
+.text-white {
+    color: #FFFFFF !important;
+}
+.link-connect {
+    border-bottom: solid 1px #66e3c4 !important;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+#plaid-link-button {
+    background: transparent;
+    border: 0;
+    margin: 0;
+}
+.fs-30 {
+    font-size: 30px;
+}
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: black;
+    opacity: 0.5;
 }

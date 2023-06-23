@@ -22,6 +22,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use QuickBooksOnline\API\DataService\DataService;
+use TomorrowIdeas\Plaid\Plaid;
+use TomorrowIdeas\Plaid\Entities\User as PlaidUser;
+use TomorrowIdeas\Plaid\Entities\AccountFilters;
+use Shuttle\Handler\MockHandler;
+use Shuttle\Shuttle;
+use App\Models\Integration;
 
 class HomeController extends Controller
 {
@@ -120,13 +127,38 @@ class HomeController extends Controller
             ->where('id', '70')
             ->first();
 
-        // $testimonials = Testimonial::query()
-        //     ->where('status', Testimonial::STATUS_ACTIVE)
-        //     ->get();
-
-//        return $startups;
-
         $template = setting('template', '01');
+
+        $plaid = new Plaid(env('PLAID_CLIENT_ID'), env('PLAID_SECRET_ID'), env('PLAID_ENVIRONMENT'));
+
+        $plaid_response = $plaid->tokens->create(
+			Auth::user()->name,
+			"en",
+			["US"],
+			new PlaidUser(Auth::user()->id),
+			["transactions", "auth"]
+		);
+
+        $plaid_link_token = $plaid_response->link_token;
+
+        // $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+        // $stripe_link = $stripe->accountLinks->create([
+        //     'account' => env('STRIPE_CONNECT_ACCOUNT_ID'),
+        //     'refresh_url' => 'https://fundraise.vc/reauth',
+        //     'return_url' => 'https://fundraise.vc/return',
+        //     'type' => 'account_onboarding',
+        // ]);
+
+        $stripe_link = 'https://connect.stripe.com/oauth/authorize?response_type=code&client_id=' . env('STRIPE_CONNECT_CLIENT_ID') . '&scope=read_write&redirect_uri=' . env('STRIPE_CONNECT_REDIRECT_URI');
+
+        $connect = [
+            'quickbooks' => $this->getUrlConnectQuickBooks(),
+            'plaid_link_token' => $plaid_link_token,
+            'stripe_link' => $stripe_link
+        ];
+
+        $first_startup = Place::where(['user_id' => Auth::user()->id])->first();
+        $integrations = Integration::where(['user_id' => Auth::user()->id, 'startup_id' => $first_startup->id])->get();
 
         return view("frontend.home.home_{$template}", [
             // 'popular_cities' => $popular_cities,
@@ -136,8 +168,26 @@ class HomeController extends Controller
             'investors' => $investors,
             'featured_startup' => $featured_startup,
             'amounts' => $amounts,
+            'connect' => $connect,
+            'integrations' => $integrations,
             //'testimonials' => $testimonials
         ]);
+    }
+
+    public function getUrlConnectQuickBooks() {
+        $dataService = DataService::Configure(array(
+            'auth_mode' => 'oauth2',
+            'ClientID' => env('QUICKBOOKS_CLIENT_ID'),
+            'ClientSecret' =>  env('QUICKBOOKS_CLIENT_SECRET'),
+            'RedirectURI' => env('QUICKBOOKS_OAUTH_REDIRECT_URI'),
+            'scope' => env('QUICKBOOKS_OAUTH_SCOPE'),
+            'baseUrl' => "development"
+        ));
+
+        $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+        $authUrl = $OAuth2LoginHelper->getAuthorizationCodeURL();
+
+        return $authUrl;
     }
 
     public function pageFaqs()

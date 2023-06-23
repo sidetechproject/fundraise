@@ -186,3 +186,5 @@ $router->get('/admincp/login', 'Admin\UserController@loginPage')->name('admin_lo
 
 $router->get('/startup/profile/{id}', 'App\Http\Controllers\Frontend\PlaceController@publicProfile')->name('startup_public_profile');
 //$router->get('/startup/{id}', 'App\Http\Controllers\Frontend\PlaceController@detail')->name('place_detail');
+
+$router->get('/connect/stripe', 'App\Http\Controllers\Frontend\WebhookController@stripe')->name('connect_stripe');

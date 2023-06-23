@@ -108,6 +108,7 @@
         </div>
     </div>
 </div>
+@include('frontend.startup.due_diligence', ['startup' => $startup])
 
 @include('frontend.startup.share', ['startup' => $startup])
 @include('frontend.startup.invite_investor', ['startup' => $startup])

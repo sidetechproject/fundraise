@@ -185,12 +185,12 @@
 
                             @php
                                 $colors = [
-                                    'Private Equity' => '#7AA874',
-                                    'Venture Capital' => '#AA77FF',
-                                    'Corporate Venture Capital' => '#EBB02D',
-                                    'Venture Capital' => '#D864A9',
-                                    'Fund of Funds' => '#62CDFF',
-                                    'Angel' => '#FFBF9B',
+                                    'Private Equity' => '#30AADD',
+                                    'Venture Capital' => '#43919B',
+                                    'Corporate Venture Capital' => '#247881',
+                                    'Venture Capital' => '#0A4D68',
+                                    'Fund of Funds' => '#05BFDB',
+                                    'Angel' => '#27E1C1',
                                     'Angel Syndicate' => '#B46060',
                                 ]
                             @endphp

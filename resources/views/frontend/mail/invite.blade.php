@@ -10,7 +10,7 @@
   </head>
   <body class="">
     <span class="preheader">
-        You have received a invite from {{ $startup->name }}.
+        You have received an invite from {{ $startup->name }}.
     </span>
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
       <tr>
@@ -33,9 +33,9 @@
                             <p>
                                 Hello,<br><br>
 
-                                You have received a invite to access the <strong>{{ $startup->name }} Fundraise Profile</strong> <br><br>
+                                You have received an invite to access the <strong>{{ $startup->name }} Fundraise Profile</strong> <br><br>
 
-                                <a href="{{route('startup_public_profile', $startup->id)}}">Click here</a> and access now. <br><br>
+                                <a href="{{route('startup_public_profile', $startup->id)}}">Click here</a> and access now or if is the first access, create your account with your email: {{ $invited_email }} <br><br>
 
                                 To talk to the founder, just reply to this email.
                             </p>

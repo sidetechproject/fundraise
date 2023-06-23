@@ -318,7 +318,7 @@
             </div> --}}
             <!-- .top-footer -->
             <div class="footer__bottom">
-                <p class="footer__bottom__copyright">{{now()->year}} &copy; <a href="{{__('https://fundrasie.vc')}}" target="_blank">{{__('fundrasie.vc')}}</a>. {{__('All rights reserved.')}}</p>
+                <p class="footer__bottom__copyright">{{now()->year}} &copy; <a href="{{__('https://fundraise.vc')}}" target="_blank">{{__('fundraise.vc')}}</a>. {{__('All rights reserved.')}}</p>
             </div><!-- .top-footer -->
         </div><!-- .container -->
     </footer><!-- site-footer -->
