@@ -77,7 +77,7 @@
                 <i class="las la-file-invoice-dollar fs-30"></i> <br> Accounting
             </p>
 
-            <a href="@if(!$quickbooks_active) $connect['quickbooks'] @endif" class="link-connect text-white quickbooks @if($quickbooks_active) disabled @endif">
+            <a href="{{ !$quickbooks_active ? $connect['quickbooks'] : '' }}" class="link-connect text-white quickbooks @if($quickbooks_active) disabled @endif">
                 <img src="{{ asset('assets/images/quickbooks.svg') }}" alt="" width="200px">
             </a>
 
