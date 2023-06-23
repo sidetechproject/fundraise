@@ -188,3 +188,4 @@ $router->get('/startup/profile/{id}', 'App\Http\Controllers\Frontend\PlaceContro
 //$router->get('/startup/{id}', 'App\Http\Controllers\Frontend\PlaceController@detail')->name('place_detail');
 
 $router->get('/connect/stripe', 'App\Http\Controllers\Frontend\WebhookController@stripe')->name('connect_stripe');
+$router->get('/connect/quickbooks', 'App\Http\Controllers\Frontend\WebhookController@quickbooks')->name('connect_quickbooks');

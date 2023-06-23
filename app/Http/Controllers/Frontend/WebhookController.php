@@ -13,6 +13,7 @@ use Stripe\Stripe;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Place;
+use QuickBooksOnline\API\DataService\DataService;
 
 class WebhookController extends Controller
 {
@@ -66,8 +67,60 @@ class WebhookController extends Controller
         $integration->dd_data = '';
         $integration->save();
 
-        // https://fundraise.test/connect/stripe?scope=read_write&code=ac_O8SMMhlFReBAbX6ld0lOuHjfcRDSdDct
+        return redirect(route('home'));
+    }
+
+       /**
+     * Handle the quickbooks webhook.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function quickbooks(Request $request)
+    {
+        $dataService = DataService::Configure(array(
+            'auth_mode' => 'oauth2',
+            'ClientID' => env('QUICKBOOKS_CLIENT_ID'),
+            'ClientSecret' =>  env('QUICKBOOKS_CLIENT_SECRET'),
+            'RedirectURI' => env('QUICKBOOKS_OAUTH_REDIRECT_URI'),
+            'scope' => env('QUICKBOOKS_OAUTH_SCOPE'),
+            'baseUrl' => "development"
+        ));
+
+        $OAuth2LoginHelper = $dataService->getOAuth2LoginHelper();
+
+        $parseUrl = $this->parseAuthRedirectUrl($_SERVER['QUERY_STRING']);
+
+        /*
+        * Update the OAuth2Token
+        */
+        $accessToken = $OAuth2LoginHelper->exchangeAuthorizationCodeForToken($parseUrl['code'], $parseUrl['realmId']);
+        $dataService->updateOAuth2Token($accessToken);
+
+        $startup = Place::where(['user_id' => Auth::user()->id])->first();
+
+        //$companyInfo = $dataService->getCompanyInfo();
+
+        $integration = new Integration();
+        $integration->user_id = Auth::user()->id;
+        $integration->startup_id = $startup->id;
+        $integration->integration_tool = 'quickbooks';
+        $integration->data = serialize([
+            'access_token' => $accessToken->getAccessToken()
+        ]);
+        $integration->dd_data = '';
+        $integration->save();
 
         return redirect(route('home'));
+    }
+
+    private function parseAuthRedirectUrl($url)
+    {
+        parse_str($url,$qsArray);
+        return array(
+            'code' => $qsArray['code'],
+            'realmId' => $qsArray['realmId']
+        );
     }
 }
