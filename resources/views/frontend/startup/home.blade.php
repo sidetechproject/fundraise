@@ -91,7 +91,7 @@
                     </p>
 
                     <p>
-                        If you would like to contribute to the list please reach out to Jose at filipe@fundraise.vc.
+                        If you would like to contribute to the list please reach out at filipe@fundraise.vc.
                     </p>
 
                     <div class="testimonial-item mt-5">

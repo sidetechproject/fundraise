@@ -160,7 +160,10 @@ class HomeController extends Controller
         ];
 
         $first_startup = Place::where(['user_id' => Auth::user()->id])->first();
-        $integrations = Integration::where(['user_id' => Auth::user()->id, 'startup_id' => $first_startup->id])->get();
+        $integrations = [];
+        if($first_startup){
+            $integrations = Integration::where(['user_id' => Auth::user()->id, 'startup_id' => $first_startup->id])->get();
+        }
 
         return view("frontend.home.home_{$template}", [
             // 'popular_cities' => $popular_cities,
