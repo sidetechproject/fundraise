@@ -357,6 +357,7 @@
                                                     <td class="time">{{ !$startup->stage ? 'Not Raising' : 'Raising now' }}</td>
                                                 </tr>
 
+                                                @if($startup->raising)
                                                 <tr>
                                                     <td class="day">Raising</td>
                                                     <td class="time">
@@ -366,6 +367,7 @@
                                                         ${{ number_format($raising, 0, '.', '.') }}
                                                     </td>
                                                 </tr>
+                                                @endif
                                             </tbody>
                                         </table>
 

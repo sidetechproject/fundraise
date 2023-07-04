@@ -39,7 +39,10 @@ class FundController extends Controller
 
     public function detail($slug)
     {
-        $place = $this->place->where(['slug' => $slug])->first();
+        $place = $this->place->where([
+            'slug' => $slug,
+            'place_type' => 2
+        ])->first();
 
         if (!$place) abort(404);
 

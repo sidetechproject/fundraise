@@ -227,8 +227,8 @@
                                                     </div>
 
                                                     <div class="field-group mt-5 field-select">
-                                                        <label for="raising">{{__('Raising')}}*</label>
-                                                        <input type="text" id="raising-input" placeholder="{{__('$')}}" value="{{$place ? $place['raising'] : ''}}" name="raising" autocomplete="off" required/>
+                                                        <label for="raising">{{__('Raising')}}</label>
+                                                        <input type="text" id="raising-input" placeholder="{{__('$')}}" value="{{$place ? $place['raising'] : ''}}" name="raising" autocomplete="off"/>
                                                     </div>
 
                                                     <div class="field-group mt-5">
