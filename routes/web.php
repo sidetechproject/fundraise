@@ -56,6 +56,15 @@ $router->group([
     $router->put('/startup', 'PlaceController@update')->name('place_update')->middleware('auth');
     $router->get('/startup/filter', 'PlaceController@getListFilter')->name('place_get_list_filter');
 
+    $router->get('/fund/{id}', 'FundController@detail')->name('fund_detail');
+    $router->get('/fund/{id}/startups', 'FundController@startups')->name('fund_startups');
+    $router->get('/new-fund', 'FundController@pageAddNew')->name('fund_addnew');
+    $router->get('/edit-fund/{id}', 'FundController@pageAddNew')->name('fund_edit')->middleware('auth');
+    $router->post('/fund', 'FundController@create')->name('fund_create')->middleware('auth');
+    $router->put('/fund', 'FundController@update')->name('fund_update')->middleware('auth');
+    $router->get('/fund/filter', 'FundController@getListFilter')->name('fund_get_list_filter');
+    $router->get('/user/funds', 'FundController@funds')->name('investor_fundslist');
+
     $router->post('/review', 'ReviewController@create')->name('review_create')->middleware('auth');
     $router->post('/wishlist', 'UserController@addWishlist')->name('add_wishlist')->middleware('auth');
     $router->delete('/wishlist', 'UserController@removeWishlist')->name('remove_wishlist')->middleware('auth');

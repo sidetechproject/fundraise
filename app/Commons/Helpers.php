@@ -105,6 +105,13 @@ const METRICS = [
     "Churn" => "%"
 ];
 
+const METRICS_FUND = [
+    "MOIC" => "0",
+    "TVPI" => "0",
+    "IRR" => "0",
+    "STARTUPS" => "0"
+];
+
 const SOCIAL_LIST = [
     'Linkedin' => [
         'icon' => 'la la-linkedin-f',
@@ -265,7 +272,7 @@ function getImageUrl($image_file)
     if ($image_file) {
         return asset("uploads/{$image_file}");
     }
-    return "https://via.placeholder.com/300x300?text=GOLO";
+    return "https://via.placeholder.com/300x300?text=Fundraise";
 }
 
 function getUserAvatar($image_file)

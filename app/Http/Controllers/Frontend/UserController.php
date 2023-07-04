@@ -125,18 +125,13 @@ class UserController extends Controller
 
     public function pageWishList()
     {
-        $wishlists = Wishlist::query()
-            ->where('user_id', Auth::id())
-            ->get('place_id')->toArray();
-
-        $wishlists = array_column($wishlists, 'place_id');
-
         $places = Place::query()
             ->with('place_types')
             ->withCount('reviews')
             ->with('avgReview')
             ->withCount('wishList')
-            ->whereIn('id', $wishlists)
+            ->where('user_id', Auth::id())
+            ->where('place_type', '<>', 2)
             ->paginate();
 
         $app_name = setting('app_name', 'Golo.');
@@ -144,6 +139,26 @@ class UserController extends Controller
         return view('frontend.user.user_wishlist', [
             'places' => $places
         ]);
+
+        // $wishlists = Wishlist::query()
+        //     ->where('user_id', Auth::id())
+        //     ->get('place_id')->toArray();
+
+        // $wishlists = array_column($wishlists, 'place_id');
+
+        // $places = Place::query()
+        //     ->with('place_types')
+        //     ->withCount('reviews')
+        //     ->with('avgReview')
+        //     ->withCount('wishList')
+        //     ->whereIn('id', $wishlists)
+        //     ->paginate();
+
+        // $app_name = setting('app_name', 'Golo.');
+        // SEOMeta("Wishlist - {$app_name}");
+        // return view('frontend.user.user_wishlist', [
+        //     'places' => $places
+        // ]);
     }
 
     public function pageResetPassword(Request $request)

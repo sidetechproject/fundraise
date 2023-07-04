@@ -202,9 +202,15 @@ class PlaceController extends Controller
 
         $amenities = $this->amenities->getListAll();
 
+        $funds = $this->place->where([
+            'user_id' => Auth::id(),
+            'place_type' => 2,
+        ])->get();
+
         $app_name = setting('app_name', 'Golo.');
         SEOMeta("Add new place - {$app_name}");
         return view('frontend.place.place_addnew', [
+            'funds' => $funds,
             'place' => $place,
             'countries' => $countries,
             'cities' => $cities,
@@ -250,6 +256,7 @@ class PlaceController extends Controller
             'valuation' => '',
             'foundation' => '',
             'raising' => '',
+            'parent_id' => '',
             'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
         ]);
 
@@ -308,6 +315,7 @@ class PlaceController extends Controller
             'valuation' => '',
             'foundation' => '',
             'raising' => '',
+            'parent_id' => '',
             'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
         ]);
         $data = $this->validate($request, $rule_factory);

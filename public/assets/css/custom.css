@@ -1636,3 +1636,12 @@ a.disabled {
     color: black;
     opacity: 0.5;
 }
+.site-main {
+    min-height: 85vh;
+}
+.box-fund {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    flex-direction: column;
+}

@@ -371,6 +371,20 @@
                                                         <input type="text" id="place_deck" name="deck" value="{{$place ? $place['deck'] : ''}}" placeholder="{{__('Google Slides, Google Drive url')}}">
                                                     </div>
 
+                                                    @if(isUserInvestor())
+                                                        <div class="field-group mt-5 field-select">
+                                                            <label for="fund">{{__('Fund')}}</label>
+                                                            <select id="parent_id" name="parent_id">
+                                                                @foreach($funds as $key => $fund)
+                                                                    <option value="{{$key}}" {{isSelected($key, $fund ? $fund['name'] : '')}}>
+                                                                        {{$fund['name']}}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                            <i class="la la-angle-down"></i>
+                                                        </div>
+                                                    @endif
+
                                                         {{-- <div class="field-group field-file" style="min-width: 70%;"">
                                                             <label for="gallery_img">{{__('Gallery Images')}}</label>
                                                             <div id="gallery_preview">

@@ -11,5 +11,11 @@
                 {{__('My Startups')}}
             </a>
         </li>
+
+        <li class="{{isActiveMenu('investor_fundslist')}}">
+            <a href="{{route('investor_fundslist')}}">
+                {{__('My Funds')}}
+            </a>
+        </li>
     @endif
 </ul>

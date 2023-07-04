@@ -41,7 +41,7 @@
     <header id="header" class="site-header {{isRoute('home') || isRoute('place_detail') || isRoute('page_search_listing') ? 'home-header home-header-while' : ''}}">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-8">
+                <div class="col-md-4 col-8">
                     <div class="site">
                         <div class="site__menu mobile">
                             <a title="Menu Icon" href="#" class="site__menu__icon">
@@ -75,6 +75,12 @@
                                                         <li class="{{isActiveMenu('user_wishlist')}}">
                                                             <a href="{{route('user_wishlist')}}">
                                                                 {{__('My Startups')}}
+                                                            </a>
+                                                        </li>
+
+                                                        <li class="{{isActiveMenu('user_wishlist')}}">
+                                                            <a href="{{route('investor_fundslist')}}">
+                                                                {{__('My Funds')}}
                                                             </a>
                                                         </li>
                                                     @endif
@@ -167,7 +173,7 @@
                 </div><!-- .col-md-6 -->
 
 
-                <div class="col-md-6 col-4">
+                <div class="col-md-8 col-4">
                     <div class="right-header align-right">
                         {{-- <div class="right-header__languages">
                             <a href="#">
@@ -312,6 +318,8 @@
                                         @if(isUserInvestor())
                                             <li class="{{isActiveMenu('user_wishlist')}}"><a href="{{route('user_wishlist')}}">{{__('My Startups')}}</a></li>
 
+                                            <li class="{{isActiveMenu('investor_fundslist')}}"><a href="{{route('investor_fundslist')}}">{{__('My Funds')}}</a></li>
+
                                             <li class="{{isActiveMenu('user_my_place')}}"><a href="{{ '/billing' }}">{{__('Billing')}}</a></li>
                                         @endif
 
@@ -326,6 +334,7 @@
                                 </div>
                             </div><!-- .account -->
                         @endguest
+
                         <div class="right-header__search">
                             <a title="Search" href="#" class="search-open">
                                 <i class="las la-search la-24-black"></i>
@@ -344,6 +353,14 @@
                             <div class="right-header__button btn">
                                 <a title="Add startup" href="{{route('place_addnew')}}">
                                     <span>{{__('Add startup')}}</span>
+                                </a>
+                            </div>
+                        @endif
+
+                        @if(user() && user()->profile == 2)
+                            <div class="right-header__button btn">
+                                <a title="Search startup" href="{{route('fund_addnew')}}">
+                                    <span>{{__('Add fund')}}</span>
                                 </a>
                             </div>
                         @endif
