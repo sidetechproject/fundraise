@@ -57,9 +57,9 @@ class PlaceController extends Controller
             ->whereIn('id', $place->category ? $place->category : [])
             ->get(['id', 'name', 'slug', 'icon_map_marker']);
 
-        $place_types = PlaceType::query()
-            ->whereIn('id', $place->place_type ? $place->place_type : [])
-            ->get(['id', 'name']);
+        // $place_types = PlaceType::query()
+        //     ->whereIn('id', $place->place_type ? $place->place_type : [])
+        //     ->get(['id', 'name']);
 
         $reviews = Review::query()
             ->with('user')
@@ -114,7 +114,7 @@ class PlaceController extends Controller
             'founder' => $founder,
             'amenities' => $amenities,
             'categories' => $categories,
-            'place_types' => $place_types,
+            //'place_types' => $place_types,
             'reviews' => $reviews,
             'review_score_avg' => $review_score_avg,
             'similar_places' => $similar_places

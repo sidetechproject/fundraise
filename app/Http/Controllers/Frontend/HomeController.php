@@ -70,8 +70,10 @@ class HomeController extends Controller
             ->withCount('reviews')
             ->with('avgReview')
             ->withCount('wishList')
-            ->where('status', Place::STATUS_ACTIVE)
-            ->where('place_type', 2)
+            ->where([
+                'status' => Place::STATUS_ACTIVE,
+                'place_type' => 1,
+            ])
             ->limit(6)
             ->orderBy('featured', 'desc')
             ->orderBy('created_at', 'desc')
@@ -93,7 +95,7 @@ class HomeController extends Controller
             ->with('invites')
             ->withCount('reviews')
             ->with('avgReview')
-            ->where('place_type', 1)
+            //->where('place_type', 1)
             ->where('user_id', Auth::user()->id)
             ->withCount('wishList')
             ->orderBy('created_at', 'desc')
@@ -123,7 +125,7 @@ class HomeController extends Controller
             ->with('city')
             ->with('place_types')
             ->withCount('reviews')
-            ->where('place_type', 1)
+            //->where('place_type', 1)
             ->with('avgReview')
             ->withCount('wishList')
             ->where('status', Place::STATUS_ACTIVE)
@@ -443,7 +445,10 @@ class HomeController extends Controller
             //->orWhere('address', 'like', "%{$keyword}%")
             ->whereTranslationLike('name', "%{$keyword}%")
             ->orderBy('id', 'desc')
-            ->where('status', Place::STATUS_ACTIVE);
+            ->where([
+                'status' => Place::STATUS_ACTIVE,
+                'place_type' => 1,
+            ]);
 
         if ($filter_category) {
             foreach ($filter_category as $key => $item) {

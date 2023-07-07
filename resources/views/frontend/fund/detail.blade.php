@@ -157,7 +157,7 @@
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="place-thumb">
-                                        @if($startup->thumb && hasAccessToSeeStartup($startup))
+                                        @if($startup->thumb)
                                             <img src="{{getImageUrl($startup->thumb)}}" alt="{{$startup->name}}" class="logo">
                                         @else
                                             <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo" class="logo">
@@ -168,11 +168,7 @@
 
                                     <div class="place__box place__box--npd">
                                         <h1>
-                                            @if(hasAccessToSeeStartup($startup))
-                                                {{ $startup->name }}
-                                            @else
-                                                {{$startup['categories'][0]['name']}} raising {{ $startup->stage }}
-                                            @endif
+                                            {{ $startup->name }}
                                         </h1>
 
                                         <div class="place__meta">
@@ -183,15 +179,9 @@
 
                                         <div class="place-gallery text-left">
                                             @if($startup->website)
-                                                @if(hasAccessToSeeStartup($startup))
-                                                    <a href="{{$startup->website}}" target="_blank" rel="nofollow" class="lity-btn">
-                                                        Visit Website <i class="las la-external-link-alt ml-2 la-20"></i>
-                                                    </a>
-                                                @else
-                                                    <a href="/billing" target="_blank" rel="nofollow" class="lity-btn">
-                                                        Visit Website <i class="las la-lock ml-2 la-20"></i>
-                                                    </a>
-                                                @endif
+                                                <a href="{{$startup->website}}" target="_blank" rel="nofollow" class="lity-btn">
+                                                    Visit Website <i class="las la-external-link-alt ml-2 la-20"></i>
+                                                </a>
                                             @endif
 
                                             <a href="{{route('fund_startups', $startup->slug)}}" title="{{$startup->name}}" class="lity-btn">
@@ -200,27 +190,15 @@
                                             </a>
 
                                             @if($startup->deck)
-                                                @if(hasAccessToSeeStartup($startup))
                                                     <a href="{{$startup->deck}}" target="_blank" rel="nofollow" class="lity-btn">
                                                         View Deck <i class="las la-external-link-alt ml-2 la-20"></i>
                                                     </a>
-                                                @else
-                                                    <a href="/billing" target="_blank" rel="nofollow" class="lity-btn">
-                                                        View Deck <i class="las la-lock ml-2 la-20"></i>
-                                                    </a>
-                                                @endif
                                             @endif
                                             @if($startup->video)
-                                                @if(hasAccessToSeeStartup($startup))
-                                                    <a title="Video" href="{{$startup->video}}" data-lity class="lity-btn">
-                                                        {{__('Video')}}
-                                                        <i class="la la-youtube ml-2 la-20"></i>
-                                                    </a>
-                                                @else
-                                                    <a href="/billing" target="_blank" rel="nofollow" class="lity-btn">
-                                                        Video <i class="las la-lock ml-2 la-20"></i>
-                                                    </a>
-                                                @endif
+                                                <a title="Video" href="{{$startup->video}}" data-lity class="lity-btn">
+                                                    {{__('Video')}}
+                                                    <i class="la la-youtube ml-2 la-20"></i>
+                                                </a>
                                             @endif
                                         </div>
                                     </div><!-- .place__box -->
@@ -231,22 +209,12 @@
 
                                 <h3>{{__('Overview')}}</h3>
 
-                                @if(hasAccessToSeeStartup($startup))
-                                    <div class="place__desc open">
-                                        @php
-                                            echo $startup->description;
-                                        @endphp
-                                    </div>
-                                @else
-                                    <div class="place__desc open ">
-                                        <span class="blur">
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita placeat magni deserunt minima, sint ullam dolore non quo aliquam quibusdam excepturi provident fuga impedit culpa cumque odit soluta in laudantium.
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita placeat magni deserunt minima, sint ullam dolore non quo aliquam quibusdam excepturi provident fuga impedit culpa cumque odit soluta in laudantium.
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita placeat magni deserunt minima, sint ullam dolore non quo aliquam quibusdam excepturi provident fuga impedit culpa cumque odit soluta in laudantium.
-                                        </span>
-                                        <span class="small">{!! hasAccessToSeeStartup($startup) ? $opening['value'] : '<a href="/billing" class="text-dark"><i class="las la-lock la-20"></i> Upgrade to unlock</a>' !!}</span>
-                                    </div>
-                                @endif
+                                <div class="place__desc open">
+                                    @php
+                                        echo $startup->description;
+                                    @endphp
+                                </div>
+                               
                                 {{-- <a href="#" class="show-more" title="{{__('Show more')}}">{{__('Show more')}}</a> --}}
                             </div>
 
@@ -256,20 +224,14 @@
                                 <div class="account">
                                     <img src="{{getUserAvatar($founder->avatar)}}" alt="Founder">
                                     <span>
-                                        {{ hasAccessToSeeStartup($startup) ? $founder->name : substr($founder->name, 0, 3) . '...' }}
+                                        {{ $founder->name }}
                                     </span>
                                 </div>
 
                                 <div class="place__desc open mt-3">
-                                    @if(hasAccessToSeeStartup($startup))
                                         <a href="@php echo $founder->linkedin; @endphp" style="border-bottom: solid 1px #66e3c4;color: #000000;" target="_blank">
                                             @php echo $founder->linkedin; @endphp
                                         </a>
-                                    @else
-                                        <a href="/billing" style="border-bottom: solid 1px #66e3c4;color: #000000;" target="_blank">
-                                            https://www.linkedin.com/in/<i class="las la-lock la-20"></i>
-                                        </a>
-                                    @endif
                                 </div>
 
                                 <div class="place__desc open">
@@ -322,7 +284,7 @@
                                                 <tr>
                                                     <td class="day">{{$opening['title']}}</td>
                                                     <td class="time">
-                                                        {!! hasAccessToSeeStartup($startup) ? $opening['value'] : '<a href="/billing"><i class="las la-lock la-20"></i> Upgrade to unlock</a>' !!}
+                                                        {!! $opening['value'] !!}
                                                     </td>
                                                 </tr>
                                             @endif
@@ -437,13 +399,9 @@
 
                                         <input type="hidden" name="place_id" value="{{$startup->id}}">
 
-                                        @if(hasAccessToSeeStartup($startup))
+                                        
                                             <button class="btn booking_submit_btn">{{__('Send Intro')}}</button>
-                                        @else
-                                            <a href="/billing" class="btn booking_submit_btn">
-                                                <i class="las la-lock la-20"></i> {{ __('Upgrade to unlock') }}
-                                            </a>
-                                        @endif
+                                        
 
                                         <p class="note">{{__("The investor will be notified of your interest in being an investor.")}}</p>
 
