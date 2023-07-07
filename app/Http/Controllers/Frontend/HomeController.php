@@ -123,6 +123,7 @@ class HomeController extends Controller
             ->with('city')
             ->with('place_types')
             ->withCount('reviews')
+            ->where('place_type', 1)
             ->with('avgReview')
             ->withCount('wishList')
             ->where('status', Place::STATUS_ACTIVE)
