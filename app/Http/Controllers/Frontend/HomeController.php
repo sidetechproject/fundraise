@@ -71,8 +71,8 @@ class HomeController extends Controller
             ->with('avgReview')
             ->withCount('wishList')
             ->where('status', Place::STATUS_ACTIVE)
+            ->where('place_type', 2)
             ->limit(6)
-            ->where('place_type', '<>', 2)
             ->orderBy('featured', 'desc')
             ->orderBy('created_at', 'desc')
             //->where('featured', 1)
@@ -93,10 +93,10 @@ class HomeController extends Controller
             ->with('invites')
             ->withCount('reviews')
             ->with('avgReview')
-            ->where('place_type', '<>', 2)
+            ->where('place_type', 1)
+            ->where('user_id', Auth::user()->id)
             ->withCount('wishList')
             ->orderBy('created_at', 'desc')
-            ->where('user_id', Auth::user()->id)
             ->get();
 
             $investors = User::query()

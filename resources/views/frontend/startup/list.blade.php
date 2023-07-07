@@ -32,8 +32,8 @@
                         <a href="{{route('place_detail', $startup->id)}}">{{$startup->name}}</a>
                     @else
                         <a href="{{route('place_detail', $startup->id)}}">
-                            {{-- {{$startup['categories'][0]['name']}} raising {{ $startup->stage }} --}}
-                            {{$startup->name}} raising {{ $startup->stage }}
+                            {{$startup['categories'][0]['name']}} raising {{ $startup->stage }}
+                            {{-- {{$startup->name}} raising {{ $startup->stage }} --}}
                         </a>
                     @endif
 
