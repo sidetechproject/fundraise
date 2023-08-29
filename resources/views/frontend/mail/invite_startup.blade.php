@@ -37,7 +37,7 @@
 
                                                 <a href="{{route('invite_fund', $startup->id)}}">Click here</a> and register your startup <br><br>
 
-                                                To talk to the investor, just reply to this email.
+{{--                                                To talk to the investor, just reply to this email.--}}
                                             </p>
                                             </p>
                                         </td>

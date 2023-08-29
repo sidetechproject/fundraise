@@ -301,8 +301,8 @@ class HomeController extends Controller
                 'invited_email' => $invited_email,
             ], function ($message) use ($request, $startup, $invited_email) {
                 $message->to($invited_email, "{$invited_email}")
-                    ->subject('Invite from ' . $startup->name)
-                    ->replyTo($startup->email, $startup->name);
+                    ->subject('Invite from ' . $startup->name);
+                    //->replyTo($startup->email, $startup->name);
             });
         }
 
