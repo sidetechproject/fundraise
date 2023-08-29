@@ -271,6 +271,11 @@ class PlaceController extends Controller
             $data['thumb'] = $thumb_file;
         }
 
+        if(!empty(Auth::user()->fund)){
+            $fund = Place::query()->where('slug', Auth::user()->fund)->first();
+            $data['parent_id'] = $fund->id;
+        }
+
         $model = new Place();
         $model->fill($data);
 

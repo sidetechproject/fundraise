@@ -21,7 +21,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'avatar', 'phone_number', 'facebook', 'instagram', 'status', 'is_admin', 'profile', 'ticket', 'stage', 'type_investor', 'bio', 'linkedin', 'categories', 'countries', 'valuation', 'mrr'];
+    protected $fillable = ['name', 'email', 'password', 'avatar', 'phone_number', 'facebook', 'instagram', 'status', 'is_admin', 'profile', 'ticket', 'stage', 'type_investor', 'bio', 'linkedin', 'categories', 'countries', 'valuation', 'mrr', 'fund'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -110,6 +110,7 @@ class User extends Authenticatable
         $this->stage = $data->stage;
         $this->type_investor = $data->type_investor;
         $this->bio = $data->bio;
+        $this->fund = $data->fund;
         $this->linkedin = $data->linkedin;
         $this->password = Hash::make($data->password);
         $this->save();

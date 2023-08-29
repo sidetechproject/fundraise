@@ -189,6 +189,16 @@
                                                 <i class="la la-rocket ml-2 la-20"></i>
                                             </a>
 
+                                            @if(isFundFromCurrentUser($startup))
+                                                <a class="lity-btn invite-investor-{{$startup->id}}">
+                                                    Invite Startups
+                                                    <i class="la la-envelope ml-2 la-20"></i>
+                                                </a>
+
+                                                @include('frontend.startup.share', ['startup' => $startup])
+                                                @include('frontend.fund.invite_startup', ['startup' => $startup])
+                                            @endif
+
                                             @if($startup->deck)
                                                     <a href="{{$startup->deck}}" target="_blank" rel="nofollow" class="lity-btn">
                                                         View Deck <i class="las la-external-link-alt ml-2 la-20"></i>
@@ -214,7 +224,7 @@
                                         echo $startup->description;
                                     @endphp
                                 </div>
-                               
+
                                 {{-- <a href="#" class="show-more" title="{{__('Show more')}}">{{__('Show more')}}</a> --}}
                             </div>
 
@@ -399,9 +409,9 @@
 
                                         <input type="hidden" name="place_id" value="{{$startup->id}}">
 
-                                        
+
                                             <button class="btn booking_submit_btn">{{__('Send Intro')}}</button>
-                                        
+
 
                                         <p class="note">{{__("The investor will be notified of your interest in being an investor.")}}</p>
 

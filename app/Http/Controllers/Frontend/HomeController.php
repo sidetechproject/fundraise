@@ -280,6 +280,35 @@ class HomeController extends Controller
         return back()->with('success', 'Invite sent!');
     }
 
+    public function sendInviteStartup(Request $request)
+    {
+        // $rule_factory = RuleFactory::make([
+        //     '%name%' => '',
+        //     'icon' => 'mimes:jpeg,jpg,png,gif|max:10000'
+        // ]);
+        // $data = $this->validate($request, $rule_factory);
+
+        $startup = Place::where(['user_id' => Auth::user()->id, 'id' => $request->input('startup_id')])->first();
+
+        if(!$startup || empty($request->input('emails'))){
+            return back()->with('error', 'Invite not sent!');
+        }
+
+        $emails = explode(';', $request->input('emails'));
+        foreach($emails as $invited_email) {
+            Mail::send('frontend.mail.invite_startup', [
+                'startup' => $startup,
+                'invited_email' => $invited_email,
+            ], function ($message) use ($request, $startup, $invited_email) {
+                $message->to($invited_email, "{$invited_email}")
+                    ->subject('Invite from ' . $startup->name)
+                    ->replyTo($startup->email, $startup->name);
+            });
+        }
+
+        return back()->with('success', 'Invite sent!');
+    }
+
     public function ajaxSearch(Request $request)
     {
         $keyword = $request->keyword;

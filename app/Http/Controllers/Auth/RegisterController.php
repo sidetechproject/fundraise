@@ -79,6 +79,7 @@ class RegisterController extends Controller
             //'name' => $data['name'],
             'email' => $data['email'],
             'profile' => $data['profile'],
+            'fund' => $data['fund'],
             // 'ticket' => $data['ticket'],
             // 'stage' => $data['stage'],
             // 'type_investor' => $data['type_investor'],

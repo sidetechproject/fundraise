@@ -173,6 +173,14 @@
                             <input type="password" id="register_password_confirmation" name="password_confirmation" placeholder="******" class="form-control" required>
                         </div>
 
+                        @if(isset($_GET['fund']) && !empty($_GET['fund']))
+                            <div class="field-input">
+                                <label for="password">{{__('Fund')}}</label>
+
+                                <input type="text" id="fund" name="fund" placeholder="******" class="form-control disabled" value="{{$_GET['fund']}}" required>
+                            </div>
+                        @endif
+
                         <button type="submit" class="btn btn-primary w-100" id="submit_register">
                             {{__('Sign Up')}}
                         </button>
@@ -248,6 +256,11 @@
     $( "input[name='profile']" ).change(function() {
         $( ".fields-signup" ).show();
     });
+
+    @if(isset($_GET['fund']) && !empty($_GET['fund']))
+        $( "#startup" ).click();
+        $( "div.col:has(> input#investor)" ).hide();
+    @endif
 
     // $( "input[name='profile']" ).change(function() {
     //     if($( this ).val() == 1) {

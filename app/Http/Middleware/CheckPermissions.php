@@ -23,6 +23,7 @@ class CheckPermissions
             && $request->route()->uri != 'login'
             && !auth()->user()
             && !isRoute('startup_public_profile')
+            && !isRoute('invite_fund')
         ){
             return redirect(route('signup'))->with('success', 'Update startup success!');
         }

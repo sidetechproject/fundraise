@@ -99,6 +99,7 @@ $router->group([
     $router->get('/categories', 'CategoryController@search')->name('category_search');
 
     $router->post('/invite', 'HomeController@sendInvite')->name('send_invite');
+    $router->post('/invite_startup', 'HomeController@sendInviteStartup')->name('send_invite_startup');
     $router->get('/connect', 'PlaceController@connect')->name('connect_stripe');
 });
 
@@ -198,3 +199,8 @@ $router->get('/startup/profile/{id}', 'App\Http\Controllers\Frontend\PlaceContro
 
 $router->get('/connect/stripe', 'App\Http\Controllers\Frontend\WebhookController@stripe')->name('connect_stripe');
 $router->get('/connect/quickbooks', 'App\Http\Controllers\Frontend\WebhookController@quickbooks')->name('connect_quickbooks');
+
+$router->get('/invite-fund/{id}', [function (string $id) {
+    return redirect('/signup?fund=' . $id);
+}])->name('invite_fund');
+

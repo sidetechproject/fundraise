@@ -409,3 +409,14 @@ function isStartupFromCurrentUser($startup)
     return false;
 }
 
+function isFundFromCurrentUser($startup)
+{
+    $user = \Illuminate\Support\Facades\Auth::user();
+
+    if( $user && ($user->id == $startup->user_id) && $startup->place_type == 2 ){
+        return true;
+    }
+
+    return false;
+}
+
