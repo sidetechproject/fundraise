@@ -389,7 +389,7 @@ function hasAccessToSeeStartup($startup)
             ($user->profile == 2 && $user->subscribed()) ||
             $startup->user_id == $user->id ||
             $startup->featured ||
-            $hasInviteToSeeStartup || in_array($user->id, ['124']))
+            $hasInviteToSeeStartup || in_array($user->id, ['124', '146']))
         {
             return true;
         }
