@@ -88,12 +88,12 @@
                                         </li>
                                         <li role="presentation" class="disabled">
                                             <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab">
-                                                <span class="round-tab">3</span> <i>{{__('Metrics')}}</i>
+                                                <span class="round-tab">2</span> <i>{{__('Metrics')}}</i>
                                             </a>
                                         </li>
                                         <li role="presentation" class="disabled">
                                             <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab">
-                                                <span class="round-tab">4</span> <i>{{__('Fundraise')}}</i>
+                                                <span class="round-tab">3</span> <i>{{__('Fundraise')}}</i>
                                             </a>
                                         </li>
                                         {{-- <li role="presentation" class="disabled hide">
@@ -156,7 +156,7 @@
                                             <div class="listing-box" id="open">
                                                 <h3>
                                                     <span class="avatar avatar-xs avatar-primary avatar-circle mr-2">
-                                                        3
+                                                        2
                                                     </span>
                                                     {{__('Key Metrics')}}
                                                 </h3>
@@ -212,7 +212,7 @@
                                                 <div class="listing-box" id="media">
                                                     <h3>
                                                         <span class="avatar avatar-xs avatar-primary avatar-circle mr-2">
-                                                            4
+                                                            3
                                                         </span>
                                                         Fundraising
                                                     </h3>

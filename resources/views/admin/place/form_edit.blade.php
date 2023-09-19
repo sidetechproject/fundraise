@@ -76,7 +76,7 @@
         </div>
 
 
-        <div id="hightlight">
+       <!--  <div id="hightlight">
             <p class="lead">Amenities</p>
             <div class="checkbox row">
                 @foreach($amenities as $item)
@@ -85,9 +85,9 @@
                     </div>
                 @endforeach
             </div>
-        </div>
+        </div> -->
 
-        <div id="location">
+       <!--  <div id="location">
             <p class="lead">Location</p>
 
             <div class="row">
@@ -122,8 +122,8 @@
             {{--<input type="text" id="pac-input" class="form-control" value="{{$place->address}}" placeholder="Search address..." autocomplete="off">--}}
             <div id="map"></div>
         </div>
-
-        <div id="contact_info">
+ -->
+      <!--   <div id="contact_info">
             <p class="lead">Contact info</p>
 
             <div class="form-group">
@@ -138,9 +138,9 @@
                 <label for="name">Website:</label>
                 <input type="text" class="form-control" id="place_website" name="website" value="{{$place->website}}" placeholder="Enter website url">
             </div>
-        </div>
+        </div> -->
 
-        <div id="social_network">
+       <!--  <div id="social_network">
             <p class="lead">Social Networks</p>
 
             <div id="social_list">
@@ -166,9 +166,9 @@
             </div>
 
             <button type="button" class="btn btn-round btn-info" id="social_addmore">+ Add more</button>
-        </div>
+        </div> -->
 
-        <div id="opening_hours">
+       <!--  <div id="opening_hours">
             <p class="lead">Opening hours</p>
 
             <div id="openinghour_list">
@@ -192,8 +192,8 @@
             <button type="button" class="btn btn-round btn-info" id="openinghour_addmore">+ Add more</button>
 
         </div>
-
-        <div id="menus">
+ -->
+    <!--     <div id="menus">
             <p class="lead">Menus</p>
             <div id="menu_list">
                 @if($place->menu)
@@ -232,9 +232,9 @@
                 @endif
             </div>
             <button type="button" class="btn btn-round btn-info" id="menu_addmore">+ Add more</button>
-        </div>
+        </div> -->
 
-        <div id="faqs">
+     <!--    <div id="faqs">
             <p class="lead">FAQs</p>
             <div id="faq_list">
                 @if($place->faq)
@@ -256,9 +256,9 @@
                 @endif
             </div>
             <button type="button" class="btn btn-round btn-info" id="faq_addmore">+ Add more</button>
-        </div>
+        </div> -->
 
-        <div id="media">
+        <!-- <div id="media">
             <p class="lead">Media</p>
             <div class="row">
                 <div class="col-md-6">
@@ -304,9 +304,9 @@
                 <label for="place_video">Video:</label>
                 <input type="text" class="form-control" id="place_video" value="{{$place->video}}" name="video" placeholder="Youtube, Vimeo video url">
             </div>
-        </div>
+        </div> -->
 
-        <div id="link_affiliate">
+      <!--   <div id="link_affiliate">
             <p class="lead">Booking type</p>
             <div class="btn-group" data-toggle="buttons">
                 <label class="btn btn-secondary {{isActive($place->booking_type, \App\Models\Booking::TYPE_BOOKING_FORM)}}" data-toggle-class="btn-default" data-toggle-passive-class="btn-default">
@@ -345,11 +345,11 @@
                     </script>
                 @endpush
             @endif
-        </div>
+        </div> -->
 
         <div class="ln_solid"></div>
 
-        <div id="golo_seo">
+        <!-- <div id="golo_seo">
             <p class="lead">Golo SEO</p>
 
             <div class="form-group">
@@ -360,7 +360,7 @@
                 <label for="seo_description">Meta Description:</label>
                 <textarea class="form-control" id="seo_description" name="seo_description">{{$place['seo_description']}}</textarea>
             </div>
-        </div>
+        </div> -->
 
     </div>
 
